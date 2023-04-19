@@ -158,6 +158,11 @@ export function fnHideWelcomeMessage() {
 }
 
 
+function showWarningAWeightNeedsToBeSelected() {
+	// TODO dont show alert but add some nice html stuff or hide something
+	alert("Es muss ein gewicht ausgewählt werden");
+}
+
 // (a) Anzeige von Frage Nummer XY
 // (b) Weiterleitung zur Auswertung 
 // Aufruf aus fnStart() -> fnShowQuestions(csvData)
@@ -203,7 +208,7 @@ export function fnShowQuestionNumber(questionNumber) {
 		$("#votingPro").click(function () {
 			// weight = 1
 			if (questionWeight[questionNumber] == null) {
-				alert("we need a weight")
+				return showWarningAWeightNeedsToBeSelected();
 			}
 			arPersonalPositions[questionNumber] = 1;
 			fnShowQuestionNumber(questionNumber);
@@ -212,7 +217,7 @@ export function fnShowQuestionNumber(questionNumber) {
 		$("#votingContra").click(function () {
 
 			if (questionWeight[questionNumber] == null) {
-				alert("we need a weight")
+				return showWarningAWeightNeedsToBeSelected();
 			}
 
 			arPersonalPositions[questionNumber] = -1;
@@ -221,6 +226,7 @@ export function fnShowQuestionNumber(questionNumber) {
 
 		$("#votingSkip").click(function () {
 			arPersonalPositions[questionNumber] = 0;
+			questionWeight[questionNumber] = 0; // shouldnt make a difference as they are multiplied in the end
 			fnShowQuestionNumber(questionNumber);
 		});
 
@@ -230,7 +236,6 @@ export function fnShowQuestionNumber(questionNumber) {
 		$("#votingDouble").removeClass("btn-dark").addClass("btn-outline-dark");
 
 		$("#sectionNavigation").fadeIn(300);
-
 
 	}
 
@@ -263,7 +268,7 @@ export function fnShowQuestionNumber(questionNumber) {
 
 			// Klick-Funktion mit den Ergebnissen zum Senden auf "Ja" legen
 			document.getElementById("statisticsModalButtonYes").addEventListener("click", function () {
-				fnSendResults(arResults, arPersonalPositions)
+				fnSendResults(questionWeight, arPersonalPositions)
 				$('#statisticsModal').modal('toggle')
 			});
 
@@ -278,7 +283,8 @@ export function fnShowQuestionNumber(questionNumber) {
 // 02/2015 BenKob
 export function fnChangeVotingDouble(weight) {
 
-	questionWeight[getActiveQuestion()] = weight
+	questionWeight[getActiveQuestion()] = weight; // defined in global.js
+	console.log(questionWeight)
 	for (let i = 1; i <= 9; i++) {
 		$("#votingImportant" + i).removeClass("btn-dark").addClass("btn-outline-dark");
 	}
@@ -327,7 +333,7 @@ function fnJumpToQuestionNumber(questionNumber) {
 	tableContent += "</table>";
 	$("#navigationJumpToQuestion").append(tableContent).fadeIn(500);
 	setTimeout(() => {
-		console.log(tableContent);
+		//console.log(tableContent);
 		for (let i = 1; i <= arQuestionsLong.length; i++) {
 			document.getElementById('question' + i).addEventListener('click', (event) => {
 				event.preventDefault();
