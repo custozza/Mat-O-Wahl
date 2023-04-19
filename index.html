@@ -45,16 +45,16 @@
 	<script type="module" src="system/jquery.csv-0.8.9.min.js"></script>
 	<script type="module" src="system/general.js"></script>
 	<script type="module" defer>
-		import { fnHideWelcomeMessage, fnChangeVotingDouble} from './system/output.js';
+		import { fnHideWelcomeMessage, fnChangeVotingDouble } from './system/output.js';
 
 		console.log('loaded module');
 
 		//fnHideWelcomeMessage();
 		document.getElementById('descriptionButtonStart').addEventListener('click', fnHideWelcomeMessage);
 
-		for (let  i = 1; i <= 9; i++) {
+		for (let i = 1; i <= 9; i++) {
 			const button = document.getElementById('votingImportant' + i)
-			button.addEventListener('click', function () {fnChangeVotingDouble(i);});
+			button.addEventListener('click', function () { fnChangeVotingDouble(i); });
 		}
 
 
@@ -210,47 +210,35 @@
 
 			<section id="sectionVotingButtons">
 
-				<div class="grid-container row">
+				<div id="votingWeightContainer" class="grid-container row">
 
-					<div class="w1">
-						<button type="button" id="votingImportant1" 
-							class="btn btn-outline-dark btn-lg btn-block">1</button>
-					</div>
+					<script>
+						// let chatgpt do the work
+						// Get a reference to the parent element where you want to append the new elements
+						const container = document.querySelector('#votingWeightContainer');
 
-					<div class="w2">
-						<button type="button" id="votingImportant2"
-							class="btn btn-outline-dark btn-lg btn-block">2</button>
-					</div>
+						// Loop 9 times to create and append the elements
+						// TODO replace the magic number 9 with a global constant
+						for (let i = 1; i <= 9; i++) {
+							// Create the <div> element with class "w2"
+							const divElement = document.createElement('div');
+							divElement.classList.add('w${i}');
 
-					<div class="w3">
-						<button type="button" id="votingImportant3"
-							class="btn btn-outline-dark btn-lg btn-block">3</button>
-					</div>
+							// Create the <button> element with the specified attributes and text content
+							const buttonElement = document.createElement('button');
+							buttonElement.setAttribute('type', 'button');
+							buttonElement.setAttribute('id', `votingImportant${i}`);
+							buttonElement.setAttribute('class', 'btn btn-outline-dark btn-lg btn-block');
+							buttonElement.textContent = i;
 
-					<div class="w4">
-						<button type="button" id="votingImportant4"
-							class="btn btn-outline-dark btn-lg btn-block">4</button>
-					</div>
-					<div class="w5">
-						<button type="button" id="votingImportant5"
-							class="btn btn-outline-dark btn-lg btn-block">5</button>
-					</div>
-					<div class="w6">
-						<button type="button" id="votingImportant6"
-							class="btn btn-outline-dark btn-lg btn-block">6</button>
-					</div>
-					<div class="w7">
-						<button type="button" id="votingImportant7"
-							class="btn btn-outline-dark btn-lg btn-block">7</button>
-					</div>
-					<div class="w8">
-						<button type="button" id="votingImportant8"
-							class="btn btn-outline-dark btn-lg btn-block">8</button>
-					</div>
-					<div class="w9">
-						<button type="button" id="votingImportant9"
-							class="btn btn-outline-dark btn-lg btn-block">9</button>
-					</div>
+							// Append the <button> element to the <div> element
+							divElement.appendChild(buttonElement);
+
+							// Append the <div> element to the parent element
+							container.appendChild(divElement);
+						}
+
+					</script>
 
 					<div class="yes">
 						<button type="button" id="votingPro" class="btn btn-success btn-lg btn-block">[&#x2714;]
