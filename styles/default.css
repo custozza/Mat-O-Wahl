@@ -1,177 +1,232 @@
-
 /* BODY: Hintergrundfarbe, Schriftart, -groesse und -farbe */
-/* BODY: background color, font, size and color */
-body {
-	font-family:Verdana, Arial, Helvetica, sans-serif; 
-/*	font-size:10pt; */
 
+
+/* BODY: background color, font, size and color */
+
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    /*	font-size:10pt; */
     font-family: "Raleway", sans-serif;
-	/* background-image: linear-gradient(#EFC04F, #FFE08F); */ 
-	/* background-attachment: fixed; */
-	}
+    /* background-image: linear-gradient(#EFC04F, #FFE08F); */
+    /* background-attachment: fixed; */
+}
+
 
 /* LINK-Farbe - AUSSER bei der Bootstrap-Klasse "btn" für Buttons. Dort wird der Bootstrap-Standard benutzt. */
-/* LINK-color - EXCEPT for Bootstrap button-class "btn". Use defaults there. */
-a:not(.btn) { color:#000000; text-decoration:underline;}
-a:not(.btn):link { color:#000000; } 
-a:not(.btn):visited { color:#808080; }
-a:not(.btn):active { color:#FF0000; }
-a:not(.btn):hover { color:#FF0000; text-decoration:none; }
 
+
+/* LINK-color - EXCEPT for Bootstrap button-class "btn". Use defaults there. */
+
+a:not(.btn) {
+    color: #000000;
+    text-decoration: underline;
+}
+
+a:not(.btn):link {
+    color: #000000;
+}
+
+a:not(.btn):visited {
+    color: #808080;
+}
+
+a:not(.btn):active {
+    color: #ff0000;
+}
+
+a:not(.btn):hover {
+    color: #ff0000;
+    text-decoration: none;
+}
+
+.title-img {
+    width: 100%;
+}
 
 .question-card {
-	background-color: #CC6361;
-	color:#F6EAEC; 
+    background-color: #cc6361;
+    color: #f6eaec;
 }
 
 .card-header {
-	background-color: #CC6361;
-	color:#F6EAEC; 
+    background-color: #cc6361;
+    color: #f6eaec;
 }
 
 .card-text {
-	color: #000000
+    color: #000000;
 }
-
-
 
 .grid-container {
-	display: grid;
-	/* grid-template-columns: 1fr 3fr; */	
-	/* grid-template-rows: auto 1fr auto; */
-	grid-template-areas: 
-	  "yes yes yes no no no skip skip skip"
-	  "w1 w2 w3 w4 w5 w6 w7 w8 w9";
-  }
-  
-  .weniger {
-	grid-area: weniger;
-  }
-    
-  .normal {
-	grid-area: normal;
-  }
-    
-  .mehr {
-	grid-area: mehr;
-  }
-  
-  .yes {
-	grid-area: yes;
-  }
+    display: grid;
+    /* grid-template-columns: 1fr 3fr; */
+    /* grid-template-rows: auto 1fr auto; */
+    grid-template-areas: "yes yes yes no no no skip skip skip" "w1 w2 w3 w4 w5 w6 w7 w8 w9";
+}
 
-  .dontCare {
-	grid-area: dontCare;
-  }
+@media only screen and (max-width: 600px) {
+    .grid-container {
+        display: grid;
+        /* grid-template-columns: 1fr 3fr; */
+        /* grid-template-rows: auto 1fr auto; */
+        grid-template-areas: "yes yes yes" "no no no" "skip skip skip" "w1 w2 w3" "w4 w5 w6" "w7 w8 w9";
+    }
+}
 
-  .no {
-	grid-area: no;
-  }
-  
-  .skip {
-	grid-area: skip;
-  }
+.weniger {
+    grid-area: weniger;
+}
 
-  .w9 {
-	grid-area: w9;
-  }
-  
-  .w8 {
-	grid-area: w8;
-  }
-  .w7 {
-	grid-area: w7;
-  }
-  .w6 {
-	grid-area: w6;
-  }
-  .w5 {
-	grid-area: w5;
-  }
-  .w4 {
-	grid-area: w4;
-  }
-  .w3 {
-	grid-area: w3;
-  }
-  .w2 {
-	grid-area: w2;
-  }
-  .w1 {
-	grid-area: w1;
-  }
-  
+.normal {
+    grid-area: normal;
+}
 
+.mehr {
+    grid-area: mehr;
+}
 
+.yes {
+    grid-area: yes;
+}
+
+.dontCare {
+    grid-area: dontCare;
+}
+
+.no {
+    grid-area: no;
+}
+
+.skip {
+    grid-area: skip;
+}
+
+.w9 {
+    grid-area: w9;
+}
+
+.w8 {
+    grid-area: w8;
+}
+
+.w7 {
+    grid-area: w7;
+}
+
+.w6 {
+    grid-area: w6;
+}
+
+.w5 {
+    grid-area: w5;
+}
+
+.w4 {
+    grid-area: w4;
+}
+
+.w3 {
+    grid-area: w3;
+}
+
+.w2 {
+    grid-area: w2;
+}
+
+.w1 {
+    grid-area: w1;
+}
 
 #sectionVotingButtons .row {
-	display: grid;
-	grid-auto-columns: 1fr;
-	grid-auto-rows: 1fr;
-	grid-gap: 1rem;
-	/* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
-}
-#sectionVotingButtons .row  .btn {
-	height: 100%;
-	margin: 0;
-	padding: 1rem;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
+    grid-gap: 1rem;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
 }
 
+#sectionVotingButtons .row .btn {
+    height: 100%;
+    margin: 0;
+    padding: 1rem;
+}
+
+
 /* Statistik */
+
+
 /* Statistics */
-#keepStats { 
-	margin-top:10px; 
-	font-size:90%; 
-	}
+
+#keepStats {
+    margin-top: 10px;
+    font-size: 90%;
+}
+
 
 /* Willkommensnachricht (erster DIV)
    Welcome Message (first DIV) */
-#sectionDescription > div:first-of-type {
+
+#sectionDescription>div:first-of-type {
     padding: 5% 2%;
     text-overflow: clip;
     overflow: auto;
-    margin-top: 1.0em;
+    margin-top: 1em;
     max-height: 60vh;
 }
 
+
 /* BOOTSTRAP */
+
 .row {
-	padding: 0.2em; 
+    padding: 0.2em;
 }
+
 
 /* Gestreifte Spalten in den Ergebnis-Listen
 	Striped rows in results */
+
 .mow-row-striped:nth-child(odd) {
-	background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 
 /* Social Media DIV und zugehoerige Buttons */
+
+
 /* Social media DIV and corresponding buttons */
+
 .social-facebook {
     background: #4560a3;
-	color: #c0c0c0;
+    color: #c0c0c0;
 }
 
 .social-twitter {
-   background: #68ace3;
-	color: #fff;
+    background: #68ace3;
+    color: #fff;
 }
 
 .social-mail {
-	background: #c6c6c6;
-	color: #fff;
+    background: #c6c6c6;
+    color: #fff;
 }
 
 
 /*	FadeIn + FadeOut */
 
 @keyframes myFadeIn {
-	from { opacity: 0; }
-	to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes myFadeOut {
-	from { opacity: 1; }
-	to { opacity: 0; }
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
