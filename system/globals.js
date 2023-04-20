@@ -15,7 +15,7 @@ export const arPartyDescription = new Array();	// Beschreibung der Datei
 export const arPartyInternet = new Array();		// Internetseiten der Parteien
 export const arPartyLogosImg = new Array();		// Logos der Parteien
 
-export const arSortParties=new Array();		// Nummern der Listen, nach Punkten sortiert
+export const arSortParties = new Array();		// Nummern der Listen, nach Punkten sortiert
 
 var activeQuestion = 0;
 
@@ -29,9 +29,9 @@ export function getActiveQuestion() {
 
 var intParties = 0;
 export function getParties() {
-    return intParties;
-  }
-  
-  export function setParties(value) {
-    intParties = value;
-  }
+  return intParties;
+}
+
+export function setParties(value) {
+  intParties = value;
+}

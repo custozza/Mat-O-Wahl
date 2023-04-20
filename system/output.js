@@ -15,6 +15,7 @@ import {
 	fnTransformPositionToColor,
 	fnPercentage,
 	fnToggleDouble,
+	fnBarImage,
 } from './general.js'
 import {
 	arQuestionsLong,
@@ -24,7 +25,15 @@ import {
 	questionWeight,
 	getParties,
 	arQuestionsShort,
-	arPersonalPositions
+	arPersonalPositions, 
+	arSortParties,
+	arPartyNamesLong,
+	arPartyInternet,
+	arPartyNamesShort,
+	arPartyDescription,
+	arPartyLogosImg,
+	arPartyPositions,
+	arPartyOpinions,
 } from './globals.js';
 
 
@@ -242,10 +251,10 @@ export function fnShowQuestionNumber(questionNumber) {
 
 	// Alle Fragen durchgelaufen -> Auswertung
 	else {
-		var arResults = fnEvaluation();
+		arResults = fnEvaluation();
 
 		//Parteien sortieren
-		var arSortParties = new Array();
+		// arSortParties = new Array(); // TODO CHECK IF THIS WORKS
 		//		for (i = 0; i < arPartyFiles.length; i++)
 		for (let i = 0; i < getActiveQuestion; i++) {
 			arSortParties[i] = i;
@@ -369,6 +378,8 @@ function fnJumpToQuestionNumber(questionNumber) {
 // Array arResults kommt von fnEvaluation
 function fnEvaluationShort(arResults) {
 
+	console.log('das kriegts evaluationshort', arResults)
+
 	// Alten Inhalt des DIVs loeschen
 	// $("#heading2").empty().hide();	
 	// $("#content").empty().hide();
@@ -424,7 +435,7 @@ function fnEvaluationShort(arResults) {
 		// Nur die ersten 32 Zeichen anzeigen. 
 		// Danach abschneiden und automatisch ein/ausblenden (Funktionsaufbau weiter unten)
 		// Wenn keine Beschreibung gewünscht, dann "0" eintragen.
-		intPartyDescriptionPreview = 32
+		var intPartyDescriptionPreview = 32
 		if ((arPartyDescription[partyNum]) && (intPartyDescriptionPreview > 0)) {
 			tableContent += "<p style='cursor: pointer;'> &bull; "
 			tableContent += arPartyDescription[partyNum].substr(0, intPartyDescriptionPreview)
@@ -837,8 +848,8 @@ function fnEvaluationByParty(arResults) {
 
 
 
-		jStart = partyNum * intQuestions // z.B. Citronen Partei = 3. Partei im Array[2] = 2 * 5 Fragen = 10
-		jEnd = jStart + intQuestions - 1	// 10 + 5 Fragen -1 = 14
+		var jStart = partyNum * intQuestions // z.B. Citronen Partei = 3. Partei im Array[2] = 2 * 5 Fragen = 10
+		var jEnd = jStart + intQuestions - 1	// 10 + 5 Fragen -1 = 14
 
 		//		tableContent += "<tbody id='resultsByPartyAnswersToQuestion"+i+"'>";
 		tableContent += "<span id='resultsByPartyAnswersToQuestion" + i + "'> ";	// Hilfs-SPAN für Textfilter
@@ -847,7 +858,7 @@ function fnEvaluationByParty(arResults) {
 
 
 		// Anzeige der Partei-Antworten
-		for (j = jStart; j <= jEnd; j++) {
+		for (let j = jStart; j <= jEnd; j++) {
 
 			// 1./4 Zellen - Frage
 			modulo = j % intQuestions // z.B. arPartyPositions[11] % 5 Fragen = 1 -> arQuestionsShort[1] = 2. Frage		

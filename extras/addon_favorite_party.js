@@ -55,7 +55,7 @@ function mow_addon_show_parties_at_start() {
 
 		// divContent +=  ''
 	
-	for (i = 0; i <= (intParties-1); i++)
+	for (i = 0; i <= (getParties() -1); i++)
 	{
 		divContent += '<button type="button" class="btn btn-outline-dark btn-block" onclick="mow_addon_favorite_parties_set_favorite_party('+i+')">'+arPartyNamesLong[i]+'</button>'
 	}

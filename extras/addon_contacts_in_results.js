@@ -120,7 +120,7 @@ function mow_addon_contacts_add_click_on_row() {
 	// Click-Funktion auf PARTEINAME-Zeile legen zum Anzeigen der BUTTONS 
 	// kopiert / angepasst aus "output.js" - ca. Zeile 450
 	
-	for (let i = 0; i <= (intParties-1); i++)
+	for (let i = 0; i <= (getParties() -1); i++)
 	{
 		// Klickfunktion - bei Überschrift
 		$("#resultsShortParty"+i).click(function () { 
@@ -146,7 +146,7 @@ function mow_addon_contacts_add_results_to_email_text(showParty,showPersonal) {
 			statistics_text += "\n\nParteien / Vereine / Initiativen \n"
 	
 			// Parteien und die dazugehörigen Punkte
-			for (i = 0; i <= (intParties-1); i++)
+			for (i = 0; i <= (getParties() -1); i++)
 			{
 				let partyNum=arSortParties[i];
 	
@@ -255,7 +255,7 @@ function mow_addon_contacts_search_dataTag_in_partyDescritpion(datasetName) {
 		// console.log("Suche nach "+datasetName)	
 	
 		// gehe durch das CSV-Array und schreibe Inhalt
-		for (let j = 0; j <= (intParties-1); j++)
+		for (let j = 0; j <= (getParties() -1); j++)
 		{
 			let partyNum=arSortParties[j];	
 
@@ -296,7 +296,7 @@ function mow_addon_contacts_search_dataTag_in_partyDescritpion(datasetName) {
 				
 			} // end: if (!einrichtungsIdGefunden)
 						
-		} // end: for intParties
+		} // end: for getParties() 
 	
 	
 }

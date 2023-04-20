@@ -28,7 +28,7 @@ var intPartiesShowAtEnd = 3;
 
 // 2.) Text für Buttons
 // Text on buttons
-var TEXT_RESULTS_BUTTON_SHOW_MORE = "Weitere Ergebnisse zeigen (von "+intParties+")"
+var TEXT_RESULTS_BUTTON_SHOW_MORE = "Weitere Ergebnisse zeigen (von "+getParties() +")"
 var TEXT_RESULTS_BUTTON_SHOW_LESS = "Weniger Ergebnisse zeigen"
 
 
@@ -248,7 +248,7 @@ function fnCalculate_Buttons(rowStart, rowEnd) {
 
 		// wenn MEHR Parteien (Zeilen) angezeigt werden sollten, als eigentlich vorhanden sind ...
 		// if the script wants to show MORE parties (lines) than exists ...
-		if (rowEnd >= intParties) {
+		if (rowEnd >= getParties() ) {
 			// ... blende den Button aus /  ... hide button
 			for (var i = 0; i < buttons_plus.length; i++) {
 				fnFadeOut(buttons_plus[i], 500, 1)
@@ -276,14 +276,14 @@ function fnShowOnlyIntPartiesAtEnd(rowStart, rowEnd) {
 		// Nur relevant in der #resultsShortTable (oben) falls es noch extra Zeilen aus anderen Addons gibt.
 		var resultsShortTable_rows = document.getElementById("resultsShortTable").getElementsByClassName("row")
 		var resultsShortTable_rows_length = resultsShortTable_rows.length - 1; // "-1" weil unten noch die Buttons "mehr" und "weniger" angefügt werden.
-		var multiplikator = resultsShortTable_rows_length / intParties // z.B. 8 Zeilen / 4 Parteien = 2
+		var multiplikator = resultsShortTable_rows_length / getParties()  // z.B. 8 Zeilen / 4 Parteien = 2
 				
 		var element_resultsShortTable_col = document.getElementById("resultsShortTable").getElementsByClassName("col")[0]
 		var element_resultsByThesisTable_col = document.getElementById("resultsByThesisTable").getElementsByClassName("col")[0]
 		
 		// 1. obere (erste) Tabelle #resultsShort + 2. Tabelle sortiert nach Parteien (rechts) #resultsByParty
 		// 1. upper (first) list #resultsShort + 2. list sorted by parties (right) #resultsByParty
-		for (i = 0; i <= intParties-1; i++) {
+		for (i = 0; i <= getParties() -1; i++) {
 
 			if ( (i >= rowStart) &&  (i < rowEnd) ) {
 				
@@ -365,7 +365,7 @@ function fnShowOnlyIntPartiesAtEnd(rowStart, rowEnd) {
 		for (i = 0; i <= intQuestions-1; i++) {
 
 
-			for (j = 0; j <= intParties-1; j++) {
+			for (j = 0; j <= getParties() -1; j++) {
 
 				if ( (j >= rowStart) &&  (j < rowEnd) ) {
 					// fnFadeIn(document.getElementById("resultsByThesisAnswersToQuestion"+i).getElementsByClassName("col")[0].getElementsByClassName("row")[j], 500, 1)

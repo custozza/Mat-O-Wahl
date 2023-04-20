@@ -141,13 +141,13 @@ function mow_addon_textfilter_filter_tables(search_keyword, idNumber) {
 
 	// untere Tabelle 2 filtern - Ergebnisse sortiert nach Parteien
 	// Schritt 1: in TBODY den ausgeblendeten Text finden
-	for (j = 0; j <= (intParties-1); j++) {
+	for (j = 0; j <= (getParties() -1); j++) {
 		mow_addon_textfilter_hide_show_row(search_keyword, "resultsByPartyAnswersToQuestion"+j)
 	}
 
 	// untere Tabelle 2 filtern - Ergebnisse sortiert nach Parteien
 	// Schritt 2: in der Überschrift den ausgeblendeten Text finden
-	for (j = 0; j <= (intParties-1); j++) {
+	for (j = 0; j <= (getParties() -1); j++) {
 		mow_addon_textfilter_hide_show_row(search_keyword, "resultsByPartyHeading"+j)
 	}
 
@@ -166,7 +166,7 @@ function mow_addon_textfilter_hide_show_row(search_keyword, tableID) {
 		// Nur relevant in der #resultsShortTable (oben) falls es noch extra Zeilen aus anderen Addons gibt.
 		var resultsShortTable_rows = zeile
 		var resultsShortTable_rows_length = resultsShortTable_rows.length - 1; // "-1" weil unten noch die Buttons "mehr" und "weniger" angefügt werden.
-		var multiplikator = resultsShortTable_rows_length / intParties // z.B. 8 Zeilen / 4 Parteien = 2
+		var multiplikator = resultsShortTable_rows_length / getParties() // z.B. 8 Zeilen / 4 Parteien = 2
 
 		// Workaround: Bei "addon_limit_results" gibt es eine extra Zeile mit Buttons "Mehr / Weniger Ergebnisse anzeigen"
 		// z.B. 36 Zeilen hier gefunden -> minus 1 = 35 Zeilen / 12 Parteien = 2,9 -> aufrunden = 3 		
@@ -192,7 +192,7 @@ function mow_addon_textfilter_hide_show_row(search_keyword, tableID) {
 				// Workaround für "addon_limit_results" mit der zusätzlichen Zeile
 				// z.B. Anzahl Parteien x Multiplikator = Zähler = 12 x 3 = 36 = letzte Zeile mit Buttons "mehr / weniger anzeigen"
 				// Hier NICHT das Elternelement verändern. 
-				if (i == (intParties * multiplikator) ) {}
+				if (i == (getParties()  * multiplikator) ) {}
 				else {
 					zeile[i].parentElement.style.display = ""
 				}

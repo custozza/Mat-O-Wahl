@@ -123,7 +123,7 @@ function fnResultsMowparties()
 	content = "";
 	content += "<table class='table table-striped'>";
 //	for (i = 0; i <= arPartyNamesShort.length-1; i++)
-	for (i = 0; i <= intParties-1; i++)	
+	for (i = 0; i <= getParties()-1; i++)	
 	{
 		var percent = fnPercentage(arResultsMowpartiesSum[i],maxPointsPerParty);
 
@@ -152,12 +152,12 @@ function fnResultsMowparties()
 
 	// PARTEI-AUSWERTUNG Nr. 2
 	var maxPointsTotal = maxPointsPerParty * arPartyLogosImg.length;
-	$("#resultsParties").append("<p>"+maxPointsPerParty+" Punkte/Partei x "+intParties+" Parteien = maximal "+maxPointsTotal+" Punkte insgesamt.</p>")
+	$("#resultsParties").append("<p>"+maxPointsPerParty+" Punkte/Partei x "+getParties()+" Parteien = maximal "+maxPointsTotal+" Punkte insgesamt.</p>")
 
 	content = "";
 	content += "<table class='table table-striped'>";
 //	for (i = 0; i <= arPartyNamesShort.length-1; i++)
-	for (i = 0; i <= intParties-1; i++)	
+	for (i = 0; i <= getParties()-1; i++)	
 	{
 		var percent = fnPercentage(arResultsMowpartiesSum[i],maxPointsTotal);
 		content += "<tr>";
