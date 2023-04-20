@@ -96,6 +96,7 @@ a:not(.btn):hover {
 .weight-container__weight-bar {
     display: flex;
     gap: 0.5rem;
+    overflow: auto;
 }
 
 .btn-answer {
