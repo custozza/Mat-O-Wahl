@@ -237,9 +237,6 @@
 							<div aria-hidden="true" class="weight-container__description-right">wichtig</div>
 						</div>
 						<div id="votingWeightContainer" class="weight-container__weight-bar">
-							<button class="btn btn-outline-dark btn-block" id="votingImportant1"><span
-									class="sr-only">Gewicht</span> 1</button>
-
 							<script>
 								// let chatgpt do the work
 								// Get a reference to the parent element where you want to append the new elements
@@ -256,7 +253,7 @@
 									const buttonElement = document.createElement('button');
 									buttonElement.setAttribute('type', 'button');
 									buttonElement.setAttribute('id', `votingImportant${i}`);
-									buttonElement.setAttribute('class', 'btn btn-outline-dark btn-lg btn-block');
+									buttonElement.setAttribute('class', 'btn btn-sm btn-outline-dark btn-block');
 									buttonElement.textContent = i;
 
 									// Append the <div> element to the parent element
