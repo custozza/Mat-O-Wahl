@@ -231,9 +231,9 @@ export function fnShowQuestionNumber(questionNumber) {
 		});
 
 		// Checkbox für doppelte Bewertung 
-		$("#votingDouble").attr('checked', arVotingDouble[questionNumber]); // TODO this has to be changed to something that allows to itterate throw 9
+		$(`#votingDouble${questionNumber}`).attr('checked', arVotingDouble[questionNumber]); // TODO this has to be changed to something that allows to itterate throw 9
 		// und Bild/Button zuruecksetzen
-		$("#votingDouble").removeClass("btn-dark").addClass("btn-outline-dark");
+		$('[id*="votingImportant"]').removeClass("btn-dark").addClass("btn-outline-dark");
 
 		$("#sectionNavigation").fadeIn(300);
 
