@@ -208,34 +208,9 @@
 
 			<section id="sectionVotingButtons">
 
-				<div id="votingWeightContainer" class="grid-container">
+				<div id="" class="grid-container">
 
-					<!--<script>
-						// let chatgpt do the work
-						// Get a reference to the parent element where you want to append the new elements
-						const container = document.querySelector('#votingWeightContainer');
 
-						// Loop 9 times to create and append the elements
-						// TODO replace the magic number 9 with a global constant
-						for (let i = 1; i <= 9; i++) {
-							// Create the <div> element with class "w2"
-							const divElement = document.createElement('div');
-							divElement.classList.add('w${i}');
-
-							// Create the <button> element with the specified attributes and text content
-							const buttonElement = document.createElement('button');
-							buttonElement.setAttribute('type', 'button');
-							buttonElement.setAttribute('id', `votingImportant${i}`);
-							buttonElement.setAttribute('class', 'btn btn-outline-dark btn-lg btn-block');
-							buttonElement.textContent = i;
-
-							// Append the <button> element to the <div> element
-							divElement.appendChild(buttonElement);
-
-							// Append the <div> element to the parent element
-							container.appendChild(divElement);
-						}
-					</script> -->
 
 					<div class="weight-container">
 						<div class="weight-container__description">
@@ -245,65 +220,71 @@
 							<div aria-hidden="true">unwichtig</div>
 							<div aria-hidden="true" class="weight-container__description-right">wichtig</div>
 						</div>
-						<div class="weight-container__weight-bar">
-							<button class="btn btn-outline-dark btn-block"
-								id="votingImportant1"><span class="sr-only">Gewicht</span> 1</button>
-							<button class="btn btn-outline-dark btn-block"
-								id="votingImportant2"><span class="sr-only">Gewicht</span> 2</button>
-							<button class="btn btn-outline-dark btn-block"
-								id="votingImportant3"><span class="sr-only">Gewicht</span> 3</button>
-							<button class="btn btn-outline-dark btn-block"
-								id="votingImportant4"><span class="sr-only">Gewicht</span> 4</button>
-							<button class="btn btn-outline-dark btn-block"
-								id="votingImportant5"><span class="sr-only">Gewicht</span> 5</button>
-							<button class="btn btn-outline-dark btn-block"
-								id="votingImportant6"><span class="sr-only">Gewicht</span> 6</button>
-							<button class="btn btn-outline-dark btn-block"
-								id="votingImportant7"><span class="sr-only">Gewicht</span> 7</button>
-							<button class="btn btn-outline-dark btn-block"
-								id="votingImportant8"><span class="sr-only">Gewicht</span> 8</button>
-							<button class="btn btn-outline-dark btn-block"
-								id="votingImportant9"><span class="sr-only">Gewicht</span> 9
-							</button>
-						</div>
+						<div id="votingWeightContainer" class="weight-container__weight-bar">
+							<button class="btn btn-outline-dark btn-block" id="votingImportant1"><span
+									class="sr-only">Gewicht</span> 1</button>
+
+							<script>
+								// let chatgpt do the work
+								// Get a reference to the parent element where you want to append the new elements
+								const container = document.querySelector('#votingWeightContainer');
+
+								// Loop 9 times to create and append the elements
+								// TODO replace the magic number 9 with a global constant
+								for (let i = 1; i <= 9; i++) {
+									// Create the <div> element with class "w2"
+									// const divElement = document.createElement('div');
+									// divElement.classList.add('w${i}');
+
+									// Create the <button> element with the specified attributes and text content
+									const buttonElement = document.createElement('button');
+									buttonElement.setAttribute('type', 'button');
+									buttonElement.setAttribute('id', `votingImportant${i}`);
+									buttonElement.setAttribute('class', 'btn btn-outline-dark btn-lg btn-block');
+									buttonElement.textContent = i;
+									
+									// Append the <div> element to the parent element
+									container.appendChild(buttonElement);
+								}
+							</script>
 					</div>
+				</div>
 
 
 
-					<div class="yes">
-						<button type="button" id="votingPro"
-							class="btn-answer btn btn-success btn-lg btn-block">[&#x2714;]
-							Pro</button>
-					</div>
+				<div class="yes">
+					<button type="button" id="votingPro" class="btn-answer btn btn-success btn-lg btn-block">[&#x2714;]
+						Pro</button>
+				</div>
 
-					<!-- <div class="dontCare">
+				<!-- <div class="dontCare">
 					<button type="button" id="votingNeutral" class="btn btn-warning btn-lg btn-block">[&#x25EF;] Neutral</button>
 				</div> -->
 
-					<div class="no">
-						<button type="button" id="votingContra"
-							class="btn-answer  btn btn-danger btn-lg btn-block">[&#x2716;]
-							Contra</button>
-					</div>
-
-					<!-- Force next columns to break to new line (Bootstrap 4.4+) -->
-					<!-- <div class="w-100"></div> -->
-
-					<div class="skip">
-						<button type="button" id="votingSkip"
-							class="btn-answer btn btn-secondary btn-lg btn-block">[&#x21B7;]
-							Skip</button>
-					</div>
-
+				<div class="no">
+					<button type="button" id="votingContra"
+						class="btn-answer  btn btn-danger btn-lg btn-block">[&#x2716;]
+						Contra</button>
 				</div>
 
-			</section>
-		</main>
+				<!-- Force next columns to break to new line (Bootstrap 4.4+) -->
+				<!-- <div class="w-100"></div> -->
+
+				<div class="skip">
+					<button type="button" id="votingSkip"
+						class="btn-answer btn btn-secondary btn-lg btn-block">[&#x21B7;]
+						Skip</button>
+				</div>
+
+	</div>
+
+	</section>
+	</main>
 
 
-		<!-- CHECKBOX: STATISTIK j/n / STATISTICS y/n -->
+	<!-- CHECKBOX: STATISTIK j/n / STATISTICS y/n -->
 
-		<!--
+	<!--
 		<div class="row" id="keepStats">
 			<div class="col">
 			
@@ -318,133 +299,133 @@
 		</div>
 	-->
 
-		<!-- Bootstrap-Modal STATISTIK j/n / STATISTICS y/n -->
+	<!-- Bootstrap-Modal STATISTIK j/n / STATISTICS y/n -->
 
-		<div class="modal fade" id="statisticsModal" tabindex="-1" role="dialog" aria-labelledby="statisticsModalLabel"
-			aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
+	<div class="modal fade" id="statisticsModal" tabindex="-1" role="dialog" aria-labelledby="statisticsModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
 
-					<div class="modal-header">
-						<h5 class="modal-title" id="statisticsModalLabel"> Modal TITLE </h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
+				<div class="modal-header">
+					<h5 class="modal-title" id="statisticsModalLabel"> Modal TITLE </h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
 
-					<div class="modal-body" id="statisticsModalBody">
-						Modal BODY
-					</div>
+				<div class="modal-body" id="statisticsModalBody">
+					Modal BODY
+				</div>
 
-					<div class="modal-footer">
-						<button type="button" id="statisticsModalButtonNo" class="btn btn-outline-dark"
-							data-dismiss="modal">Close</button>
-						<button type="button" id="statisticsModalButtonYes" class="btn btn-primary">Save
-							changes</button>
-					</div>
+				<div class="modal-footer">
+					<button type="button" id="statisticsModalButtonNo" class="btn btn-outline-dark"
+						data-dismiss="modal">Close</button>
+					<button type="button" id="statisticsModalButtonYes" class="btn btn-primary">Save
+						changes</button>
 				</div>
 			</div>
 		</div>
+	</div>
 
 
-		<!-- 2. ERGEBNISSE / RESULTS -->
+	<!-- 2. ERGEBNISSE / RESULTS -->
 
-		<section id="sectionResults">
+	<section id="sectionResults">
 
-			<div class="row" id="results">
-				<div class="col">
+		<div class="row" id="results">
+			<div class="col">
 
-					<div id="resultsAddonTop">
-						<!-- Platzhalter / Placeholder -->
-					</div>
-
-					<div id="resultsHeading">
-						&Uuml;berschrift f&uuml;r die Ergebnisse/Resultate (ungenutzt) <br /> Headline for the results
-						(unused)
-					</div>
-
-					<div id="resultsShort">
-						Ergebnisse / Resultate der Parteien in tabellarischer Form <br /> Table with results (short) -
-						DOM / id = "resultsShortTable"
-					</div>
-
+				<div id="resultsAddonTop">
+					<!-- Platzhalter / Placeholder -->
 				</div>
-			</div>
 
-			<!-- 
+				<div id="resultsHeading">
+					&Uuml;berschrift f&uuml;r die Ergebnisse/Resultate (ungenutzt) <br /> Headline for the results
+					(unused)
+				</div>
+
+				<div id="resultsShort">
+					Ergebnisse / Resultate der Parteien in tabellarischer Form <br /> Table with results (short) -
+					DOM / id = "resultsShortTable"
+				</div>
+
+			</div>
+		</div>
+
+		<!-- 
 				Auswahlknoepfe für die detaillierten Ergebnisse. Text in i18n.
 				Buttons for detailled resuts. Labels in i18n.
 			-->
 
-			<div class="row" id="resultsButtons">
+		<div class="row" id="resultsButtons">
 
-				<div class="col">
-					<button type="button" id="resultsButtonTheses" class="btn btn-secondary btn-block"
-						onclick="$('#resultsByThesis').toggle(500); $('#resultsByParty').fadeOut(500); $('#resultsButtonTheses').addClass('btn-primary').removeClass('btn-secondary'); $('#resultsButtonParties').addClass('btn-secondary').removeClass('btn-primary');">[?]
-						Show questions</button>
+			<div class="col">
+				<button type="button" id="resultsButtonTheses" class="btn btn-secondary btn-block"
+					onclick="$('#resultsByThesis').toggle(500); $('#resultsByParty').fadeOut(500); $('#resultsButtonTheses').addClass('btn-primary').removeClass('btn-secondary'); $('#resultsButtonParties').addClass('btn-secondary').removeClass('btn-primary');">[?]
+					Show questions</button>
+			</div>
+
+			<div class="col">
+				<button type="button" id="resultsButtonParties" class="btn btn-secondary btn-block"
+					onclick="$('#resultsByParty').toggle(500); $('#resultsByThesis').fadeOut(500); $('#resultsButtonTheses').addClass('btn-secondary').removeClass('btn-primary'); $('#resultsButtonParties').addClass('btn-primary').removeClass('btn-secondary');">[#]
+					Show parties</button>
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="col">
+
+				<div id="resultsByThesis">
+					Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
+					results (long / detailed)
 				</div>
 
-				<div class="col">
-					<button type="button" id="resultsButtonParties" class="btn btn-secondary btn-block"
-						onclick="$('#resultsByParty').toggle(500); $('#resultsByThesis').fadeOut(500); $('#resultsButtonTheses').addClass('btn-secondary').removeClass('btn-primary'); $('#resultsButtonParties').addClass('btn-primary').removeClass('btn-secondary');">[#]
-						Show parties</button>
+				<div id="resultsByParty">
+					Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
+					results (long / detailed)
+				</div>
+
+				<div id="resultsAddonBottom">
+					<!-- Platzhalter / Placeholder -->
 				</div>
 
 			</div>
+		</div>
 
-			<div class="row">
-				<div class="col">
+	</section>
 
-					<div id="resultsByThesis">
-						Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
-						results (long / detailed)
-					</div>
+	<!-- FUSSZEILE: IMPRESSUM, NEUSTART, SOCIAL MEDIA / FOOTER: IMPRINT, RESTART, SOCIAL MEDIA -->
 
-					<div id="resultsByParty">
-						Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
-						results (long / detailed)
-					</div>
+	<footer id="sectionFooter">
 
-					<div id="resultsAddonBottom">
-						<!-- Platzhalter / Placeholder -->
-					</div>
-
-				</div>
+		<div class="row">
+			<div class="col">
+				<a class="btn btn-outline-dark btn-block btn-sm" role="button" href="system/imprint.html"
+					target="_blank" id="imprint">Button Impressum / Legal</a>
 			</div>
 
-		</section>
-
-		<!-- FUSSZEILE: IMPRESSUM, NEUSTART, SOCIAL MEDIA / FOOTER: IMPRINT, RESTART, SOCIAL MEDIA -->
-
-		<footer id="sectionFooter">
-
-			<div class="row">
-				<div class="col">
-					<a class="btn btn-outline-dark btn-block btn-sm" role="button" href="system/imprint.html"
-						target="_blank" id="imprint">Button Impressum / Legal</a>
-				</div>
-
-				<div class="col">
-					<a class='btn btn-outline-dark btn-block btn-sm' role='button' href='index.html' id="restart">Button
-						Neustart / Restart</a>
-				</div>
-
-				<div class="col">
-					<a class="btn btn-block btn-sm social-facebook" role='button' style='color:#fff'
-						onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href) + '&title='+encodeURIComponent(document.title), '_blank', 'location=yes,height=480,width=640,scrollbars=yes,status=yes'); return false;"
-						title="Share on Facebook">
-						facebook</a>
-				</div>
-
-				<div class="col">
-					<a class="btn btn-block btn-sm social-twitter" role='button'
-						onclick="window.open('https://twitter.com/share?url=' + encodeURIComponent(location.href) + '&title='+encodeURIComponent(document.title), '_blank', 'location=yes,height=480,width=640,scrollbars=yes,status=yes'); return false;"
-						title="Share on Twitter">
-						Twitter</a>
-				</div>
+			<div class="col">
+				<a class='btn btn-outline-dark btn-block btn-sm' role='button' href='index.html' id="restart">Button
+					Neustart / Restart</a>
 			</div>
 
-		</footer>
+			<div class="col">
+				<a class="btn btn-block btn-sm social-facebook" role='button' style='color:#fff'
+					onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href) + '&title='+encodeURIComponent(document.title), '_blank', 'location=yes,height=480,width=640,scrollbars=yes,status=yes'); return false;"
+					title="Share on Facebook">
+					facebook</a>
+			</div>
+
+			<div class="col">
+				<a class="btn btn-block btn-sm social-twitter" role='button'
+					onclick="window.open('https://twitter.com/share?url=' + encodeURIComponent(location.href) + '&title='+encodeURIComponent(document.title), '_blank', 'location=yes,height=480,width=640,scrollbars=yes,status=yes'); return false;"
+					title="Share on Twitter">
+					Twitter</a>
+			</div>
+		</div>
+
+	</footer>
 
 	</div>
 
