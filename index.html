@@ -88,7 +88,8 @@
 
 		<main>
 
-			<img class="sticky-top title-img" src="https://www.sektionacht.at/wp-content/uploads/logo-1.png" alt="Sektion 8">
+			<img class="sticky-top title-img" src="https://www.sektionacht.at/wp-content/uploads/logo-1.png"
+				alt="Sektion 8">
 
 			<section id="sectionDescription">
 
@@ -202,13 +203,14 @@
 			</section>
 
 
+
 			<!-- 3. VOTING BUTTONS -->
 
 			<section id="sectionVotingButtons">
 
 				<div id="votingWeightContainer" class="grid-container">
 
-					<script>
+					<!--<script>
 						// let chatgpt do the work
 						// Get a reference to the parent element where you want to append the new elements
 						const container = document.querySelector('#votingWeightContainer');
@@ -233,10 +235,44 @@
 							// Append the <div> element to the parent element
 							container.appendChild(divElement);
 						}
-					</script>
+					</script> -->
+
+					<div class="weight-container">
+						<div class="weight-container__description">
+							<div class="sr-only">Wie wichtig ist Ihnen dieses Thema von 1 (weniger wichtig) bis 9 (sehr
+								wichtig)?
+							</div>
+							<div aria-hidden="true">unwichtig</div>
+							<div aria-hidden="true" class="weight-container__description-right">wichtig</div>
+						</div>
+						<div class="weight-container__weight-bar">
+							<button class="btn btn-outline-dark btn-lg btn-block weight-container__weight-bar-item"
+								id="votingImportant1"><span class="sr-only">Gewicht</span> 1</button>
+							<button class="btn btn-outline-dark btn-lg btn-block weight-container__weight-bar-item"
+								id="votingImportant2"><span class="sr-only">Gewicht</span> 2</button>
+							<button class="btn btn-outline-dark btn-lg btn-block weight-container__weight-bar-item"
+								id="votingImportant3"><span class="sr-only">Gewicht</span> 3</button>
+							<button class="btn btn-outline-dark btn-lg btn-block weight-container__weight-bar-item"
+								id="votingImportant4"><span class="sr-only">Gewicht</span> 4</button>
+							<button class="btn btn-outline-dark btn-lg btn-block weight-container__weight-bar-item"
+								id="votingImportant5"><span class="sr-only">Gewicht</span> 5</button>
+							<button class="btn btn-outline-dark btn-lg btn-block weight-container__weight-bar-item"
+								id="votingImportant6"><span class="sr-only">Gewicht</span> 6</button>
+							<button class="btn btn-outline-dark btn-lg btn-block weight-container__weight-bar-item"
+								id="votingImportant7"><span class="sr-only">Gewicht</span> 7</button>
+							<button class="btn btn-outline-dark btn-lg btn-block weight-container__weight-bar-item"
+								id="votingImportant8"><span class="sr-only">Gewicht</span> 8</button>
+							<button class="btn btn-outline-dark btn-lg btn-block weight-container__weight-bar-item"
+								id="votingImportant9"><span class="sr-only">Gewicht</span> 9
+							</button>
+						</div>
+					</div>
+
+
 
 					<div class="yes">
-						<button type="button" id="votingPro" class="btn-answer btn btn-success btn-lg btn-block">[&#x2714;]
+						<button type="button" id="votingPro"
+							class="btn-answer btn btn-success btn-lg btn-block">[&#x2714;]
 							Pro</button>
 					</div>
 
@@ -245,7 +281,8 @@
 				</div> -->
 
 					<div class="no">
-						<button type="button" id="votingContra" class="btn-answer  btn btn-danger btn-lg btn-block">[&#x2716;]
+						<button type="button" id="votingContra"
+							class="btn-answer  btn btn-danger btn-lg btn-block">[&#x2716;]
 							Contra</button>
 					</div>
 
@@ -253,7 +290,8 @@
 					<!-- <div class="w-100"></div> -->
 
 					<div class="skip">
-						<button type="button" id="votingSkip" class="btn-answer btn btn-secondary btn-lg btn-block">[&#x21B7;]
+						<button type="button" id="votingSkip"
+							class="btn-answer btn btn-secondary btn-lg btn-block">[&#x21B7;]
 							Skip</button>
 					</div>
 

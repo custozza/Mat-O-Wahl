@@ -70,17 +70,32 @@ a:not(.btn):hover {
     grid-template-columns: 1fr;
     grid-auto-columns: 1fr;
     gap: 0.5rem;
-    grid-template-areas: "yes yes yes no no no skip skip skip" "w1 w2 w3 w4 w5 w6 w7 w8 w9";
+    grid-template-areas: "w1 w2 w3 w4 w5 w6 w7 w8 w9" "yes yes yes no no no skip skip skip" ;
 }
 
 @media only screen and (max-width: calc(9 * (66px + 1rem) + 67px)) {
     .grid-container {
         grid-template-areas: 
-        "yes no skip"
         "w1 w2 w3"
         "w4 w5 w6"
-        "w7 w8 w9";
+        "w7 w8 w9"
+        "yes no skip";
     }
+}
+
+.weight-container { /* working with flex */
+    grid-column-start: w1;
+    grid-column-end: w9-end;
+}
+
+.weight-container__description {
+    display: flex;
+    justify-content: space-between;
+}
+
+.weight-container__weight-bar {
+    display: flex;
+    gap: 0.5rem;
 }
 
 .btn-answer {
