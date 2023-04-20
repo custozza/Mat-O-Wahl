@@ -327,7 +327,7 @@ function fnJumpToQuestionNumber(questionNumber) {
 	tableContent += "</table>";
 	$("#navigationJumpToQuestion").append(tableContent).fadeIn(500);
 	setTimeout(() => {
-		console.log(tableContent);
+		//console.log(tableContent);
 		for (let i = 1; i <= arQuestionsLong.length; i++) {
 			document.getElementById('question' + i).addEventListener('click', (event) => {
 				event.preventDefault();
