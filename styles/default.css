@@ -44,7 +44,7 @@ a:not(.btn):hover {
 	background-color: white;
     position: sticky;
     position: -webkit-sticky;
-    z-index: 6000;
+    z-index: 100; /* too high of a value breaks the modal */
 	width: 100%;
 	transform-origin: top left;
 }

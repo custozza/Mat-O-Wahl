@@ -161,6 +161,7 @@ export function fnHideWelcomeMessage() {
 function showWarningAWeightNeedsToBeSelected() {
 	// TODO dont show alert but add some nice html stuff or hide something
 	alert("Es muss ein gewicht ausgewählt werden");
+	// TODO acctually this shouldnt be possible anymore as the buttons are disabled
 }
 
 // (a) Anzeige von Frage Nummer XY
@@ -230,9 +231,9 @@ export function fnShowQuestionNumber(questionNumber) {
 			fnShowQuestionNumber(questionNumber);
 		});
 
-		// Checkbox für doppelte Bewertung 
-		$(`#votingDouble${questionNumber}`).attr('checked', arVotingDouble[questionNumber]); // TODO this has to be changed to something that allows to itterate throw 9
-		// und Bild/Button zuruecksetzen
+		// Reset Weight buttons
+		document.querySelector('#votingPro').disabled = true;
+		document.querySelector('#votingContra').disabled = true;
 		$('[id*="votingImportant"]').removeClass("btn-dark").addClass("btn-outline-dark");
 
 		$("#sectionNavigation").fadeIn(300);
@@ -284,11 +285,12 @@ export function fnShowQuestionNumber(questionNumber) {
 export function fnChangeVotingDouble(weight) {
 
 	questionWeight[getActiveQuestion()] = weight; // defined in global.js
-	console.log(questionWeight)
-	for (let i = 1; i <= 9; i++) {
-		$("#votingImportant" + i).removeClass("btn-dark").addClass("btn-outline-dark");
-	}
+
+	$('[id*="votingImportant"]').removeClass("btn-dark").addClass("btn-outline-dark");
 	$("#votingImportant" + weight).removeClass("btn-outline-dark").addClass("btn-dark");
+
+	document.querySelector('#votingPro').disabled = false;
+	document.querySelector('#votingContra').disabled = false;
 }
 
 // Springe zu Frage Nummer XY (wird in fnShowQuestionNumber() aufgerufen)
