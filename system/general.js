@@ -84,16 +84,6 @@ export function fnEvaluation()
 }
 
 
-// Senden der persoenlichen Ergebnisse an den Server (nach Einwilligung)
-// Aufruf aus fnEvaluation()
-export function fnSendResults(arResults, arPersonalPositions)
-{
-	// $.get(statsServer, { mowpersonal: strPersonalPositions, mowparties: strResults } );
-	console.info("direkt schicken", statsServer, arPersonalPositions )
-	return;
-}
-
-
 // Berechnet Prozentwerte
 export function fnPercentage(value,max)
 {

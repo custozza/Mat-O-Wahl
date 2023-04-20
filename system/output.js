@@ -6,6 +6,7 @@
 import { fnReadCsv } from './readCsv.js';
 import { fnShowQuestions } from './fnShowQuestions.js';
 import { fnReadPositions } from './fnReadPositions.js';
+import { fnSendResults } from './fnSendResults.js';
 import {
 	fnEvaluation,
 	fnTransformPositionToButton,
@@ -21,8 +22,6 @@ import {
 	getActiveQuestion,
 	setActiveQuestion,
 	questionWeight,
-} from './globals.js';
-import {
 	getParties,
 	arQuestionsShort,
 	arPersonalPositions
@@ -321,21 +320,21 @@ function fnJumpToQuestionNumber(questionNumber) {
 		if (modulo == 1) { tableContent += "<tr>"; }
 		tableContent += "<td align='center' id='jumpToQuestionNr" + i + "' title='" + arQuestionsShort[(i - 1)] + " - " + arQuestionsLong[(i - 1)] + "'>";
 		// tableContent += "<a id=question" +i+ " href='javascript:fnShowQuestionNumber(" + (i - 2) + ")' style='display:block;'>" + i + " </a>";
-		tableContent += "<a id=question" +i+ " style='display:block;'>" + i + " </a>";
+		tableContent += "<a id=question" + i + " style='display:block;'>" + i + " </a>";
 		tableContent += "</td>";
 		if (modulo == 0) { tableContent += "</tr>"; }
 	}
 	tableContent += "</table>";
 	$("#navigationJumpToQuestion").append(tableContent).fadeIn(500);
 	setTimeout(() => {
-		console.log(tableContent);
+		//console.log(tableContent);
 		for (let i = 1; i <= arQuestionsLong.length; i++) {
-			document.getElementById('question'+i).addEventListener('click', (event) => {
+			document.getElementById('question' + i).addEventListener('click', (event) => {
 				event.preventDefault();
-				fnShowQuestionNumber(i-2)
+				fnShowQuestionNumber(i - 2)
 			});
 		}
-		
+
 	}, 600);
 
 	// alte Meinungen farblich hervorheben und aktuelle Frage markieren
