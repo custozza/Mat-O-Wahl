@@ -40,13 +40,19 @@ a:not(.btn):hover {
     text-decoration: none;
 }
 
-.title-img {
-    width: 100%;
-    max-width: 600px;
-    background-color: white;
+.header {
+	background-color: white;
     position: sticky;
     position: -webkit-sticky;
     z-index: 6000;
+	width: 100%;
+	transform-origin: top left;
+}
+
+.title-img {
+    width: 100%;
+    max-width: 600px;
+	transform-origin: top left;
 }
 
 
