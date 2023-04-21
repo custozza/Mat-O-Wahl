@@ -15,6 +15,7 @@ import {
 	fnTransformPositionToColor,
 	fnPercentage,
 	fnToggleDouble,
+	fnBarImage,
 } from './general.js'
 import {
 	arQuestionsLong,
@@ -24,7 +25,15 @@ import {
 	questionWeight,
 	getParties,
 	arQuestionsShort,
-	arPersonalPositions
+	arPersonalPositions, 
+	arSortParties,
+	arPartyNamesLong,
+	arPartyInternet,
+	arPartyNamesShort,
+	arPartyDescription,
+	arPartyLogosImg,
+	arPartyPositions,
+	arPartyOpinions,
 } from './globals.js';
 
 
@@ -158,6 +167,12 @@ export function fnHideWelcomeMessage() {
 }
 
 
+function showWarningAWeightNeedsToBeSelected() {
+	// TODO dont show alert but add some nice html stuff or hide something
+	alert("Es muss ein gewicht ausgewählt werden");
+	// TODO acctually this shouldnt be possible anymore as the buttons are disabled
+}
+
 // (a) Anzeige von Frage Nummer XY
 // (b) Weiterleitung zur Auswertung 
 // Aufruf aus fnStart() -> fnShowQuestions(csvData)
@@ -203,7 +218,7 @@ export function fnShowQuestionNumber(questionNumber) {
 		$("#votingPro").click(function () {
 			// weight = 1
 			if (questionWeight[questionNumber] == null) {
-				alert("we need a weight")
+				return showWarningAWeightNeedsToBeSelected();
 			}
 			arPersonalPositions[questionNumber] = 1;
 			fnShowQuestionNumber(questionNumber);
@@ -212,7 +227,7 @@ export function fnShowQuestionNumber(questionNumber) {
 		$("#votingContra").click(function () {
 
 			if (questionWeight[questionNumber] == null) {
-				alert("we need a weight")
+				return showWarningAWeightNeedsToBeSelected();
 			}
 
 			arPersonalPositions[questionNumber] = -1;
@@ -221,25 +236,25 @@ export function fnShowQuestionNumber(questionNumber) {
 
 		$("#votingSkip").click(function () {
 			arPersonalPositions[questionNumber] = 0;
+			questionWeight[questionNumber] = 0; // shouldnt make a difference as they are multiplied in the end
 			fnShowQuestionNumber(questionNumber);
 		});
 
-		// Checkbox für doppelte Bewertung 
-		$("#votingDouble").attr('checked', arVotingDouble[questionNumber]); // TODO this has to be changed to something that allows to itterate throw 9
-		// und Bild/Button zuruecksetzen
-		$("#votingDouble").removeClass("btn-dark").addClass("btn-outline-dark");
+		// Reset Weight buttons
+		document.querySelector('#votingPro').disabled = true;
+		document.querySelector('#votingContra').disabled = true;
+		$('[id*="votingImportant"]').removeClass("btn-dark").addClass("btn-outline-dark");
 
 		$("#sectionNavigation").fadeIn(300);
-
 
 	}
 
 	// Alle Fragen durchgelaufen -> Auswertung
 	else {
-		var arResults = fnEvaluation();
+		arResults = fnEvaluation();
 
 		//Parteien sortieren
-		var arSortParties = new Array();
+		// arSortParties = new Array(); // TODO CHECK IF THIS WORKS
 		//		for (i = 0; i < arPartyFiles.length; i++)
 		for (let i = 0; i < getActiveQuestion; i++) {
 			arSortParties[i] = i;
@@ -263,7 +278,7 @@ export function fnShowQuestionNumber(questionNumber) {
 
 			// Klick-Funktion mit den Ergebnissen zum Senden auf "Ja" legen
 			document.getElementById("statisticsModalButtonYes").addEventListener("click", function () {
-				fnSendResults(arResults, arPersonalPositions)
+				fnSendResults(questionWeight, arPersonalPositions)
 				$('#statisticsModal').modal('toggle')
 			});
 
@@ -278,11 +293,13 @@ export function fnShowQuestionNumber(questionNumber) {
 // 02/2015 BenKob
 export function fnChangeVotingDouble(weight) {
 
-	questionWeight[getActiveQuestion()] = weight
-	for (let i = 1; i <= 9; i++) {
-		$("#votingImportant" + i).removeClass("btn-dark").addClass("btn-outline-dark");
-	}
+	questionWeight[getActiveQuestion()] = weight; // defined in global.js
+
+	$('[id*="votingImportant"]').removeClass("btn-dark").addClass("btn-outline-dark");
 	$("#votingImportant" + weight).removeClass("btn-outline-dark").addClass("btn-dark");
+
+	document.querySelector('#votingPro').disabled = false;
+	document.querySelector('#votingContra').disabled = false;
 }
 
 // Springe zu Frage Nummer XY (wird in fnShowQuestionNumber() aufgerufen)
@@ -361,6 +378,8 @@ function fnJumpToQuestionNumber(questionNumber) {
 // Array arResults kommt von fnEvaluation
 function fnEvaluationShort(arResults) {
 
+	console.log('das kriegts evaluationshort', arResults)
+
 	// Alten Inhalt des DIVs loeschen
 	// $("#heading2").empty().hide();	
 	// $("#content").empty().hide();
@@ -416,7 +435,7 @@ function fnEvaluationShort(arResults) {
 		// Nur die ersten 32 Zeichen anzeigen. 
 		// Danach abschneiden und automatisch ein/ausblenden (Funktionsaufbau weiter unten)
 		// Wenn keine Beschreibung gewünscht, dann "0" eintragen.
-		intPartyDescriptionPreview = 32
+		var intPartyDescriptionPreview = 32
 		if ((arPartyDescription[partyNum]) && (intPartyDescriptionPreview > 0)) {
 			tableContent += "<p style='cursor: pointer;'> &bull; "
 			tableContent += arPartyDescription[partyNum].substr(0, intPartyDescriptionPreview)
@@ -829,8 +848,8 @@ function fnEvaluationByParty(arResults) {
 
 
 
-		jStart = partyNum * intQuestions // z.B. Citronen Partei = 3. Partei im Array[2] = 2 * 5 Fragen = 10
-		jEnd = jStart + intQuestions - 1	// 10 + 5 Fragen -1 = 14
+		var jStart = partyNum * intQuestions // z.B. Citronen Partei = 3. Partei im Array[2] = 2 * 5 Fragen = 10
+		var jEnd = jStart + intQuestions - 1	// 10 + 5 Fragen -1 = 14
 
 		//		tableContent += "<tbody id='resultsByPartyAnswersToQuestion"+i+"'>";
 		tableContent += "<span id='resultsByPartyAnswersToQuestion" + i + "'> ";	// Hilfs-SPAN für Textfilter
@@ -839,7 +858,7 @@ function fnEvaluationByParty(arResults) {
 
 
 		// Anzeige der Partei-Antworten
-		for (j = jStart; j <= jEnd; j++) {
+		for (let j = jStart; j <= jEnd; j++) {
 
 			// 1./4 Zellen - Frage
 			modulo = j % intQuestions // z.B. arPartyPositions[11] % 5 Fragen = 1 -> arQuestionsShort[1] = 2. Frage		

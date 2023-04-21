@@ -81,14 +81,31 @@
 
 <body>
 
+	<div id="header" class="sticky-top header">
+		<img id="rescale-image" class="title-img" src="https://www.sektionacht.at/wp-content/uploads/logo-1.png"
+			alt="Sektion 8">
+	</div>
+
+	<script>
+		const header = document.getElementById("header");
+		const img = document.getElementById("rescale-image");
+
+		window.addEventListener("scroll", () => {
+			const scrollY = window.scrollY;
+			console.log(scrollY)
+			const maxScale = 0.01; // maximum scale factor
+			const scale = 1 + scrollY / window.innerHeight * (maxScale - 1); // calculate the scale factor based on scroll position
+			img.style.transform = `scale(${scale}, 1)`;
+			header.style.transform = `scale(1, ${scale})`;
+		});
+
+	</script>
 
 	<div class="container container-fluid theme-showcase">
 
 		<!-- 1.  BESCHREIBUNG / DESCRIPTION -->
 
 		<main>
-
-			<img class="sticky-top title-img" src="https://www.sektionacht.at/wp-content/uploads/logo-1.png" alt="Sektion 8">
 
 			<section id="sectionDescription">
 
@@ -178,8 +195,8 @@
 
 			<section id="sectionShowQuestions">
 
-				<div class="row" tabindex="0" style="margin-top: 1.0em;">
-					<div class="col">
+				<div class="" tabindex="0" style="margin-top: 1.0em;">
+					<div class="">
 
 
 						<div class="card border-dark mb-3 bg-transparent">
@@ -202,58 +219,67 @@
 			</section>
 
 
+
 			<!-- 3. VOTING BUTTONS -->
 
 			<section id="sectionVotingButtons">
 
-				<div id="votingWeightContainer" class="grid-container">
+				<div id="" class="grid-container">
 
-					<script>
-						// let chatgpt do the work
-						// Get a reference to the parent element where you want to append the new elements
-						const container = document.querySelector('#votingWeightContainer');
 
-						// Loop 9 times to create and append the elements
-						// TODO replace the magic number 9 with a global constant
-						for (let i = 1; i <= 9; i++) {
-							// Create the <div> element with class "w2"
-							const divElement = document.createElement('div');
-							divElement.classList.add('w${i}');
 
-							// Create the <button> element with the specified attributes and text content
-							const buttonElement = document.createElement('button');
-							buttonElement.setAttribute('type', 'button');
-							buttonElement.setAttribute('id', `votingImportant${i}`);
-							buttonElement.setAttribute('class', 'btn btn-outline-dark btn-lg btn-block');
-							buttonElement.textContent = i;
+					<div class="weight-container">
+						<div class="weight-container__description">
+							<div class="sr-only">Wie wichtig ist Ihnen dieses Thema von 1 (weniger wichtig) bis 9 (sehr
+								wichtig)?
+							</div>
+							<div aria-hidden="true">unwichtig</div>
+							<div aria-hidden="true" class="weight-container__description-right">wichtig</div>
+						</div>
+						<div id="votingWeightContainer" class="weight-container__weight-bar">
+							<script>
+								// let chatgpt do the work
+								// Get a reference to the parent element where you want to append the new elements
+								const container = document.querySelector('#votingWeightContainer');
 
-							// Append the <button> element to the <div> element
-							divElement.appendChild(buttonElement);
+								// Loop 9 times to create and append the elements
+								// TODO replace the magic number 9 with a global constant
+								for (let i = 1; i <= 9; i++) {
+									// Create the <div> element with class "w2"
+									// const divElement = document.createElement('div');
+									// divElement.classList.add('w${i}');
 
-							// Append the <div> element to the parent element
-							container.appendChild(divElement);
-						}
-					</script>
+									// Create the <button> element with the specified attributes and text content
+									const buttonElement = document.createElement('button');
+									buttonElement.setAttribute('type', 'button');
+									buttonElement.setAttribute('id', `votingImportant${i}`);
+									buttonElement.setAttribute('class', 'btn btn-sm btn-outline-dark btn-block');
+									buttonElement.textContent = i;
 
-					<div class="yes">
-						<button type="button" id="votingPro" class="btn-answer btn btn-success btn-lg btn-block">[&#x2714;]
+									// Append the <div> element to the parent element
+									container.appendChild(buttonElement);
+								}
+							</script>
+						</div>
+					</div>
+
+
+
+					<div class="yes btn-answer-container">
+						<button type="button" id="votingPro" disabled
+							class="btn-answer btn-answer-weighted btn btn-success btn-lg btn-block">[&#x2714;]
 							Pro</button>
 					</div>
 
-					<!-- <div class="dontCare">
-					<button type="button" id="votingNeutral" class="btn btn-warning btn-lg btn-block">[&#x25EF;] Neutral</button>
-				</div> -->
-
-					<div class="no">
-						<button type="button" id="votingContra" class="btn-answer  btn btn-danger btn-lg btn-block">[&#x2716;]
+					<div class="no btn-answer-container">
+						<button type="button" id="votingContra" disabled
+							class="btn-answer btn-answer-weighted btn btn-danger btn-lg btn-block">[&#x2716;]
 							Contra</button>
 					</div>
 
-					<!-- Force next columns to break to new line (Bootstrap 4.4+) -->
-					<!-- <div class="w-100"></div> -->
-
-					<div class="skip">
-						<button type="button" id="votingSkip" class="btn-answer btn btn-secondary btn-lg btn-block">[&#x21B7;]
+					<div class="skip btn-answer-container">
+						<button type="button" id="votingSkip" 
+							class="btn-answer btn btn-secondary btn-lg btn-block">[&#x21B7;]
 							Skip</button>
 					</div>
 

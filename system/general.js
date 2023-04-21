@@ -6,7 +6,7 @@
 // Mathias Steudtner http://www.medienvilla.com
 
 import { fnReadCsv  } from './readCsv.js';
-import { arVotingDouble, getParties, questionWeight } from './globals.js';
+import { arVotingDouble, getParties, questionWeight, arPartyPositions } from './globals.js';
 import {fnReEvaluate } from './output.js'
 
 var version = "0.6.0.9.20230407"
@@ -45,10 +45,13 @@ export function fnEvaluation()
 		arResults.push(0);	// Array mit leeren Werten füllen		
 	}
 
+
+	// TODO refactor
+
 	// Vergleichen der Positionen (= Fragen x Parteien)
 	for (let i = 0; i <= (numberOfPositions-1); i++)
 	{
-		var modulo = i % numberOfQuestions;	// 0=0,3,6,9 ; 1=1,4,7,10 ; 2=2,5,8,11
+		var modulo = i % questionWeight.length;	// 0=0,3,6,9 ; 1=1,4,7,10 ; 2=2,5,8,11
 		if (modulo == 0)
 		{
 			indexPartyInArray++;	// neue Partei in der Array-Liste
@@ -56,21 +59,23 @@ export function fnEvaluation()
 		}
 
 		// Frage wurde nicht uebersprungen per SKIP (99) oder GEHE ZUR NAECHSTEN FRAGE (-)
-		if ( (arPersonalPositions[modulo] < 99) ) 
+		if ( (questionWeight[modulo] < 99) ) 
 		{
-			var faktor=1; // Faktor ist 1 normal und 2, wenn Frage doppelt gewertet werden soll
-			if(arVotingDouble[modulo])
-				{faktor=2;}
+			// var faktor=1; // Faktor ist 1 normal und 2, wenn Frage doppelt gewertet werden soll
+			// if(arVotingDouble[modulo])
+			// 	{faktor=2;}
+
+			var faktor = questionWeight[modulo]
 
 			// Bei Uebereinstimmung der persönlichen Meinung (1,0,-1) mit Partei-Antwort (1,0-1), den Zaehler (Anzahl Übereinstimmungen) um eins erhoehen	
-			if (arPartyPositions[i] == arPersonalPositions[modulo])
+			if (arPartyPositions[i] == questionWeight[modulo])
 			{
 				positionsMatch+=faktor;
 				arResults[indexPartyInArray] = positionsMatch;
 
 			}
 			// Eigene Meinung ist neutral ODER Partei ist neutral -> 0,5 Punkte vergeben
-			else if ( (arPersonalPositions[modulo] == 0) || (arPartyPositions[i] == 0) )
+			else if ( (questionWeight[modulo] == 0) || (arPartyPositions[i] == 0) )
 			{
 				positionsMatch+=0.5*faktor;
 				arResults[indexPartyInArray] = positionsMatch;
