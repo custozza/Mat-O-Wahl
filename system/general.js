@@ -6,7 +6,7 @@
 // Mathias Steudtner http://www.medienvilla.com
 
 import { fnReadCsv  } from './readCsv.js';
-import { arVotingDouble, getParties, questionWeight, arPartyPositions } from './globals.js';
+import { arVotingDouble, getParties, questionWeight, arPartyPositions, arResults } from './globals.js';
 import {fnReEvaluate } from './output.js'
 
 var version = "0.6.0.9.20230407"
@@ -38,7 +38,8 @@ export function fnEvaluation()
 	var positionsMatch = 0;	// Zaehler fuer gemeinsame Positionen
 
 	// var arResults = new Array();
-	var arResults = []
+	// var arResults = []
+	arResults.slice(0); // TODO I think this clears the array
 //	for (i = 0; i <= (arPartyFiles.length-1); i++)
 	for (let i = 0; i <= (getParties-1); i++)
 	{

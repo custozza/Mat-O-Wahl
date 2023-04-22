@@ -34,6 +34,7 @@ import {
 	arPartyLogosImg,
 	arPartyPositions,
 	arPartyOpinions,
+	arResults,
 } from './globals.js';
 
 
@@ -251,7 +252,7 @@ export function fnShowQuestionNumber(questionNumber) {
 
 	// Alle Fragen durchgelaufen -> Auswertung
 	else {
-		arResults = fnEvaluation();
+		// arResults = fnEvaluation(); using a global state
 
 		//Parteien sortieren
 		// arSortParties = new Array(); // TODO CHECK IF THIS WORKS

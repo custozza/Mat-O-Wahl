@@ -17,6 +17,8 @@ export const arPartyLogosImg = new Array();		// Logos der Parteien
 
 export const arSortParties = new Array();		// Nummern der Listen, nach Punkten sortiert
 
+export const arResults = new Array();
+
 var activeQuestion = 0;
 
 export function setActiveQuestion(value) {
