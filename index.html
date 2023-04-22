@@ -303,38 +303,45 @@
 
 
 			<div class="collapsible-container">
-				<button class="collapsible rounded"><h1>Ergebnisse</h1></button>
+				<button class="collapsible rounded">
+					<h1>Ergebnisse</h1>
+				</button>
 				<div class="content">
 					<div class="row" id="results">
 						<div class="col">
-		
+
 							<div id="resultsAddonTop">
 								<!-- Platzhalter / Placeholder -->
 							</div>
-		
+
 							<!-- <div id="resultsHeading">
 								&Uuml;berschrift f&uuml;r die Ergebnisse/Resultate (ungenutzt) <br /> Headline for the results
 								(unused)
 							</div> -->
-		
+
 							<div id="resultsShort">
-								Ergebnisse / Resultate der Parteien in tabellarischer Form <br /> Table with results (short) -
+								Ergebnisse / Resultate der Parteien in tabellarischer Form <br /> Table with results
+								(short) -
 								DOM / id = "resultsShortTable"
 							</div>
-		
+
 						</div>
 					</div>
 				</div>
-				<button class="collapsible rounded"><h1>Begründungen</h1></button>
+				<button class="collapsible rounded">
+					<h1>Begründungen</h1>
+				</button>
 				<div class="content">
-				  
+
 					<div id="resultsByThesis">
 						Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
 						results (long / detailed)
 					</div>
 
 				</div>
-				<button class="collapsible rounded"><h1>Standpunkte</h1></button>
+				<button class="collapsible rounded">
+					<h1>Standpunkte</h1>
+				</button>
 				<div class="content">
 					<div id="resultsByParty">
 						Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
@@ -345,18 +352,16 @@
 				<script>
 					var coll = document.getElementsByClassName("collapsible");
 					for (let i = 0; i < coll.length; i++) {
-					  coll[i].addEventListener("click", function() {
-						this.classList.toggle("active");
-						var content = this.nextElementSibling;
-						if (content.style.maxHeight){
-						  content.style.maxHeight = null;
-						} else {
-						//   content.style.maxHeight = content.scrollHeight + "px";
-						  content.style.maxHeight = "fit-content";
-						} 
-					  });
+						coll[i].addEventListener("click", function () {
+							this.classList.toggle("active");
+							var content = this.nextElementSibling;
+							var visibility = content.style.visibility;
+							console.log(visibility);
+							content.style.visibility = visibility == "visible" ? "hidden" : "visible";
+							content.style.maxHeight = visibility == "visible" ? "0" : "fit-content";
+						});
 					}
-					</script>
+				</script>
 			</div>
 
 

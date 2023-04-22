@@ -159,10 +159,9 @@ main {
 .content {
     padding: 0 0.5rem;
     max-height: 0;
-    overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
-    display: grid
+    display: flex
 }
 
 #sectionResults {

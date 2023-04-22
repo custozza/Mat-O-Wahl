@@ -602,14 +602,18 @@ function createCollabsible() {
 		coll[i].addEventListener("click", function () {
 			this.classList.toggle("active");
 			var content = this.nextElementSibling;
-			if (content.style.height == "0px") {
-				content.style.height = "unset";
-				content.visibility = "unset";
-			} else {
-				content.style.height = "0";
-				content.visibility = "collapsed";
-				content.visibility = "collapse";
-			}
+			var visibility = content.style.visibility;
+			console.log(visibility);
+			content.style.visibility = visibility == "visible" ? "hidden" : "visible";
+			content.style.maxHeight = visibility == "visible" ? "0" : "fit-content";
+			
+			// if (content.style.height == "0px") {
+			// 	// content.style.height = "unset";
+			// 	content.visibility = "visible";
+			// } else {
+			// 	// content.style.height = "0px";
+			// 	content.visibility = "hidden";
+			// }
 		});
 	}
 }
