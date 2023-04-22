@@ -684,7 +684,7 @@ function fnEvaluationByThesis(arResults) {
 
 
 	// und am Anfang ausblenden
-	$("#resultsByThesis").hide();
+	//$("#resultsByThesis").hide();
 
 	for (let i = 0; i < arPersonalPositions.length; i++) {
 
@@ -714,18 +714,18 @@ function fnEvaluationByThesis(arResults) {
 			});
 		*/
 
-		$("#resultsByThesisQuestion" + i + " .nonexpanded").click(function () {
-			var $this = $(this);
-			$("#resultsByThesisAnswersToQuestion" + i + "").toggle(500)
+		// $("#resultsByThesisQuestion" + i + " .nonexpanded").click(function () {
+		// 	var $this = $(this);
+		// 	$("#resultsByThesisAnswersToQuestion" + i + "").toggle(500)
 
-			$this.toggleClass("expanded");
+		// 	$this.toggleClass("expanded");
 
-			if ($this.hasClass("expanded")) {
-				$this.html("&#x2796;"); // MINUS
-			} else {
-				$this.html("&#x2795;"); // PLUS
-			}
-		});
+		// 	if ($this.hasClass("expanded")) {
+		// 		$this.html("&#x2796;"); // MINUS
+		// 	} else {
+		// 		$this.html("&#x2795;"); // PLUS
+		// 	}
+		// });
 
 		// am Anfang die Antworten ausblenden
 		//		$("#resultsByThesisAnswersToQuestion"+i).fadeOut(500);	// irgendwie verrutschen die Zeilen bei fadeOut() -> deshalb die css()-Lösung
@@ -945,7 +945,7 @@ function fnEvaluationByParty(arResults) {
 	$("#resultsByParty").append(tableContent);
 
 	// und am Anfang Tabelle ausblenden
-	$("#resultsByParty").hide();
+	// $("#resultsByParty").hide();
 
 	for (let i = 0; i < arQuestionsShort.length; i++) {
 		console.log('clicking on ' + i)
@@ -969,7 +969,7 @@ function fnEvaluationByParty(arResults) {
 
 		// am Anfang die Antworten ausblenden
 		//		$("#resultsByPartyAnswersToQuestion"+i).fadeOut(500);	// irgendwie verrutschen die Zeilen bei fadeOut() -> deshalb die css()-Lösung
-		$("#resultsByPartyAnswersToQuestion" + i + "").css("display", "none")
+		// $("#resultsByPartyAnswersToQuestion" + i + "").css("display", "none")
 
 	}
 
