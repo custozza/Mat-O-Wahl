@@ -146,7 +146,7 @@ export function fnToggleDouble(questionNumber) {
 export function fnFadeIn(el, time, modus) {
 
 	// Default FadeIn / FadeOut-Time
-	if (!time) { time = 500; }
+	if (!time) { time = FADE_TIME; }
 
 	// Loading CSS 
 	el.style.animation = "myFadeIn " + time + "ms 1"
@@ -163,7 +163,7 @@ export function fnFadeIn(el, time, modus) {
 export function fnFadeOut(el, time, modus) {
 
 	// Default FadeIn / FadeOut-Time
-	if (!time) { time = 500; }
+	if (!time) { time = FADE_TIME; }
 
 	// Loading CSS 
 	el.style.animation = "myFadeOut " + time + "ms 1"

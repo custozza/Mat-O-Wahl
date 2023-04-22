@@ -44,6 +44,7 @@ import {
 import {fnEvaluationByThesis} from './fnEvaluationByThesis.js';
 
 
+
 export function fnStart() {
 	// alte Inhalte loeschen bzw. ausblenden
 
@@ -158,7 +159,7 @@ export function fnStart() {
 
 		$("#descriptionExplanation").empty().append(descriptionExplanationContent);
 
-		window.setTimeout(fnHideWelcomeMessage, 2500);
+		window.setTimeout(fnHideWelcomeMessage, FADE_TIME);
 	}
 
 
@@ -205,18 +206,18 @@ export function fnShowQuestionNumber(questionNumber) {
 		// bodyTextSize = parseInt(bodyTextSize)
 
 		// Fragen ausblenden und neue Frage einblenden - nur zur besseren Visualisierung
-		$("#sectionShowQuestions").fadeOut(300).hide();
+		$("#sectionShowQuestions").fadeOut(FADE_TIME).hide();
 		$("#showQuestionsHeader").empty().append("<h2>" + arQuestionsShort[questionNumber] + "</h2>");
 		$("#showQuestionsQuestion").empty().append(arQuestionsLong[questionNumber]);
-		$("#sectionShowQuestions").fadeIn(300);
+		$("#sectionShowQuestions").fadeIn(FADE_TIME);
 
 
 		// Buttons ausblenden, damit Nutzer nicht zufällig drauf klickt
-		$("#sectionVotingButtons").fadeOut(300).hide();
-		$("#sectionVotingButtons").fadeIn(300);
+		$("#sectionVotingButtons").fadeOut(FADE_TIME).hide();
+		$("#sectionVotingButtons").fadeIn(FADE_TIME);
 
 		// Navigation (Nummer der Frage) ein-/ausblenden
-		$("#sectionNavigation").fadeOut(300).hide();
+		$("#sectionNavigation").fadeOut(FADE_TIME).hide();
 		// Bootstrap-Progressbar
 		var percent = fnPercentage((questionNumber + 1), arQuestionsLong.length);
 		$("#progress-bar").width(percent + "%")
@@ -253,7 +254,7 @@ export function fnShowQuestionNumber(questionNumber) {
 		document.querySelector('#votingContra').disabled = true;
 		$('[id*="votingImportant"]').removeClass("btn-dark").addClass("btn-outline-dark");
 
-		$("#sectionNavigation").fadeIn(300);
+		$("#sectionNavigation").fadeIn(FADE_TIME);
 
 	} else {
 		runEvaluation();
@@ -279,7 +280,7 @@ function runEvaluation() {
 
 
 	// Buttons einblenden für detaillierte Ergebnisse
-	$("#resultsButtons").fadeIn(500);
+	$("#resultsButtons").fadeIn(FADE_TIME);
 
 
 	// Abfrage zur Statistik einblenden (v.0.6.)
@@ -315,7 +316,7 @@ export function fnChangeVotingDouble(weight) {
 // Springe zu Frage Nummer XY (wird in fnShowQuestionNumber() aufgerufen)
 function fnJumpToQuestionNumber(questionNumber) {
 	// alten Inhalt ausblenden und loeschen
-	$("#navigationJumpToQuestion").fadeOut(500).empty().hide();
+	$("#navigationJumpToQuestion").fadeOut(FADE_TIME).empty().hide();
 
 	// Durchlauf des Arrays bis zur ausgewählten Frage und Setzen der 99, falls NaN
 	for (var i = 0; i < questionNumber; i++) {
@@ -352,7 +353,7 @@ function fnJumpToQuestionNumber(questionNumber) {
 		if (modulo == 0) { tableContent += "</tr>"; }
 	}
 	tableContent += "</table>";
-	$("#navigationJumpToQuestion").append(tableContent).fadeIn(500);
+	$("#navigationJumpToQuestion").append(tableContent).fadeIn(FADE_TIME);
 	setTimeout(() => {
 		//console.log(tableContent);
 		for (let i = 1; i <= arQuestionsLong.length; i++) {
@@ -399,7 +400,7 @@ function fnEvaluationShort(arResults) {
 	// $("#explanation").empty().hide();
 
 	// Anzeige der Ergebnisse
-	$("#resultsHeading").append("<h1>" + TEXT_RESULTS_HEADING + "</h1>").fadeIn(500);
+	$("#resultsHeading").append("<h1>" + TEXT_RESULTS_HEADING + "</h1>").fadeIn(FADE_TIME);
 
 
 	const arr = [...questionWeight.filter(x => x != null)];
@@ -504,22 +505,15 @@ function fnEvaluationShort(arResults) {
 	for (let i = 0; i < arPartyDescription.length; i++) {
 		// Klickfunktion - bei Überschrift
 		$("#resultsShortParty" + i).click(function () {
-			$("#resultsShortPartyDescription" + i).toggle(500);
-			$("#resultsShortPartyDescriptionDots" + i).toggle(500);
+			$("#resultsShortPartyDescription" + i).toggle(FADE_TIME);
+			$("#resultsShortPartyDescriptionDots" + i).toggle(FADE_TIME);
 		});
-		// Klickfunktion - bei Beschreibung
-		/*
-		$("#resultsShortPartyDescription"+i).click(function () {
-				$("#resultsShortPartyDescription"+i).toggle(500);
-			});
-		*/
-		// am Anfang ausblenden
-		$("#resultsShortPartyDescription" + i).fadeOut(500);
-		$("#resultsShortPartyDescriptionDots" + i).fadeIn(500);
+		$("#resultsShortPartyDescription" + i).fadeOut(FADE_TIME);
+		$("#resultsShortPartyDescriptionDots" + i).fadeIn(FADE_TIME);
 	}
 
-	// $("#results").fadeIn(500);
-	$("#sectionResults").fadeIn(500);
+	// $("#results").fadeIn(FADE_TIME);
+	$("#sectionResults").fadeIn(FADE_TIME);
 
 }
 
@@ -537,33 +531,6 @@ function fnEvaluationByParty(arResults) {
 
 	tableContent += " <p>" + TEXT_RESULTS_INFO_PARTIES + "</p>";
 
-	/*
-	tableContent += "<table width='100%' id='resultsByPartyTable' class='table table-bordered table-striped table-hover'>";
-	tableContent += "<caption>"+TEXT_RESULTS_BUTTON_PARTIES+"</caption>";
-
-			tableContent += "<thead>";
-				tableContent += "<tr>";
-					tableContent += "<th class='align-text-top'>";
-					tableContent += TEXT_QUESTION;
-					tableContent += "</th>";
-
-					tableContent += "<th class='align-text-top'>";
-					tableContent += TEXT_ANSWER_USER;
-					tableContent += "</th>";
-
-					tableContent += "<th class='align-text-top'>";
-					tableContent += TEXT_POSITION_PARTY;
-					tableContent += "</th>";
-
-
-					tableContent += "<th class='align-text-top'>";
-					tableContent += TEXT_ANSWER_PARTY;
-					tableContent += "</th>";
-
-
-				tableContent += "</tr>";
-			tableContent += "</thead>";
-		*/
 
 	tableContent += "<div class='row' id='resultsByPartyTable' role='table'>"
 	tableContent += "<div class='col'>"
@@ -599,16 +566,7 @@ function fnEvaluationByParty(arResults) {
 	for (var i = 0; i < arPartyDescription.length; i++) {
 
 		var partyNum = arSortParties[i];	// partyNum = sortierte Position im Endergebnis, z.B. "Neutrale Partei = 4. Partei in CSV" aber erste im Ergebnis = Nullter Wert im Array[0] = 4
-		/*
-		tableContent += " <tbody class='' id='resultsByPartyHeading"+i+"'>"
-		tableContent += " <tr>"
-		tableContent += "  <td colspan='2'>"
-		tableContent += "  &nbsp; </td>"
-		tableContent += "  <th colspan='2' scope='col' >"
-		*/
 
-		//		tableContent += "<div class='row' id='resultsByPartyRow"+i+"' role='row'>";	// Hilfszeile für Textfilter
-		//			tableContent += "<div class='col'>";
 
 		tableContent += "<span id='resultsByPartyHeading" + i + "' >";	// Hilfs-SPAN für Textfilter
 		tableContent += "<div class='row border'  role='row'>";
@@ -616,31 +574,20 @@ function fnEvaluationByParty(arResults) {
 
 		tableContent += "<img src='" + arPartyLogosImg[partyNum] + "' class='img-fluid rounded float-left' alt='Logo " + arPartyNamesLong[partyNum] + "' style='margin: 10px;' />"
 
-		//			tableContent += "<img src='"+arPartyLogosImg[partyNum]+"' width='"+intPartyLogosImgWidth+"' height='"+intPartyLogosImgHeight+"' class='rounded float-right' alt='"+arPartyNamesLong[partyNum]+"' style='margin-left: 10px;' />"
-		//			tableContent += "<img src='"+arPartyLogosImg[partyNum]+"' class='rounded float-right' alt='Logo "+arPartyNamesLong[partyNum]+"' style='margin-left: 10px;' />"
-
 		tableContent += "</div>";
 		tableContent += "<div class='col col-10' role='cell'>";
-		//			tableContent += "<span style='font-weight: 600;'>"
 		tableContent += "<strong>"
 		tableContent += arPartyNamesLong[partyNum];
 		tableContent += "</strong>"
-		//			tableContent += "</span>"
 
 		tableContent += " (&#8663; <a href='" + arPartyInternet[partyNum] + "' target='_blank' title='" + arPartyNamesLong[partyNum] + "'>";
 		tableContent += arPartyNamesShort[partyNum];
 		tableContent += "</a>)";
 
-		// Beschreibung der Partei - falls in der CSV vorhanden.
 		tableContent += "<p>" + arPartyDescription[partyNum] + "</p>"
 
 		tableContent += "<button style='display:inline; float:right;' id='resultsByPartyAnswers" + i + "collapse' class='nonexpanded btn btn-sm btn-outline-secondary' type='button'>&#x2795;</button>";
 
-		/*
-		tableContent += "  </th>"
-		tableContent += " </tr>"
-		tableContent += " </tbody>"
-		*/
 		tableContent += "</div>"; // end: col-12 - Überschrift Partei
 		tableContent += "</div>"; // end: row - Überschrift Partei
 		tableContent += "</span>"; // end: SPAN - Überschrift Partei
@@ -749,7 +696,7 @@ function fnEvaluationByParty(arResults) {
 
 		$("#resultsByPartyHeading" + i + " .nonexpanded").click(function () {
 			var $this = $(this);
-			$("#resultsByPartyAnswersToQuestion" + i + "").toggle(500)
+			$("#resultsByPartyAnswersToQuestion" + i + "").toggle(FADE_TIME)
 
 			$this.toggleClass("expanded");
 
@@ -761,7 +708,7 @@ function fnEvaluationByParty(arResults) {
 		});
 
 		// am Anfang die Antworten ausblenden
-		//		$("#resultsByPartyAnswersToQuestion"+i).fadeOut(500);	// irgendwie verrutschen die Zeilen bei fadeOut() -> deshalb die css()-Lösung
+		//		$("#resultsByPartyAnswersToQuestion"+i).fadeOut(FADE_TIME);	// irgendwie verrutschen die Zeilen bei fadeOut() -> deshalb die css()-Lösung
 		// $("#resultsByPartyAnswersToQuestion" + i + "").css("display", "none")
 
 	}

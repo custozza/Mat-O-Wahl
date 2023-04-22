@@ -378,3 +378,7 @@ const statsServer = "http://132.226.199.141/extras/statistics/vote_txt.php";
 	(*) In OUTPUT.JS at around line 60 you can define the checkbox as "checked".
 	This would be an opt-in method.
 */
+
+
+/* WRONG PLACE */
+const FADE_TIME = 10;

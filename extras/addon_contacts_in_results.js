@@ -124,11 +124,11 @@ function mow_addon_contacts_add_click_on_row() {
 	{
 		// Klickfunktion - bei Überschrift
 		$("#resultsShortParty"+i).click(function () { 
-				$("#resultsShortPartyAddonContactsInResults"+i).toggle(500);
+				$("#resultsShortPartyAddonContactsInResults"+i).toggle(FADE_TIME);
 			});	
 
 		// am Anfang ausblenden
-		$("#resultsShortPartyAddonContactsInResults"+i).hide(500);
+		$("#resultsShortPartyAddonContactsInResults"+i).hide(FADE_TIME);
 		
 	}
 	

@@ -235,13 +235,13 @@ function fnCalculate_Buttons(rowStart, rowEnd) {
 		if (rowEnd <= 1) {
 			// ... blende den Button aus / ... hide button
 			for (var i = 0; i < buttons_minus.length; i++) {
-				fnFadeOut(buttons_minus[i], 500, 1)
+				fnFadeOut(buttons_minus[i], FADE_TIME, 1)
 			}
 		}
 		else {
 			// ... ansonsten zeige den Button / ... otherwise show the button
 			for (var i = 0; i < buttons_minus.length; i++) {
-				fnFadeIn(buttons_minus[i], 500, 1)
+				fnFadeIn(buttons_minus[i], FADE_TIME, 1)
 			}
 		}
 
@@ -251,13 +251,13 @@ function fnCalculate_Buttons(rowStart, rowEnd) {
 		if (rowEnd >= getParties() ) {
 			// ... blende den Button aus /  ... hide button
 			for (var i = 0; i < buttons_plus.length; i++) {
-				fnFadeOut(buttons_plus[i], 500, 1)
+				fnFadeOut(buttons_plus[i], FADE_TIME, 1)
 			}
 		}
 		else {
 			// ... ansonsten zeige den Button / ... otherwise show the button
 			for (var i = 0; i < buttons_plus.length; i++) {
-				fnFadeIn(buttons_plus[i], 500, 1)
+				fnFadeIn(buttons_plus[i], FADE_TIME, 1)
 			}
 		}
 
@@ -297,7 +297,7 @@ function fnShowOnlyIntPartiesAtEnd(rowStart, rowEnd) {
 					// j: 0 - - 3 - - 6 - - 
 					if (j == (i*multiplikator)) {
 						// Standardzeile (Parteiname, Bild, Prozent, Beschreibung) -> anzeigen
-						// fnFadeIn(element_resultsShortTable_col.getElementsByClassName("row")[j], 500, 1)
+						// fnFadeIn(element_resultsShortTable_col.getElementsByClassName("row")[j], FADE_TIME, 1)
 						element_resultsShortTable_col.getElementsByClassName("row")[j].style.display = ""
 						element_resultsShortTable_col.getElementsByClassName("row")[j].parentElement.style.display = ""  // #resultsShortPartyClampX - wird mehrfach ausgeführt :(
 						element_resultsShortTable_col.getElementsByClassName("row")[j].style.visibility = ""
@@ -315,8 +315,8 @@ function fnShowOnlyIntPartiesAtEnd(rowStart, rowEnd) {
 
 
 				// Tabelle sortiert nach Parteien (rechts)
-				// fnFadeIn(document.getElementById("resultsByPartyHeading"+i).getElementsByClassName("row")[0], 500, 1)
-				// fnFadeIn(document.getElementById("resultsByPartyAnswersToQuestion"+i).getElementsByClassName("row")[0], 500, 1)
+				// fnFadeIn(document.getElementById("resultsByPartyHeading"+i).getElementsByClassName("row")[0], FADE_TIME, 1)
+				// fnFadeIn(document.getElementById("resultsByPartyAnswersToQuestion"+i).getElementsByClassName("row")[0], FADE_TIME, 1)
 				
 				document.getElementById("resultsByPartyHeading"+i).getElementsByClassName("row")[0].style.display = ""
 				document.getElementById("resultsByPartyAnswersToQuestion"+i).getElementsByClassName("row")[0].style.display = ""  // #resultsShortPartyClampX - wird mehrfach ausgeführt :(
@@ -331,7 +331,7 @@ function fnShowOnlyIntPartiesAtEnd(rowStart, rowEnd) {
 				for (j = (i*multiplikator); j <= ( (i+1) * multiplikator-1); j++) {
 					if (j == (i*multiplikator)) {
 						// Standardzeile (Parteiname, Bild, Prozent, Beschreibung) -> ausblenden
-						// fnFadeOut(element_resultsShortTable_col.getElementsByClassName("row")[j], 500, 1)
+						// fnFadeOut(element_resultsShortTable_col.getElementsByClassName("row")[j], FADE_TIME, 1)
 						element_resultsShortTable_col.getElementsByClassName("row")[j].style.display = "none"
 						element_resultsShortTable_col.getElementsByClassName("row")[j].parentElement.style.display = "none" // #resultsShortPartyClampX - wird mehrfach ausgeführt :(
 						// element_resultsShortTable_col.getElementsByClassName("row")[j].style.visibility = "hidden"
@@ -350,8 +350,8 @@ function fnShowOnlyIntPartiesAtEnd(rowStart, rowEnd) {
 				}			
 				
 				// Tabelle sortiert nach Parteien (rechts)
-				// fnFadeOut(document.getElementById("resultsByPartyHeading"+i).getElementsByClassName("row")[0], 500, 1)
-				// fnFadeOut(document.getElementById("resultsByPartyAnswersToQuestion"+i).getElementsByClassName("row")[0], 500, 1)
+				// fnFadeOut(document.getElementById("resultsByPartyHeading"+i).getElementsByClassName("row")[0], FADE_TIME, 1)
+				// fnFadeOut(document.getElementById("resultsByPartyAnswersToQuestion"+i).getElementsByClassName("row")[0], FADE_TIME, 1)
 				
 				document.getElementById("resultsByPartyHeading"+i).getElementsByClassName("row")[0].style.display = "none"
 				document.getElementById("resultsByPartyAnswersToQuestion"+i).getElementsByClassName("row")[0].style.display = "none"
@@ -368,11 +368,11 @@ function fnShowOnlyIntPartiesAtEnd(rowStart, rowEnd) {
 			for (j = 0; j <= getParties() -1; j++) {
 
 				if ( (j >= rowStart) &&  (j < rowEnd) ) {
-					// fnFadeIn(document.getElementById("resultsByThesisAnswersToQuestion"+i).getElementsByClassName("col")[0].getElementsByClassName("row")[j], 500, 1)
+					// fnFadeIn(document.getElementById("resultsByThesisAnswersToQuestion"+i).getElementsByClassName("col")[0].getElementsByClassName("row")[j], FADE_TIME, 1)
 					document.getElementById("resultsByThesisAnswersToQuestion"+i).getElementsByClassName("col")[0].getElementsByClassName("row")[j].style.display = ""
 				}
 				else {
-					// fnFadeOut(document.getElementById("resultsByThesisAnswersToQuestion"+i).getElementsByClassName("col")[0].getElementsByClassName("row")[j], 500, 1)
+					// fnFadeOut(document.getElementById("resultsByThesisAnswersToQuestion"+i).getElementsByClassName("col")[0].getElementsByClassName("row")[j], FADE_TIME, 1)
 					document.getElementById("resultsByThesisAnswersToQuestion"+i).getElementsByClassName("col")[0].getElementsByClassName("row")[j].style.display = "none"
 				}
 						
