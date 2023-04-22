@@ -28,16 +28,6 @@ import { evaluate } from '../test.js'
 var version = "0.6.0.9.20230407"
 
 
-function splitArrayIntoSubLists(list, size) {
-	return list.reduce((acc, curr, index) => {
-		const chunkIndex = Math.floor(index / size);
-		if (!acc[chunkIndex]) {
-			acc[chunkIndex] = [];
-		}
-		acc[chunkIndex].push(curr);
-		return acc;
-	}, []);
-}
 
 // Auswertung (Berechnung)
 // Gibt ein Array "arResults" zurück für fnEvaluationShort(), fnEvaluationByThesis(), fnEvaluationByParty() und fnReEvaluate();
@@ -54,19 +44,33 @@ export function fnEvaluation() {
 	$("#sectionNavigation").empty().hide();
 	$("#keepStats").hide();
 
-	const positionsPerParty = splitArrayIntoSubLists(arPartyPositions, arPersonalPositions.length);
-	const answers = arPersonalPositions.map((answer) => answer === 99 ? 0 : answer);
-	var aParties = positionsPerParty.map((positions) => positions.map((position) => Math.sign(position)));	// Position der Partei als Zahl aus den CSV-Dateien (1/0/-1)
-	const weights = Array.from({ length: questionWeight.length }, (_, i) => questionWeight[i] ?? 0);
-	var wParties = positionsPerParty.map((positions) => positions.map((position) => Math.abs(position) + evaluationShiftFactor));
-
+	const { answers, aParties, weights, wParties } = transformGlobalStatesIntoParemtersForEvaluationFunction();
 	const [scoresPerParty, answerScoresPerParty] = evaluate(answers, aParties, weights, wParties);
 
 	arResults.slice(0); // TODO I think this clears the array
 	arResults.push(...scoresPerParty);
-	return arResults;
 }
 
+
+function transformGlobalStatesIntoParemtersForEvaluationFunction() {
+	const positionsPerParty = splitArrayIntoSubLists(arPartyPositions, arPersonalPositions.length);
+	const aParties = positionsPerParty.map((positions) => positions.map((position) => Math.sign(position))); // Position der Partei als Zahl aus den CSV-Dateien (1/0/-1)
+	const wParties = positionsPerParty.map((positions) => positions.map((position) => Math.abs(position) + evaluationShiftFactor));
+	const answers = arPersonalPositions.map((answer) => answer === 99 ? 0 : answer);
+	const weights = Array.from({ length: questionWeight.length }, (_, i) => questionWeight[i] ?? 0);
+	return { answers, aParties, weights, wParties };
+}
+
+function splitArrayIntoSubLists(list, size) {
+	return list.reduce((acc, curr, index) => {
+		const chunkIndex = Math.floor(index / size);
+		if (!acc[chunkIndex]) {
+			acc[chunkIndex] = [];
+		}
+		acc[chunkIndex].push(curr);
+		return acc;
+	}, []);
+}
 
 // Berechnet Prozentwerte
 export function fnPercentage(value, max) {
