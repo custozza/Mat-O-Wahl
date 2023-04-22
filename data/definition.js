@@ -62,8 +62,8 @@
 	e.g. "Airport","The airport shall be expanded."
 */
 
-// const fileQuestions = "vorsitzwahl_fragen.csv";
-const fileQuestions = "Obsthausen_Fragen.csv";
+const fileQuestions = "vorsitzwahl_fragen.csv";
+// const fileQuestions = "Obsthausen_Fragen.csv";
 
 
 // 	--------------------------------------------------------------------
@@ -95,8 +95,8 @@ const fileQuestions = "Obsthausen_Fragen.csv";
  	1.3. PARTIES, PARTY-INFORMATION and ANSWERS
 */
 
-// const fileAnswers = "vorsitzwahl_kandidaten.csv";
-const fileAnswers = "Obsthausen_Parteien.csv";
+const fileAnswers = "vorsitzwahl_kandidaten.csv";
+// const fileAnswers = "Obsthausen_Parteien.csv";
 
 /*
  	1.5. BILDGROESSE des PARTEILOGOS (am Ende)
