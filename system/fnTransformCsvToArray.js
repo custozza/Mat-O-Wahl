@@ -14,74 +14,50 @@ import {
 // CSV-Daten in Array einlesen (aus fnShowQuestions() und fnReadPositions())
 export function fnTransformCsvToArray(csvData, modus, intParties) {
     switch (modus) {
-        case 1: modusOne(csvData, intParties); break;
-        case 0: modusZero(csvData, intParties); break;
+        case 1: readQuestionsCSV(csvData); break;
+        case 0: readPartiesCSV(csvData, intParties); break;
         default: debugger; throw Error('unkown modous');
     }
 }
 
 
-function modusOne(csvData) {
+function readQuestionsCSV(csvData) {
     let lines = $.csv.toArrays(csvData, { separator: "" + separator + "" });
     lines.forEach((question) => {
         let [questionShort, questionLong] = question;
         arQuestionsShort.push(questionShort);
         arQuestionsLong.push(questionLong);
+        // TODO replace questionLong and Question short with a question Object that has long and short
     });
 }
 
-function modusZero(csvData, intParties) {
-    var modus = 0;
-    let arZeilen = $.csv.toArrays(csvData, { separator: "" + separator + "" });
-
-    var numberOfLines = 6 + intQuestions
-    var lastLine;
-
-
-    lastLine = (5 + intQuestions + 1) * intParties - 1 // Partien und Antworten / Parties and answers
-
-
-    //	for(i = 0; i <= arZeilen.length-1; i++)
-    for (let i = 0; i <= lastLine - 1; i++) {
-        // console.log("i: "+i+" m: "+modus+" val0: "+arZeilen[i][0]+" val1: "+arZeilen[i][1] )	
-        var valueOne = arZeilen[i][0];
-        var valueTwo = arZeilen[i][1];
-
-        // ANTWORTEN und Meinungen in globales Array schreiben (z.B. aus PARTEIEN.CSV)
-
-        // v.0.5 NEU
-        // ALLE Partei-Informationen in einer CSV-Datei
-        var modulo = i % numberOfLines;
-
-        if ((modulo == 0) && (valueTwo != "undefined")) {
-            // Parteinamen - kurz
-            arPartyNamesShort.push(valueTwo)
+function splitIntoGroups(csvData) {
+    let lines = $.csv.toArrays(csvData, { separator: "" + separator + "" });
+    // love chatGpt: i have an array of lines. some of the lines contain a #. these lines mark the beginning of a new group. how do i splite those lines into groups
+    return lines.reduce((acc, line) => {
+        if (line[0] === '#') {
+            // If the line starts with '#' character, add a new group to the accumulator
+            acc.push(new Array());
+        } else {
+            // Otherwise, add the line to the last group in the accumulator
+            acc[acc.length - 1].push(line);
         }
-        else if ((modulo == 1) && (valueTwo != "undefined")) {
-            // Parteinamen - lang
-            arPartyNamesLong.push(valueTwo)
-        }
-        else if ((modulo == 2) && (valueTwo != "undefined")) {
-            // Beschreibung der Partei (optional)
-            arPartyDescription.push(valueTwo)
-            //				console.log("i: "+i+ " value: "+valueTwo)
-        }
-        else if ((modulo == 3) && (valueTwo != "undefined")) {
-            // Webseite der Partei
-            arPartyInternet.push(valueTwo)
-        }
-        else if ((modulo == 4) && (valueTwo != "undefined")) {
-            // Logo der Partei
-            arPartyLogosImg.push(valueTwo)
-        }
-        else if ((modulo > 4) && (modulo <= (intQuestions + 4))) {
-            // Positionen und Erklärungen
-            arPartyPositions.push(valueOne); // -1,0,1
-            arPartyOpinions.push(valueTwo); // Erklärung zur Zahl
-        }
-        else {
-            // nothing to do. Just empty lines in the CSV-file
-        }
+        return acc;
+    }, [new Array()]);
+}
 
-    }  // end: for
+function readPartiesCSV(csvData) {
+    var parties = splitIntoGroups(csvData);
+    parties.forEach((party) => {
+        let [partyShort, partyLong, partyDescription, partyURL, partyImage, ...partyAnswers] = party;
+        arPartyNamesShort.push(partyShort[1])
+        arPartyNamesLong.push(partyLong[1])
+        arPartyDescription.push(partyDescription[1])
+        arPartyInternet.push(partyURL[1])
+        arPartyLogosImg.push(partyImage[1])
+        partyAnswers.forEach((answer) => {  
+            arPartyPositions.push(answer[0]); // -1,0,1 // TODO it is hardcoded where answers of a party start and where they end
+            arPartyOpinions.push(answer[1]); // Erklärung zur Zahl
+        })
+    });
 }
