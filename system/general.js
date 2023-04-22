@@ -165,10 +165,7 @@ export function fnToggleSelfPosition(questionNumber)
 // 02/2015 BenKob (doppelte Wertung)
 export function fnToggleDouble(questionNumber)
 {
-	// arVotingDouble[i]=!arVotingDouble[i];
-	console.info('calling fnToggleDouble');
-
-	questionWeight[questionNumber] = (questionWeight[questionNumber]+1 ) % 10
+	questionWeight[questionNumber] = ((questionWeight[questionNumber] + 1 ) ?? 0) % 10
 	$('#doubleIcon'+questionNumber)[0].innerText = questionWeight[questionNumber]
 	fnReEvaluate();
 }
