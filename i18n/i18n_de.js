@@ -24,7 +24,7 @@ var TEXT_IMPRINT = "[§] Impressum"
 var TEXT_RESTART = "[&#x21BB;] Fragebogen neu starten"
 
 // Results
-var TEXT_RESULTS_HEADING = "Übereinstimmung mit den Positionen"
+var TEXT_RESULTS_HEADING = "Ergebnis"
 
 var TEXT_RESULTS_INFO_THESES = "Sie können Ihre eigene Meinung in der zweiten Spalte noch einmal anpassen und das neue Ergebnis überprüfen. <br /> Die <strong>Antworten der Parteien</strong> erhalten Sie <strong>beim Klick auf das Plus-Zeichen</strong>."
 var TEXT_RESULTS_INFO_PARTIES = "Dies ist eine Übersicht aller Parteien und ihrer Antworten."

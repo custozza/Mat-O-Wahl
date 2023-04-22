@@ -86,7 +86,7 @@ export function fnStart() {
 
 	// Bereich - Footer
 	//	$("#keepStatsQuestion").empty();
-	$("#statisticsModalLabel").html(TEXT_ALLOW_STATISTIC_TITLE)
+	// $("#statisticsModalLabel").html(TEXT_ALLOW_STATISTIC_TITLE)
 	$("#statisticsModalBody").html(TEXT_ALLOW_STATISTIC_TEXT)
 	$("#statisticsModalButtonNo").html(TEXT_ALLOW_STATISTIC_NO)
 	$("#statisticsModalButtonYes").html(TEXT_ALLOW_STATISTIC_YES)
