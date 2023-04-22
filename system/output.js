@@ -264,6 +264,7 @@ function runEvaluation() {
 	hideMain();
 
 	// arResults = fnEvaluation(); using a global state
+	fnEvaluation();
 
 	//Parteien sortieren
 	// arSortParties = new Array(); // TODO CHECK IF THIS WORKS

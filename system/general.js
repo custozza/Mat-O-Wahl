@@ -38,7 +38,10 @@ export function fnEvaluation()
 	// Anzahl der Fragen bestimmen, da Positions-Array ein Vielfaches aus Fragen * Parteien enthält.
 //	var numberOfQuestions = arQuestionsLong.length;		// 3 Fragen
 //	var numberOfPositions = arPartyPositions.length; // 12 = 3 Fragen * 4 Parteien	
-	var numberOfPositions = intQuestions * getParties(); // 12 = 3 Fragen * 4 Parteien
+	// var numberOfPositions = intQuestions * getParties(); // 12 = 3 Fragen * 4 Parteien
+
+
+	var numberOfPositions = arPartyPositions.length;
 
 	var indexPartyInArray = -1; // Berechnung der Position des Index der aktuellen Partei
 	var positionsMatch = 0;	// Zaehler fuer gemeinsame Positionen
