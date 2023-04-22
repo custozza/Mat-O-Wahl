@@ -14,6 +14,7 @@ export const arPartyNamesLong = new Array();	// Namen der Parteien - lang
 export const arPartyDescription = new Array();	// Beschreibung der Datei
 export const arPartyInternet = new Array();		// Internetseiten der Parteien
 export const arPartyLogosImg = new Array();		// Logos der Parteien
+export const arParties = new Array();
 
 export const arSortParties = new Array();		// Nummern der Listen, nach Punkten sortiert
 

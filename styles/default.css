@@ -162,6 +162,22 @@ main {
     background-color: #f1f1f1;
   }
 
+  #resultsByThesis{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+    gap: 0.5rem;
+  }
+
+  .questionGroup {
+    border: solid black 1px;
+    border: solid black 1px;
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    justify-content: center;
+    align-items: center;
+  }
+
 /* LINK-Farbe - AUSSER bei der Bootstrap-Klasse "btn" für Buttons. Dort wird der Bootstrap-Standard benutzt. */
 
 

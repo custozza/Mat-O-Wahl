@@ -328,7 +328,7 @@
 				<button class="collapsible">Begründungen</button>
 				<div class="content">
 				  
-					<div id="resultsByThesis ">
+					<div id="resultsByThesis">
 						Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
 						results (long / detailed)
 					</div>
@@ -351,7 +351,8 @@
 						if (content.style.maxHeight){
 						  content.style.maxHeight = null;
 						} else {
-						  content.style.maxHeight = content.scrollHeight + "px";
+						//   content.style.maxHeight = content.scrollHeight + "px";
+						  content.style.maxHeight = "fit-content";
 						} 
 					  });
 					}

@@ -38,6 +38,8 @@ import {
 	arPartyPositions,
 	arPartyOpinions,
 	arResults,
+	arParties,
+	evaluationShiftFactor,
 } from './globals.js';
 
 
@@ -317,7 +319,7 @@ function fnJumpToQuestionNumber(questionNumber) {
 	// Durchlauf des Arrays bis zur ausgewählten Frage und Setzen der 99, falls NaN
 	for (var i = 0; i < questionNumber; i++) {
 		if (isNaN(arPersonalPositions[i])) {
-			arPersonalPositions[i] = 99;
+			arPersonalPositions[i] = 0;
 		}
 	}
 
@@ -385,7 +387,7 @@ function fnJumpToQuestionNumber(questionNumber) {
 // Array arResults kommt von fnEvaluation
 function fnEvaluationShort(arResults) {
 
-	if(arSortParties.length != arPartyDescription.length) {
+	if (arSortParties.length != arPartyDescription.length) {
 		throw Error("no sort information on parties")
 	}
 
@@ -411,7 +413,7 @@ function fnEvaluationShort(arResults) {
 	for (let i = 0; i < arPartyDescription.length; i++) {
 		var partyNum = arSortParties[i];
 
-		if(partyNum == null) {
+		if (partyNum == null) {
 			throw Error('partyNum must not be null or undefined')
 		}
 
@@ -522,33 +524,75 @@ function fnEvaluationShort(arResults) {
 
 // Anzeige der Ergebnisse - detailliert, Fragen und Antworten der Parteien
 // Array arResults kommt von fnEvaluation
+
+function createQuestionGroupCard(i) {
+
+	var positionButton = fnTransformPositionToButton(arPersonalPositions[i]);
+	var positionIcon = fnTransformPositionToIcon(arPersonalPositions[i]);
+	var positionText = fnTransformPositionToText(arPersonalPositions[i]);
+
+	var button = `<button type='button' id='' class='btn ${positionButton} btn-sm selfPosition${i}' 
+	alt=' ${TEXT_ANSWER_USER} : ${positionText}' title='${TEXT_ANSWER_USER}  : ${positionText}'> ${positionIcon} </button>`;
+
+
+	return `
+	<div class="questionGroup">
+		${button} 
+		<div><strong>${arQuestionsShort[i]}</strong></div>
+	</div>`
+}
+
+function createPartyAnswers(questionId) {
+	var result = '';
+
+	for(let i = 0; i < arParties.length; i++) {
+		let party = arParties[i];
+		let weightedPosition = party.answers[questionId].position;
+		let position = Math.sign(weightedPosition); 
+		var positionButton = fnTransformPositionToButton(position);
+		var positionIcon = fnTransformPositionToIcon(position);
+		var positionText = fnTransformPositionToText(position);
+	
+		let weight = Math.abs(weightedPosition) + evaluationShiftFactor
+
+		var button = `<button type='button' id='' class='btn ${positionButton} btn-sm alt='${positionText}' title='${positionText}'> ${positionIcon} </button>`;
+
+
+
+
+		result += `
+		${button}
+		${weight}
+		<div> ${party.answers[questionId].position} ${positionButton} </div>
+		 <div><strong>${party.partyShort}</strong></div>`
+	}
+	return `<div class="questionGroup">${result}</div>`
+}
+
 function fnEvaluationByThesis(arResults) {
 	// $("#resultsByThesis").hide();
 
-	var tableContent = "";
+	// Aufbau ist
+	// HEADER
+	// GROUP BY QUESTION COLLAPSABLE eigene Antwort im header mit + to expand und button to increase
+	var tableContent = '';
+	tableContent += `
+	<div class="questionGroup">
+		<div>${TEXT_ANSWER_USER} <br> ${TEXT_POSITION_PARTY} </div>
+		<div> </div>
+	</div>`; 
+	for (let i = 0; i < arQuestionsLong.length; i++) {
+		tableContent += createQuestionGroupCard(i);
+		tableContent += createPartyAnswers(i);
+
+	}
+	$("#resultsByThesis").append(tableContent);
+
+	return;
+
 
 	tableContent += " <p>" + TEXT_RESULTS_INFO_THESES + "</p>";
-	/*
-	tableContent += "<table width='100%' id='resultsByThesisTable' class='table table-bordered table-striped table-hover'>";
-	tableContent += "<caption>"+TEXT_RESULTS_INFO_THESES+"</caption>";
 
-			tableContent += "<thead>";
-				tableContent += "<tr>";
-					tableContent += "<td class=''>";
-					tableContent += "</td>";
-
-					tableContent += "<th class='align-text-top'>";
-					tableContent += TEXT_ANSWER_USER+" &amp; "+TEXT_POSITION_PARTY
-					tableContent += "</th>";
-
-					tableContent += "<th class='align-text-top'>";
-					tableContent += TEXT_QUESTION+" &amp; "+TEXT_ANSWER_PARTY
-					tableContent += "</th>";
-
-
-				tableContent += "</tr>";
-			tableContent += "</thead>";
-	*/
 	tableContent += "<div class='row' id='resultsByThesisTable' role='table'>"
 	tableContent += "<div class='col'>"
 
@@ -934,7 +978,7 @@ function fnEvaluationByParty(arResults) {
 		//	tableContent += " </div> "; // end row resultsByPartyRow
 
 
-	} 
+	}
 
 	// tableContent += "</table>";
 	tableContent += " </div> "; // end col

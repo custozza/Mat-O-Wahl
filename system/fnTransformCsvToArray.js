@@ -8,6 +8,7 @@ import {
     arPartyLogosImg,
     arPartyPositions,
     arPartyOpinions,
+    arParties,
 } from './globals.js'
 
 // v.0.3 NEU
@@ -34,7 +35,7 @@ function readQuestionsCSV(csvData) {
 function splitIntoGroups(csvData) {
     let lines = $.csv.toArrays(csvData.trim(), { separator: "" + separator + "" });
     // love chatGpt: i have an array of lines. some of the lines contain a #. these lines mark the beginning of a new group. how do i splite those lines into groups
-    return  lines.reduce((acc, line) => {
+    return lines.reduce((acc, line) => {
         if (line[0] === '#') {
             // If the line starts with '#' character, add a new group to the accumulator
             acc.push(new Array());
@@ -72,9 +73,31 @@ function assignPartyToGlobalState(party) {
     arPartyDescription.push(partyDescription[1]);
     arPartyInternet.push(partyURL[1]);
     arPartyLogosImg.push(partyImage[1]);
+
+    const newParty = {
+        "partyShort": partyShort[1],
+        "partyLong": partyLong[1],
+        "partyDescription": partyDescription[1],
+        "partyURL": partyURL[1],
+        "partyImage": partyImage[1],
+        "answers": new Array(),
+    }
+    arParties.push(newParty);
+
+
+
     partyAnswers.forEach((answer) => {
         arPartyPositions.push(answer[0]); // -1,0,1 // TODO it is hardcoded where answers of a party start and where they end
         arPartyOpinions.push(answer[1]);
+
+        const newAnwer = {
+            "position": answer[0],
+            "opinions": answer[1]
+        }
+        newParty.answers.push(newAnwer)
+
     });
+
+
 }
 
