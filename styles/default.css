@@ -150,6 +150,8 @@ main {
   
   .active, .collapsible:hover {
     border: solid black 1px;
+    margin: -1px;
+    box-shadow: #000000;
   }
   
   .content {
