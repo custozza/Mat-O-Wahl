@@ -234,7 +234,7 @@ main {
 
 .collapsible-question {
     /* overflow: hidden; */
-    visibility: hidden;
+    visibility: collapse;
     max-height: 0;
 }
 

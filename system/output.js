@@ -553,10 +553,15 @@ function createCollabsible() {
 			var target = this.nextElementSibling;
 			const isOpen = $(target).hasClass('section-expanded');
 			$('.collapsible-question').removeClass('section-expanded');
-			if(isOpen) {
+			if (isOpen) {
 				return
 			}
 			$(target).toggleClass('section-expanded');
+
+			setTimeout(() => {
+				$('#resultsByThesis').css('maxHeight', "100%");
+				console.log('sometime latter');
+			}, 0);
 		});
 	}
 }
