@@ -303,10 +303,10 @@
 
 
 			<div class="collapsible-container">
-				<button class="collapsible rounded">
+				<div class="collapsible rounded">
 					<h1>Ergebnisse</h1>
-				</button>
-				<div class="content">
+				</div>
+				<div class="content" style="visibility: visible; max-height: fit-content;">
 					<div class="row" id="results">
 						<div class="col">
 
@@ -328,21 +328,23 @@
 						</div>
 					</div>
 				</div>
-				<button class="collapsible rounded">
+				<div class="collapsible rounded">
 					<h1>Begründungen</h1>
-				</button>
-				<div class="content">
-
-					<div id="resultsByThesis">
-						Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
-						results (long / detailed)
+				</div>
+				<div class="content" style="visibility: hidden; max-height: 0;">
+					<div class="scroll-container">
+						<div id="resultsByThesis">
+							Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table
+							with
+							results (long / detailed)
+						</div>
 					</div>
 
 				</div>
-				<button class="collapsible rounded">
+				<div class="collapsible rounded">
 					<h1>Standpunkte</h1>
-				</button>
-				<div class="content">
+				</div>
+				<div class="content" style="visibility: hidden; max-height: 0;">
 					<div id="resultsByParty">
 						Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
 						results (long / detailed)
@@ -358,7 +360,7 @@
 							var visibility = content.style.visibility;
 							console.log(visibility);
 							content.style.visibility = visibility == "visible" ? "hidden" : "visible";
-							content.style.maxHeight = visibility == "visible" ? "0" : "fit-content";
+							content.style.maxHeight = visibility == "visible" ? "0" : "inherit";
 						});
 					}
 				</script>

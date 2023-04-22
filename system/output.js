@@ -536,20 +536,18 @@ function buildChevron(weight) {
 
 function buildAnswers() {
 
-	var tableContent = '';
-
 	for (let i = 0; i < arQuestionsLong.length; i++) {
 		const temp = createQuestionGroupCard(i);
 		$("#resultsByThesis").append(temp);
 		const content = document.createElement('div');
 		content.setAttribute('class', 'collapsible-question');
+		content.setAttribute('style', 'visibility: hidden; max-height: 0px;');
 		content.innerHTML = createPartyAnswers(i);
 		$("#resultsByThesis").append(content);
 
 	}
-	// $("#resultsByThesis").append(tableContent);
-
 	createCollabsible();
+	createFoldableText();
 }
 
 function createQuestionGroupCard(i) {
@@ -591,7 +589,7 @@ function createPartyAnswers(questionId) {
 			${button} 
 			${chevronUp}
 		</div>
-		 <div><strong>${party.partyShort}</strong>: ${party.answers[questionId].opinions}</div>`
+		 <span class="opinion clamped"><strong>${party.partyShort}</strong>: ${party.answers[questionId].opinions}</span>`
 	}
 	return `<div class="parties-group questionGroup collapsible-container">${result}</div>`
 }
@@ -606,16 +604,14 @@ function createCollabsible() {
 			console.log(visibility);
 			content.style.visibility = visibility == "visible" ? "hidden" : "visible";
 			content.style.maxHeight = visibility == "visible" ? "0" : "fit-content";
-			
-			// if (content.style.height == "0px") {
-			// 	// content.style.height = "unset";
-			// 	content.visibility = "visible";
-			// } else {
-			// 	// content.style.height = "0px";
-			// 	content.visibility = "hidden";
-			// }
 		});
 	}
+}
+function createFoldableText() {
+	$('.opinion').click((e) => {
+		console.log(e.target);
+		$(e.target).toggleClass('clamped');
+	});
 }
 
 function fnEvaluationByThesis(arResults) {

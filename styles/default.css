@@ -141,12 +141,16 @@ main {
     background-color: var(--s8-background-color);
     color: white;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.2rem;
     width: 100%;
     border: none;
     text-align: left;
     outline: none;
     font-size: 15px;
+}
+
+.collapsible > h1 {
+    font-size: 1.5rem;
 }
 
 .active,
@@ -156,12 +160,20 @@ main {
     box-shadow: #000000;
 }
 
+.scroll-container {
+    width: 100%;
+    overflow-y: scroll;
+}
+
 .content {
-    padding: 0 0.5rem;
-    max-height: 0;
+    /* padding: 0 0.5rem; */
+    /* max-height: 0; */
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
-    display: flex
+    display: grid;
+    overflow: hidden;
+    /* border: solid green; */
+    display: flex;
 }
 
 #sectionResults {
@@ -170,15 +182,17 @@ main {
 }
 
 #resultsByThesis {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 1fr;
-    gap: 0.5rem;
-    overflow: hidden;
+    gap: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
 .parties-group.questionGroup.collapsible-container {
     display: grid;
-    grid-template-columns: 5rem 1fr;
+    grid-template-columns: 3rem 1fr;
 }
 
 .question-group-header {
@@ -195,7 +209,7 @@ main {
 }
 
 .collapsible-question {
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .party-answer-group {
@@ -203,6 +217,10 @@ main {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+}
+
+.clamped {
+    max-height: 5rem;
 }
 
 .triangle-container {
@@ -215,6 +233,10 @@ main {
 .triangle {
     font-size: 2rem;
     margin-top: -2.5rem;
+}
+
+.opinion {
+    overflow: hidden;
 }
 
 
