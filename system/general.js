@@ -12,6 +12,7 @@ import {
 	questionWeight,
 	arPartyPositions,
 	arResults,
+	evaluationShiftFactor
 } from './globals.js';
 
 import { fnReEvaluate } from './output.js'
@@ -62,10 +63,10 @@ export function fnEvaluation() {
 	const positionsPerParty = splitArrayIntoSubLists(arPartyPositions, arPersonalPositions.length);
 
 
-	const answers = arPersonalPositions;
+	const answers = arPersonalPositions.map((answer) => answer === 99 ? 0 : answer);
 	var aParties = positionsPerParty.map((positions) => positions.map((position) => Math.sign(position)));	// Position der Partei als Zahl aus den CSV-Dateien (1/0/-1)
-	const weights = questionWeight;
-	var wParties = positionsPerParty.map((positions) => positions.map((position) => Math.abs(position)));
+	const weights = Array.from({ length: questionWeight.length }, (val, i) => questionWeight[i] ?? 0);
+	var wParties = positionsPerParty.map((positions) => positions.map((position) => Math.abs(position) + evaluationShiftFactor));
 
 
 	const [scoresPerParty, answerScoresPerParty] = evaluate(answers, aParties, weights, wParties);
