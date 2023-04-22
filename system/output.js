@@ -402,7 +402,7 @@ function fnEvaluationShort(arResults) {
 
 
 	const arr = [...questionWeight.filter(x => x != null)];
-	const maxPoints = arr.reduce((a,b) => a + b, 0) * 3
+	const maxPoints = arr.reduce((a, b) => a + b, 0) * 3
 
 	var tableContent = ""
 	tableContent += "<div class='row' id='resultsShortTable' role='table'>"
@@ -554,6 +554,10 @@ function createCollabsible() {
 			var target = this.nextElementSibling;
 			const isOpen = $(target).hasClass('section-expanded');
 			$('.collapsible-question').removeClass('section-expanded');
+			setTimeout(() => {
+				$('#resultsByThesis').css('maxHeight', "100%");
+				console.log('sometime latter');
+			}, 0);
 			if (isOpen) {
 				return
 			}
@@ -877,7 +881,7 @@ export function fnReEvaluate() {
 	fnEvaluation();
 
 	const arr = [...questionWeight.filter(x => x != null)];
-	const maxPoints = arr.reduce((a,b) => a + b, 0) * 3;
+	const maxPoints = arr.reduce((a, b) => a + b, 0) * 3;
 
 	//	for (i = 0; i <= (arPartyFiles.length-1); i++)
 	for (let i = 0; i < arPartyDescription.length; i++) {
