@@ -262,6 +262,7 @@ export function fnShowQuestionNumber(questionNumber) {
 function runEvaluation() {
 
 	hideMain();
+	$('#sectionFooter').css('display', 'flex');
 
 
 	fnEvaluation();
