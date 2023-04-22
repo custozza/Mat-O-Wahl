@@ -545,26 +545,37 @@ function createQuestionGroupCard(i) {
 function createPartyAnswers(questionId) {
 	var result = '';
 
-	for(let i = 0; i < arParties.length; i++) {
+	for (let i = 0; i < arParties.length; i++) {
 		let party = arParties[i];
 		let weightedPosition = party.answers[questionId].position;
-		let position = Math.sign(weightedPosition); 
+		let position = Math.sign(weightedPosition);
 		var positionButton = fnTransformPositionToButton(position);
 		var positionIcon = fnTransformPositionToIcon(position);
 		var positionText = fnTransformPositionToText(position);
-	
+
 		let weight = Math.abs(weightedPosition)
 
 		var button = `<button type='button' id='' class='btn ${positionButton} btn-sm alt='${positionText}' title='${positionText}'> ${positionIcon} </button>`;
 
-
-
+		var chevronUp = buildChevron(weight);
 
 		result += `
-		<div>${button} ${weight}</div>
+		<div class="party-answer-group">
+			${button} 
+			${chevronUp}
+		</div>
 		 <div><strong>${party.partyShort}</strong></div>`
 	}
 	return `<div class="party-question-group questionGroup">${result}</div>`
+}
+
+function buildChevron(weight) {
+	var chevron = `<div class="triangle-container">`
+	chevron += weight > 0 ?   `<span class="triangle" style="margin-top: 0;">&#8963;</span>` : "";
+	chevron += weight > 1 ?`<span class="triangle" sylte="margin-top: -39px; margin-bottom: -17px;">&#8963;</span>` : "";
+	chevron += weight > 2 ?`<span class="triangle">&#8963;</span>` : "";
+	chevron += `</div>`;
+	return chevron;
 }
 
 function fnEvaluationByThesis(arResults) {
@@ -578,7 +589,7 @@ function fnEvaluationByThesis(arResults) {
 	<div class="questionGroup">
 		<div>${TEXT_ANSWER_USER} <br> ${TEXT_POSITION_PARTY} </div>
 		<div> </div>
-	</div>`; 
+	</div>`;
 	for (let i = 0; i < arQuestionsLong.length; i++) {
 		tableContent += createQuestionGroupCard(i);
 		tableContent += createPartyAnswers(i);

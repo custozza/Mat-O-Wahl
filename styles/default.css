@@ -177,6 +177,23 @@ main {
     align-items: center;
   }
 
+  .party-answer-group {
+    display: flex;
+  }
+
+  .triangle-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .triangle {
+    font-size: 2rem;
+    margin-top: -2.5rem;
+  }
+  
+
 /* LINK-Farbe - AUSSER bei der Bootstrap-Klasse "btn" für Buttons. Dort wird der Bootstrap-Standard benutzt. */
 
 
