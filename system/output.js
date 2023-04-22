@@ -563,9 +563,9 @@ function createQuestionGroupCard(i) {
 
 
 	return `
-	<div id="btn-question-group-${i}" class="question-group-header">
+	<div id="btn-question-group-${i}" class="question-group-header border rounded mow-row-striped">
 		${button} 
-		<div><strong>${arQuestionsShort[i]}</strong></div>
+		<div class="btn-question-title"><h2><strong>${arQuestionsShort[i]}</strong><h2></div>
 	</div>`
 }
 
@@ -602,12 +602,10 @@ function createCollabsible() {
 		coll[i].addEventListener("click", function () {
 			this.classList.toggle("active");
 			var content = this.nextElementSibling;
-			if (content.style.maxHeight) {
-				content.style.maxHeight = null;
+			if (content.style.height == "0px") {
 				content.style.height = "unset";
 				content.visibility = "unset";
 			} else {
-				content.style.maxHeight = "fit-content";
 				content.style.height = "0";
 				content.visibility = "collapsed";
 				content.visibility = "collapse";

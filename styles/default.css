@@ -6,7 +6,7 @@
 :root {
     --s8-background-color: #cc6361;
     --s8-font-color: #f6eaec;
-    
+
 }
 
 
@@ -132,6 +132,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
+    overflow: hidden;
 }
 
 
@@ -146,61 +147,77 @@ main {
     text-align: left;
     outline: none;
     font-size: 15px;
-  }
-  
-  .active, .collapsible:hover {
+}
+
+.active,
+.collapsible:hover {
     border: solid black 1px;
     margin: -1px;
     box-shadow: #000000;
-  }
-  
-  .content {
+}
+
+.content {
     padding: 0 0.5rem;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
-  }
+    display: grid
+}
 
-  #sectionResults {
+#sectionResults {
     overflow: hidden;
-  }
+    display: grid;
+}
 
-  #resultsByThesis{
+#resultsByThesis {
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.5rem;
-  }
+    overflow: hidden;
+}
 
-  .question-group-header {
+.parties-group.questionGroup.collapsible-container {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+}
+
+.question-group-header {
     border: solid black 1px;
     border: solid black 1px;
     display: grid;
     grid-template-columns: 5rem 1fr;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .collapsible-question {
+.btn-question-title {
+    padding: 0.5rem;
+}
+
+.collapsible-question {
     overflow: hidden;
-  }
+}
 
-  .party-answer-group {
+.party-answer-group {
     display: flex;
-  }
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
 
-  .triangle-container {
+.triangle-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-  
-  .triangle {
+}
+
+.triangle {
     font-size: 2rem;
     margin-top: -2.5rem;
-  }
-  
+}
+
 
 /* LINK-Farbe - AUSSER bei der Bootstrap-Klasse "btn" für Buttons. Dort wird der Bootstrap-Standard benutzt. */
 
