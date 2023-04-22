@@ -8,6 +8,12 @@
 import { fnReadCsv  } from './readCsv.js';
 import { arVotingDouble, getParties, questionWeight, arPartyPositions, arResults } from './globals.js';
 import {fnReEvaluate } from './output.js'
+import {
+	fnTransformPositionToButton,
+	fnTransformPositionToIcon,
+	fnTransformPositionToColor,
+	fnTransformPositionToText,
+} from './fnTransform.js'
 
 var version = "0.6.0.9.20230407"
 
@@ -96,40 +102,6 @@ export function fnPercentage(value,max)
 	var percent = value * 100 / max;
 	percent = Math.round(percent);
 	return percent; 
-}
-
-
-// v.0.3 NEU
-// ersetzt die Position (-1, 0, 1) mit dem passenden Button
-export function fnTransformPositionToButton(position)
-{
-	var tempShiftedPosition = position + 1; 
-	return ["btn-danger","btn-default","btn-success"][tempShiftedPosition];
-}
-
-// v.0.3 NEU
-// ersetzt die Position (-1, 0, 1) mit dem passenden Icon
-export function fnTransformPositionToIcon(position)
-{
-	var tempShiftedPosition = position + 1; 
-	return ["&#x2716;","&#x21B7;","&#x2714;"][tempShiftedPosition];
-}
-
-// ersetzt die Partei-Position (-1, 0, 1) mit der passenden Farbe
-export function fnTransformPositionToColor(position)
-{
-	var tempShiftedPosition = position + 1; 
-	return ["#d9534f","#c0c0c0","#5cb85c"][tempShiftedPosition];
-	
-}
-
-
-// ersetzt die Partei-Position (-1, 0, 1) mit dem passenden Text
-export function fnTransformPositionToText(position)
-{
-	var tempShiftedPosition = position + 1; 
-	return ["[-]","[/]","[+]"][tempShiftedPosition];
-	
 }
 
 // Gibt ein Bild/CSS-Klasse für den Balken in der Auswertung entsprechend der Prozentzahl Uebereinstimmung zurück

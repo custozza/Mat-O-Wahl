@@ -9,14 +9,18 @@ import { fnReadPositions } from './fnReadPositions.js';
 import { fnSendResults } from './fnSendResults.js';
 import {
 	fnEvaluation,
+	fnPercentage,
+	fnToggleDouble,
+	fnBarImage,
+} from './general.js';
+
+import {
 	fnTransformPositionToButton,
 	fnTransformPositionToIcon,
 	fnTransformPositionToText,
 	fnTransformPositionToColor,
-	fnPercentage,
-	fnToggleDouble,
-	fnBarImage,
-} from './general.js'
+} from './fnTransform.js';
+
 import {
 	arQuestionsLong,
 	arVotingDouble,
@@ -25,7 +29,7 @@ import {
 	questionWeight,
 	getParties,
 	arQuestionsShort,
-	arPersonalPositions, 
+	arPersonalPositions,
 	arSortParties,
 	arPartyNamesLong,
 	arPartyInternet,
@@ -248,48 +252,55 @@ export function fnShowQuestionNumber(questionNumber) {
 
 		$("#sectionNavigation").fadeIn(300);
 
+	} else {
+		runEvaluation();
 	}
 
 	// Alle Fragen durchgelaufen -> Auswertung
-	else {
-		// arResults = fnEvaluation(); using a global state
 
-		//Parteien sortieren
-		// arSortParties = new Array(); // TODO CHECK IF THIS WORKS
-		//		for (i = 0; i < arPartyFiles.length; i++)
-		for (let i = 0; i < getActiveQuestion; i++) {
-			arSortParties[i] = i;
-		}
-		// Sortieren der Parteien nach Uebereinstimmung
-		arSortParties.sort(function (a, b) { return arResults[b] - arResults[a]; });
+}
+function runEvaluation() {
 
-		// Übergabe an Tabellen zur Darstellung/Ausgabe
-		fnEvaluationShort(arResults);	// Kurzüberblick mit Progress-bar
-		fnEvaluationByThesis(arResults);	// Thesen + Partei-Antworten
-		fnEvaluationByParty(arResults) 	// Liste der Parteien mit ihren Antworten (ab v.0.6)
+	// arResults = fnEvaluation(); using a global state
 
+	//Parteien sortieren
+	// arSortParties = new Array(); // TODO CHECK IF THIS WORKS
+	//		for (i = 0; i < arPartyFiles.length; i++)
+	for (let i = 0; i < getActiveQuestion; i++) {
+		arSortParties[i] = i;
+	}
+	// Sortieren der Parteien nach Uebereinstimmung
+	arSortParties.sort(function (a, b) { return arResults[b] - arResults[a]; });
 
-		// Buttons einblenden für detaillierte Ergebnisse
-		$("#resultsButtons").fadeIn(500);
-
-
-		// Abfrage zur Statistik einblenden (v.0.6.)
-		if ((imprintPrivacyUrl.length > 0) && (statsRecord)) {
-			$('#statisticsModal').modal('show')
-
-			// Klick-Funktion mit den Ergebnissen zum Senden auf "Ja" legen
-			document.getElementById("statisticsModalButtonYes").addEventListener("click", function () {
-				fnSendResults(questionWeight, arPersonalPositions)
-				$('#statisticsModal').modal('toggle')
-			});
+	// Übergabe an Tabellen zur Darstellung/Ausgabe
+	fnEvaluationShort(arResults);	// Kurzüberblick mit Progress-bar
+	fnEvaluationByThesis(arResults);	// Thesen + Partei-Antworten
+	fnEvaluationByParty(arResults) 	// Liste der Parteien mit ihren Antworten (ab v.0.6)
 
 
-		}
+	// Buttons einblenden für detaillierte Ergebnisse
+	$("#resultsButtons").fadeIn(500);
+
+
+	// Abfrage zur Statistik einblenden (v.0.6.)
+	if ((imprintPrivacyUrl.length > 0) && (statsRecord)) {
+		$('#statisticsModal').modal('show')
+
+		// Klick-Funktion mit den Ergebnissen zum Senden auf "Ja" legen
+		document.getElementById("statisticsModalButtonYes").addEventListener("click", function () {
+			fnSendResults(questionWeight, arPersonalPositions)
+			$('#statisticsModal').modal('toggle')
+		});
+
+
+
 
 
 	}
 
 }
+
+
 
 // 02/2015 BenKob
 export function fnChangeVotingDouble(weight) {

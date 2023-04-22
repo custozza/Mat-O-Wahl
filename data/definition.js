@@ -63,7 +63,7 @@
 */
 
 // const fileQuestions = "vorsitzwahl_fragen.csv";
-const fileQuestions = "vorsitzwahl_fragen.csv";
+const fileQuestions = "Obsthausen_Fragen.csv";
 
 
 // 	--------------------------------------------------------------------
@@ -96,7 +96,7 @@ const intQuestions = 5; // TODO should be number of lines in the fileQueststion
 */
 
 // const fileAnswers = "vorsitzwahl_kandidaten.csv";
-const fileAnswers = "vorsitzwahl_kandidaten.csv";
+const fileAnswers = "Obsthausen_Parteien.csv";
 
 /*
  	1.5. BILDGROESSE des PARTEILOGOS (am Ende)
