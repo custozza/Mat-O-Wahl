@@ -330,7 +330,7 @@ function fnJumpToQuestionNumber(questionNumber) {
 	}
 
 	// Tabelle aufbauen	
-	var tableContent = "<table width='100%' class='table table-bordered table-striped table-hover' aria-role='presentation'>";
+	var tableContent = "<table width='100%' class='table-bordered table-striped table-hover' aria-role='presentation'>";
 	for (var i = 1; i <= arQuestionsLong.length; i++) {
 		var modulo = i % questionsPerLine;
 		// neue Zeile
