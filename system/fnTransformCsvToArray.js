@@ -32,9 +32,9 @@ function readQuestionsCSV(csvData) {
 }
 
 function splitIntoGroups(csvData) {
-    let lines = $.csv.toArrays(csvData, { separator: "" + separator + "" });
+    let lines = $.csv.toArrays(csvData.trim(), { separator: "" + separator + "" });
     // love chatGpt: i have an array of lines. some of the lines contain a #. these lines mark the beginning of a new group. how do i splite those lines into groups
-    return lines.reduce((acc, line) => {
+    const groups =  lines.reduce((acc, line) => {
         if (line[0] === '#') {
             // If the line starts with '#' character, add a new group to the accumulator
             acc.push(new Array());
@@ -44,10 +44,19 @@ function splitIntoGroups(csvData) {
         }
         return acc;
     }, [new Array()]);
+
+	const allSameLength = groups.every( list => list.length === groups[0].length);
+	if(!allSameLength) {
+		throw Error("Positions per party do not have the same length");
+	}
+
+    return groups;
+
 }
 
 function readPartiesCSV(csvData) {
     var parties = splitIntoGroups(csvData);
+
     parties.forEach((party) => {
         let [partyShort, partyLong, partyDescription, partyURL, partyImage, ...partyAnswers] = party;
         arPartyNamesShort.push(partyShort[1])
