@@ -564,9 +564,9 @@ function createPartyAnswers(questionId) {
 			${button} 
 			${chevronUp}
 		</div>
-		 <div><strong>${party.partyShort}</strong></div>`
+		 <div><strong>${party.partyShort}</strong>: ${party.answers[questionId].opinions}</div>`
 	}
-	return `<div class="party-question-group questionGroup">${result}</div>`
+	return `<div class="parties-group questionGroup">${result}</div>`
 }
 
 function buildChevron(weight) {
