@@ -20,7 +20,7 @@ export const arSortParties = new Array();		// Nummern der Listen, nach Punkten s
 
 export const arResults = new Array();
 
-export const evaluationShiftFactor = 2; // PartyPositions are store as -1/0/1 we need them for the evalutation 1/2/3
+export const evaluationShiftFactor = 0; // PartyPositions are store as -1/0/1 we need them for the evalutation 1/2/3
 
 var activeQuestion = 0;
 

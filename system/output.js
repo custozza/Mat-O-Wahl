@@ -401,7 +401,8 @@ function fnEvaluationShort(arResults) {
 	$("#resultsHeading").append("<h1>" + TEXT_RESULTS_HEADING + "</h1>").fadeIn(500);
 
 
-	const maxPoints = Math.max(...questionWeight.filter(x => x != null), 1);
+	const arr = [...questionWeight.filter(x => x != null)];
+	const maxPoints = arr.reduce((a,b) => a + b, 0) * 3
 
 	var tableContent = ""
 	tableContent += "<div class='row' id='resultsShortTable' role='table'>"
@@ -557,11 +558,6 @@ function createCollabsible() {
 				return
 			}
 			$(target).toggleClass('section-expanded');
-
-			setTimeout(() => {
-				$('#resultsByThesis').css('maxHeight', "100%");
-				console.log('sometime latter');
-			}, 0);
 		});
 	}
 }
@@ -880,8 +876,8 @@ export function fnReEvaluate() {
 	//Ergebniss neu auswerten und Anzeige aktualisieren
 	fnEvaluation();
 
-	const maxPoints = Math.max(...questionWeight.filter(x => x != null), 1);
-
+	const arr = [...questionWeight.filter(x => x != null)];
+	const maxPoints = arr.reduce((a,b) => a + b, 0) * 3;
 
 	//	for (i = 0; i <= (arPartyFiles.length-1); i++)
 	for (let i = 0; i < arPartyDescription.length; i++) {
