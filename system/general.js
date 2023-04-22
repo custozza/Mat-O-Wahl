@@ -52,82 +52,19 @@ export function fnEvaluation() {
 	$("#sectionShowQuestions").empty().hide();
 	$("#sectionVotingButtons").empty().hide();
 	$("#sectionNavigation").empty().hide();
-
 	$("#keepStats").hide();
 
-	// Anzahl der Fragen bestimmen, da Positions-Array ein Vielfaches aus Fragen * Parteien enthält.
-	//	var numberOfQuestions = arQuestionsLong.length;		// 3 Fragen
-	//	var numberOfPositions = arPartyPositions.length; // 12 = 3 Fragen * 4 Parteien	
-	// var numberOfPositions = intQuestions * getParties(); // 12 = 3 Fragen * 4 Parteien
-
 	const positionsPerParty = splitArrayIntoSubLists(arPartyPositions, arPersonalPositions.length);
-
-
 	const answers = arPersonalPositions.map((answer) => answer === 99 ? 0 : answer);
 	var aParties = positionsPerParty.map((positions) => positions.map((position) => Math.sign(position)));	// Position der Partei als Zahl aus den CSV-Dateien (1/0/-1)
-	const weights = Array.from({ length: questionWeight.length }, (val, i) => questionWeight[i] ?? 0);
+	const weights = Array.from({ length: questionWeight.length }, (_, i) => questionWeight[i] ?? 0);
 	var wParties = positionsPerParty.map((positions) => positions.map((position) => Math.abs(position) + evaluationShiftFactor));
-
 
 	const [scoresPerParty, answerScoresPerParty] = evaluate(answers, aParties, weights, wParties);
 
 	arResults.slice(0); // TODO I think this clears the array
 	arResults.push(...scoresPerParty);
-
 	return arResults;
-
-	var numberOfPositions = arPartyPositions.length;
-
-	var indexPartyInArray = -1; // Berechnung der Position des Index der aktuellen Partei
-	var positionsMatch = 0;	// Zaehler fuer gemeinsame Positionen
-
-	// var arResults = new Array();
-	// var arResults = []
-
-
-
-
-	//	for (i = 0; i <= (arPartyFiles.length-1); i++)
-	for (let i = 0; i <= (getParties - 1); i++) {
-		arResults.push(0);	// Array mit leeren Werten füllen		
-	}
-
-
-	// TODO refactor
-
-	// Vergleichen der Positionen (= Fragen x Parteien)
-	for (let i = 0; i <= (numberOfPositions - 1); i++) {
-		var modulo = i % questionWeight.length;	// 0=0,3,6,9 ; 1=1,4,7,10 ; 2=2,5,8,11
-		if (modulo == 0) {
-			indexPartyInArray++;	// neue Partei in der Array-Liste
-			positionsMatch = 0;
-		}
-
-		// Frage wurde nicht uebersprungen per SKIP (99) oder GEHE ZUR NAECHSTEN FRAGE (-)
-		if ((questionWeight[modulo] < 99)) {
-			// var faktor=1; // Faktor ist 1 normal und 2, wenn Frage doppelt gewertet werden soll
-			// if(arVotingDouble[modulo])
-			// 	{faktor=2;}
-
-			var faktor = questionWeight[modulo]
-
-			// Bei Uebereinstimmung der persönlichen Meinung (1,0,-1) mit Partei-Antwort (1,0-1), den Zaehler (Anzahl Übereinstimmungen) um eins erhoehen	
-			if (arPartyPositions[i] == questionWeight[modulo]) {
-				positionsMatch += faktor;
-				arResults[indexPartyInArray] = positionsMatch;
-
-			}
-			// Eigene Meinung ist neutral ODER Partei ist neutral -> 0,5 Punkte vergeben
-			else if ((questionWeight[modulo] == 0) || (arPartyPositions[i] == 0)) {
-				positionsMatch += 0.5 * faktor;
-				arResults[indexPartyInArray] = positionsMatch;
-
-			} // end: if arPartyPosition-i = arPersonalPosition
-		} // end: Frage nicht uebersprungen
-	} // end: for numberOfQuestions
-
-	return arResults;
-
 }
 
 
