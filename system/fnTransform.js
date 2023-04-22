@@ -5,7 +5,7 @@
 export function fnTransformPositionToButton(position)
 {
 	var tempShiftedPosition = position + 1; 
-	return ["btn-danger","btn-default","btn-success"][tempShiftedPosition];
+	return ["btn-danger","btn-warning","btn-success"][tempShiftedPosition];
 }
 
 // v.0.3 NEU

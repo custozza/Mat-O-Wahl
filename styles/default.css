@@ -205,6 +205,7 @@ main {
     grid-template-columns: 3rem 1fr;
     /* visibility: hidden; */
     /* max-height: 0; */
+    display: flex;
 }
 
 .parties-group.questionGroup.collapsible-container.section-expanded {
@@ -212,11 +213,17 @@ main {
     max-height: fit-content;
 }
 
+.party-answer {
+    display: flex;
+    padding: 0.2rem;
+    gap: 1rem;
+}
+
 .question-group-header {
     border: solid black 1px;
     border: solid black 1px;
     display: grid;
-    grid-template-columns: 5rem 1fr;
+    grid-template-columns: auto 1fr;
     justify-content: center;
     align-items: center;
 }

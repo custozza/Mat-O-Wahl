@@ -554,7 +554,7 @@ function createCollabsible() {
 			const isOpen = $(target).hasClass('section-expanded');
 			$('.collapsible-question').removeClass('section-expanded');
 			if(isOpen) {
-				return;
+				return
 			}
 			$(target).toggleClass('section-expanded');
 		});
@@ -602,11 +602,13 @@ function createPartyAnswers(questionId) {
 		var chevronUp = buildChevron(weight);
 
 		result += `
-		<div class="party-answer-group ">
-			${button} 
-			${chevronUp}
-		</div>
-		 <span class="opinion clamped"><strong>${party.partyShort}</strong>: ${party.answers[questionId].opinions}</span>`
+		<div class="party-answer"> 
+			<div class="party-answer-group ">
+				${button} 
+				${chevronUp}
+			</div>
+			<span class="opinion clamped"><strong>${party.partyShort}</strong>: ${party.answers[questionId].opinions}</span>
+		 </div>`
 	}
 	return `<div class="parties-group questionGroup collapsible-container">${result}</div>`
 }
