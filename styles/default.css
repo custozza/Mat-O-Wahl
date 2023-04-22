@@ -62,6 +62,7 @@ main {
     overflow: hidden;
     display: grid;
     grid-template-rows: 1fr;
+    flex-grow: 1;
     /* border: solid green; */
 }
 
