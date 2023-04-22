@@ -199,9 +199,17 @@ main {
     overflow-x: hidden;
 }
 
+
 .parties-group.questionGroup.collapsible-container {
     display: grid;
     grid-template-columns: 3rem 1fr;
+    /* visibility: hidden; */
+    /* max-height: 0; */
+}
+
+.parties-group.questionGroup.collapsible-container.section-expanded {
+    visibility: visible;
+    max-height: fit-content;
 }
 
 .question-group-header {
@@ -219,6 +227,15 @@ main {
 
 .collapsible-question {
     /* overflow: hidden; */
+    visibility: hidden;
+    max-height: 0;
+}
+
+.collapsible-question.section-expanded {
+    /* overflow: hidden; */
+    visibility: visible;
+    max-height: fit-content;
+
 }
 
 .party-answer-group {

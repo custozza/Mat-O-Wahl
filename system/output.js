@@ -361,7 +361,7 @@ function fnJumpToQuestionNumber(questionNumber) {
 			});
 		}
 
-	}, 600);
+	}, 0);
 
 	// alte Meinungen farblich hervorheben und aktuelle Frage markieren
 	for (var i = 1; i <= arQuestionsLong.length; i++) {
@@ -525,13 +525,9 @@ function fnEvaluationShort(arResults) {
 // Anzeige der Ergebnisse - detailliert, Fragen und Antworten der Parteien
 // Array arResults kommt von fnEvaluation
 
-function buildChevron(weight) {
-	var chevron = `<div class="triangle-container">`
-	chevron += weight > 0 ? `<span class="triangle" style="margin-top: 0;">&#8963;</span>` : "";
-	chevron += weight > 1 ? `<span class="triangle" sylte="margin-top: -39px; margin-bottom: -17px;">&#8963;</span>` : "";
-	chevron += weight > 2 ? `<span class="triangle">&#8963;</span>` : "";
-	chevron += `</div>`;
-	return chevron;
+
+function fnEvaluationByThesis() {
+	buildAnswers();
 }
 
 function buildAnswers() {
@@ -541,13 +537,34 @@ function buildAnswers() {
 		$("#resultsByThesis").append(temp);
 		const content = document.createElement('div');
 		content.setAttribute('class', 'collapsible-question');
-		content.setAttribute('style', 'visibility: hidden; max-height: 0px;');
 		content.innerHTML = createPartyAnswers(i);
 		$("#resultsByThesis").append(content);
 
 	}
 	createCollabsible();
 	createFoldableText();
+}
+
+function createCollabsible() {
+	var coll = document.getElementsByClassName("question-group-header");
+	for (let i = 0; i < coll.length; i++) {
+		coll[i].addEventListener("click", function () {
+			this.classList.toggle("active");
+			var target = this.nextElementSibling;
+			const isOpen = $(target).hasClass('section-expanded');
+			$('.collapsible-question').removeClass('section-expanded');
+			if(isOpen) {
+				return;
+			}
+			$(target).toggleClass('section-expanded');
+		});
+	}
+}
+function createFoldableText() {
+	$('.opinion').click((e) => {
+		console.log(e.target);
+		$(e.target).toggleClass('clamped');
+	});
 }
 
 function createQuestionGroupCard(i) {
@@ -594,219 +611,15 @@ function createPartyAnswers(questionId) {
 	return `<div class="parties-group questionGroup collapsible-container">${result}</div>`
 }
 
-function createCollabsible() {
-	var coll = document.getElementsByClassName("question-group-header");
-	for (let i = 0; i < coll.length; i++) {
-		coll[i].addEventListener("click", function () {
-			this.classList.toggle("active");
-			var content = this.nextElementSibling;
-			var visibility = content.style.visibility;
-			console.log(visibility);
-			content.style.visibility = visibility == "visible" ? "hidden" : "visible";
-			content.style.maxHeight = visibility == "visible" ? "0" : "fit-content";
-		});
-	}
-}
-function createFoldableText() {
-	$('.opinion').click((e) => {
-		console.log(e.target);
-		$(e.target).toggleClass('clamped');
-	});
+function buildChevron(weight) {
+	var chevron = `<div class="triangle-container">`
+	chevron += weight > 0 ? `<span class="triangle" style="margin-top: 0;">&#8963;</span>` : "";
+	chevron += weight > 1 ? `<span class="triangle" sylte="margin-top: -39px; margin-bottom: -17px;">&#8963;</span>` : "";
+	chevron += weight > 2 ? `<span class="triangle">&#8963;</span>` : "";
+	chevron += `</div>`;
+	return chevron;
 }
 
-function fnEvaluationByThesis(arResults) {
-
-	buildAnswers();
-
-	return;
-
-
-	tableContent += " <p>" + TEXT_RESULTS_INFO_THESES + "</p>";
-
-	tableContent += "<div class='row' id='resultsByThesisTable' role='table'>"
-	tableContent += "<div class='col'>"
-
-
-	tableContent += "<div class='row border ' role='row'>"; // row header
-	tableContent += "<div class='col col-2' role='columnheader'>";
-	tableContent += "<strong>";
-	tableContent += TEXT_ANSWER_USER + " &amp; " + TEXT_POSITION_PARTY
-	tableContent += "</strong>";
-	tableContent += "</div>";
-
-	tableContent += "<div class='col col-10' role='columnheader'>";
-	tableContent += "<strong>";
-	tableContent += TEXT_QUESTION + " &amp; " + TEXT_ANSWER_PARTY
-	tableContent += "</strong>";
-	tableContent += "</div>";
-	tableContent += "</div>"; // row header
-
-	for (let i = 0; i < arQuestionsLong.length; i++) {
-		var positionButton = fnTransformPositionToButton(arPersonalPositions[i]);
-		var positionIcon = fnTransformPositionToIcon(arPersonalPositions[i]);
-		var positionText = fnTransformPositionToText(arPersonalPositions[i]);
-
-		// tableContent += "<tbody>";
-		// tableContent += "<tr>";
-		tableContent += "<div class='row border' role='row'>";
-
-		// 1. Spalte: doppelte Wertung
-		// tableContent += "<th class='text-center'>";
-		tableContent += "<div class='col col-2' role='cell'>";
-
-		// tableContent += "<button type='button' id='' " +
-		// 	" class='btn " + positionButton + " btn-sm selfPosition" + i + " ' " +
-		// 	" alt='" + TEXT_ANSWER_USER + " : " + positionText + "' title='" + TEXT_ANSWER_USER + " : " + positionText + "'>" +
-		// 	" " + positionIcon + "</button>";
-
-
-		if (arVotingDouble[i]) {
-			tableContent += "<button type='button' class='btn btn-dark btn-sm' " +
-				" id='doubleIcon" + i + "' " +
-				" title='" + TEXT_ANSWER_DOUBLE + "'>x2</button>";
-		}
-		else {
-			tableContent += "<button type='button' class='btn btn-outline-dark btn-sm' " +
-				" id='doubleIcon" + i + "' " +
-				" ' title='" + TEXT_ANSWER_NORMAL + "'>x2</button>";
-
-			// }
-			// tableContent += "</th>";
-			//					tableContent += "</div>";
-
-
-			// 2. Spalte: eigene Meinung
-			// tableContent += "<th scope='col' class='text-center'>";
-			//						tableContent += "<div class='col-1'>";
-			// tableContent += "</th>";
-
-			tableContent += "</div>";
-
-
-			// 3. Spalte: Frage (kurz und lang)
-			//					tableContent += "<th id='resultsByThesisQuestion"+i+"' style='cursor: pointer;' scope='col'>";
-			//					tableContent += "<th id='resultsByThesisQuestion"+i+"' style='' scope='col'>";
-			tableContent += "<div class='col col-10' id='resultsByThesisQuestion" + i + "' role='cell'>";
-			tableContent += "<div style='display:inline-; float:left'>"
-			tableContent += "<strong>" + arQuestionsShort[i] + "</strong>: ";
-			tableContent += arQuestionsLong[i];
-			tableContent += "</div>"
-			// Einklappen / Aufklappen ("Collapside")
-
-			//						tableContent += "<div style='display:inline; float:right' id='resultsByThesisQuestion"+i+"collapse' class='resultsByThesisQuestionCollapsePlus'> </div>";
-			//						tableContent += "<button style='display:inline; float:right;' id='resultsByThesisQuestion"+i+"collapse' class='resultsByThesisQuestionCollapsePlus btn btn-sm btn-outline-secondary' type='button'>+</button>";
-			tableContent += "<button style='display:inline; float:right;' id='resultsByThesisQuestion" + i + "collapse' class='nonexpanded btn btn-sm btn-outline-secondary' type='button'>&#x2795;</button>";
-
-			// tableContent += "</th>";
-			tableContent += "</div>";
-
-			//				tableContent += "</tr>"; // (Fragen)
-			tableContent += "</div>"; // row (Fragen)
-			//				tableContent += "</tbody>";
-
-
-			// darunterliegende Zeile - Parteipositionen anzeigen
-			// tableContent += "<tbody id='resultsByThesisAnswersToQuestion"+i+"'>";
-
-
-			tableContent += "<div class='row border rounded' id='resultsByThesisAnswersToQuestion" + i + "'> ";
-			tableContent += "<div class='col'>"
-			//					tableContent += " <div class='col-2'> </div> ";
-			//					tableContent += " <div class='col-10'>";
-
-			// darunterliegende Zeile - Parteipositionen anzeigen
-			for (let j = 0; j <= arPartyDescription.length; j++) {
-				var partyNum = arSortParties[j];
-				var partyPositionsRow = partyNum * arQuestionsShort.length + i;
-				var positionButton = fnTransformPositionToButton(arPartyPositions[partyPositionsRow]);
-				var positionIcon = fnTransformPositionToIcon(arPartyPositions[partyPositionsRow]);
-				var positionText = fnTransformPositionToText(arPartyPositions[partyPositionsRow]);
-
-
-				// Inhalt der Zelle
-				tableContent += " <div class='row mow-row-striped' role='row'> ";
-				//								tableContent += " <div class='col-1'> </div> ";
-				// 1./2 Zellen in der Zeile: Icon [+] [0] [-]
-				tableContent += " <div class='col col-2' role='cell'> ";
-				//tableContent += "<p>"
-				tableContent += "<button type='button' class='btn " + positionButton + " btn-sm' disabled " +
-					" alt='" + TEXT_ANSWER_PARTY + " : " + positionText + "' title='" + TEXT_ANSWER_PARTY + " : " + positionText + "'>" +
-					" " + positionIcon + "</button>";
-				tableContent += "</div>";
-
-				// 2./2 Zellen = letzte Zelle in der Zeile: Name der Partei + Begründung
-				tableContent += " <div class='col col-10' role='cell'> ";
-				tableContent += "<strong>" + arPartyNamesShort[partyNum] + "</strong>: " + (arPartyOpinions[partyPositionsRow] === "" ? "" : "" + arPartyOpinions[partyPositionsRow]) + " ";
-
-				// die Beschreibung der Partei in einem VERSTECKTEN DIV -> ein Workaround für das Addon "Textfilter" (siehe /EXTRAS) :(
-				tableContent += "<span style='visibility:hidden; display:none;' aria-hidden='true'>" + arPartyDescription[partyNum] + "</span>"
-
-				//tableContent += "</p>";
-				tableContent += "</div>";
-				tableContent += "</div>"; // row
-			}
-			tableContent += "</div> "; // col (Partei-Antworten)
-			tableContent += "</div> "; // row (Partei-Antworten)
-		}
-	} // end if
-
-	tableContent += "</div>"; // col
-	tableContent += "</div>"; // row
-
-	// Daten in Browser schreiben
-	$("#resultsByThesis").append(tableContent);
-
-
-	// und am Anfang ausblenden
-	//$("#resultsByThesis").hide();
-
-	for (let i = 0; i < arPersonalPositions.length; i++) {
-
-	}
-
-	// tableContent += "<button type='button' id='' " +
-	// // tableContent += "<button type='button' "+
-	// " class='btn " + positionButton + " btn-sm selfPosition" + i + " ' " +
-	// " onclick='fnToggleSelfPosition(" + i + ")' " +
-	// " alt='" + TEXT_ANSWER_USER + " : " + positionText + "' title='" + TEXT_ANSWER_USER + " : " + positionText + "'>" +
-	// " " + positionIcon + "</button>";
-
-
-	// Click-Funktion auf FRAGE-(und ANTWORT)-Zeile legen zum Anzeigen der ANTWORT-Zeile (direkt darunter)
-	// "[In a FOR-loop] you can use the let keyword, which makes the i variable local to the loop instead of global"
-	// 	https://stackoverflow.com/questions/4091765/assign-click-handlers-in-for-loop
-	for (let i = 0; i < arQuestionsShort.length; i++) {
-		/*
-		// Klickfunktion - bei Überschriftenzeile
-		$("#resultsByThesisQuestion"+i).click(function () {
-				$("#resultsByThesisAnswersToQuestion"+i+"").toggle(500);
-
-				// Wechsel des PLUS und MINUS-Symbols beim Klick (siehe auch DEFAULT.CSS)
-				// *** ToDo: Button mit Inhalt füllen für ARIA, kein CSS ***
-				// $("#resultsByThesisQuestion"+i+" .resultsByThesisQuestionCollapsePlus").toggleClass("resultsByThesisQuestionCollapseMinus")
-
-			});
-		*/
-
-		// $("#resultsByThesisQuestion" + i + " .nonexpanded").click(function () {
-		// 	var $this = $(this);
-		// 	$("#resultsByThesisAnswersToQuestion" + i + "").toggle(500)
-
-		// 	$this.toggleClass("expanded");
-
-		// 	if ($this.hasClass("expanded")) {
-		// 		$this.html("&#x2796;"); // MINUS
-		// 	} else {
-		// 		$this.html("&#x2795;"); // PLUS
-		// 	}
-		// });
-
-		// am Anfang die Antworten ausblenden
-		//		$("#resultsByThesisAnswersToQuestion"+i).fadeOut(500);	// irgendwie verrutschen die Zeilen bei fadeOut() -> deshalb die css()-Lösung
-		$("#resultsByThesisAnswersToQuestion" + i + "").css("display", "none")
-	}
-
-} // end function
 
 
 
