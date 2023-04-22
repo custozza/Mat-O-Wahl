@@ -94,7 +94,7 @@
 			<img id="rescale-image" class="title-img" src="https://www.sektionacht.at/wp-content/uploads/logo-1.png"
 				alt="Sektion 8">
 		</div>
-	
+
 		<main>
 
 			<section id="sectionDescription">
@@ -162,15 +162,15 @@
 			<section id="sectionShowQuestions">
 
 				<div class="question-cell" tabindex="0" style="">
-						<div class="card border-dark mb-3 bg-transparent">
-							<div class="card-header" id="showQuestionsHeader">Header</div>
-							<div class="card-body">
-								<p class="card-text lead" id="showQuestionsQuestion">Frage(n) zu den verschiedenen
-									Positionen an die Parteien bzw. Kandidaten.
-									<br /> Question(s) on the different party/candidate positions.
-								</p>
-								
-							</div>
+					<div class="card border-dark mb-3 bg-transparent">
+						<div class="card-header" id="showQuestionsHeader">Header</div>
+						<div class="card-body">
+							<p class="card-text lead" id="showQuestionsQuestion">Frage(n) zu den verschiedenen
+								Positionen an die Parteien bzw. Kandidaten.
+								<br /> Question(s) on the different party/candidate positions.
+							</p>
+
+						</div>
 					</div>
 				</div>
 
@@ -179,25 +179,25 @@
 					<div class=""
 						style="width: inherit; top: 0%; left: 50%; transform: translateX(-50%); visibility: hidden; display: none;">
 						<div class="">
-	
+
 							<div class="progress" style="height: 2px;">
 								<div class="progress-bar" id="progress-bar" style="width:10%" aria-valuenow="10"
 									aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
-	
+
 						</div>
 					</div>
-	
+
 					<div class="">
 						<div class="">
-	
+
 							<div id="navigationJumpToQuestion" style="display:none; width:100%">
 								Gehe direkt zu Frage Nummer XY. Jump to Question XY directly
 							</div>
-	
+
 						</div>
 					</div>
-	
+
 				</nav>
 
 			</section>
@@ -240,7 +240,7 @@
 					</div>
 
 					<div class="skip btn-answer-container">
-						<button type="button" id="votingSkip" 
+						<button type="button" id="votingSkip"
 							class="btn-answer btn btn-secondary btn-lg btn-block">[&#x21B7;]
 							Skip</button>
 					</div>
@@ -301,32 +301,72 @@
 
 		<section id="sectionResults">
 
-			<div class="row" id="results">
-				<div class="col">
 
-					<div id="resultsAddonTop">
-						<!-- Platzhalter / Placeholder -->
+			<div class="collapsible-container">
+				<button class="collapsible active">Ergebnisse</button>
+				<div class="content">
+					<div class="row" id="results">
+						<div class="col">
+		
+							<div id="resultsAddonTop">
+								<!-- Platzhalter / Placeholder -->
+							</div>
+		
+							<!-- <div id="resultsHeading">
+								&Uuml;berschrift f&uuml;r die Ergebnisse/Resultate (ungenutzt) <br /> Headline for the results
+								(unused)
+							</div> -->
+		
+							<div id="resultsShort">
+								Ergebnisse / Resultate der Parteien in tabellarischer Form <br /> Table with results (short) -
+								DOM / id = "resultsShortTable"
+							</div>
+		
+						</div>
 					</div>
-
-					<!-- <div id="resultsHeading">
-						&Uuml;berschrift f&uuml;r die Ergebnisse/Resultate (ungenutzt) <br /> Headline for the results
-						(unused)
-					</div> -->
-
-					<div id="resultsShort">
-						Ergebnisse / Resultate der Parteien in tabellarischer Form <br /> Table with results (short) -
-						DOM / id = "resultsShortTable"
+				</div>
+				<button class="collapsible">Begründungen</button>
+				<div class="content">
+				  
+					<div id="resultsByThesis">
+						Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
+						results (long / detailed)
 					</div>
 
 				</div>
+				<button class="collapsible">Standpunkte</button>
+				<div class="content">
+					<div id="resultsByParty">
+						Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
+						results (long / detailed)
+					</div>
+				</div>
+
+				<script>
+					var coll = document.getElementsByClassName("collapsible");
+					for (let i = 0; i < coll.length; i++) {
+					  coll[i].addEventListener("click", function() {
+						this.classList.toggle("active");
+						var content = this.nextElementSibling;
+						if (content.style.maxHeight){
+						  content.style.maxHeight = null;
+						} else {
+						  content.style.maxHeight = content.scrollHeight + "px";
+						} 
+					  });
+					}
+					</script>
 			</div>
+
+
+
 
 			<!-- 
 				Auswahlknoepfe für die detaillierten Ergebnisse. Text in i18n.
 				Buttons for detailled resuts. Labels in i18n.
 			-->
 
-			<div class="row" id="resultsButtons">
+			<!-- <div class="row" id="resultsButtons">
 
 				<div class="col">
 					<button type="button" id="resultsButtonTheses" class="btn btn-secondary btn-block"
@@ -340,27 +380,7 @@
 						Show parties</button>
 				</div>
 
-			</div>
-
-			<div class="row">
-				<div class="col">
-
-					<div id="resultsByThesis">
-						Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
-						results (long / detailed)
-					</div>
-
-					<div id="resultsByParty">
-						Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
-						results (long / detailed)
-					</div>
-
-					<div id="resultsAddonBottom">
-						<!-- Platzhalter / Placeholder -->
-					</div>
-
-				</div>
-			</div>
+			</div> -->
 
 		</section>
 
@@ -370,8 +390,8 @@
 
 			<div class="footer">
 				<div class="footer-cell">
-					<a id="imprint" class="btn-outline-dark btn btn-sm"  role="button" href="system/imprint.html"
-						target="_blank" >Button Impressum / Legal</a>
+					<a id="imprint" class="btn-outline-dark btn btn-sm" role="button" href="system/imprint.html"
+						target="_blank">Button Impressum / Legal</a>
 				</div>
 
 				<div class="footer-cell">

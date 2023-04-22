@@ -3,6 +3,13 @@
 
 /* BODY: background color, font, size and color */
 
+:root {
+    --s8-background-color: #cc6361;
+    --s8-font-color: #f6eaec;
+    
+}
+
+
 body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     /*	font-size:10pt; */
@@ -121,6 +128,37 @@ main {
     align-items: center;
 }
 
+.collapsible-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+
+/* RESULTS AREA REDESIGN*/
+.collapsible {
+    background-color: var(--s8-background-color);
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  .active, .collapsible:hover {
+    border: solid black 1px;
+  }
+  
+  .content {
+    padding: 0 0.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+  }
 
 /* LINK-Farbe - AUSSER bei der Bootstrap-Klasse "btn" für Buttons. Dort wird der Bootstrap-Standard benutzt. */
 
@@ -156,13 +194,13 @@ a:not(.btn):hover {
 
 
 .question-card {
-    background-color: #cc6361;
+    background-color: var(--s8-background-color);
     color: #f6eaec;
 }
 
 .card-header {
-    background-color: #cc6361;
-    color: #f6eaec;
+    background-color: var(--s8-background-color);
+    color: var(--s8-font-color);
 }
 
 .card-text {
