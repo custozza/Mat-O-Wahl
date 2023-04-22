@@ -99,7 +99,7 @@ export function fnStart() {
 
 	// Wenn Datenschutzerklärung vorhanden UND Auswertung gewünscht ...
 	$("#keepStats").hide()
-	$("#keepStatsQuestion").append(TEXT_ALLOW_STATISTIC);	// WACG: <label> sollte immer befüllt sein 	
+	$("#keepStatsQuestion").append(TEXT_ALLOW_STATISTIC);	// WACG: <label> sollte immer befüllt sein
 	if ((imprintPrivacyUrl.length > 0) && (statsRecord)) {
 		$("#keepStatsCheckbox").attr("checked", true); // Zeile auskommentieren/aktivieren und OptIn erzwingen - bitte mit Bedacht benutzen.
 		$("#keepStats").fadeIn(1000);
@@ -132,7 +132,7 @@ export function fnStart() {
 	//	const intParties = window.intParties
 
 	// FRAGEN UND ANTWORTEN in Arrays einlesen und Folgefunktionen aufrufen
-	// (a) Fragen 
+	// (a) Fragen
 	fnReadCsv("data/" + fileQuestions, fnShowQuestions)
 
 	// (b) Antworten der Parteien und Partei-Informationen
@@ -144,7 +144,7 @@ export function fnStart() {
 	if (descriptionShowOnStart) {
 		// nix
 	} else {
-		// Das System ist am Anfang noch nicht fertig geladen. Deshalb müssen wir einen Moment warten. :(		
+		// Das System ist am Anfang noch nicht fertig geladen. Deshalb müssen wir einen Moment warten. :(
 		$("#descriptionHeading1").empty().append("<h1>Loading / Lädt</h1>")
 		$("#descriptionHeading2").empty().append("<h2>Please wait a moment / Bitte einen Moment warten</h2>");
 
@@ -179,7 +179,7 @@ function showWarningAWeightNeedsToBeSelected() {
 }
 
 // (a) Anzeige von Frage Nummer XY
-// (b) Weiterleitung zur Auswertung 
+// (b) Weiterleitung zur Auswertung
 // Aufruf aus fnStart() -> fnShowQuestions(csvData)
 export function fnShowQuestionNumber(questionNumber) {
 	// Nummer der Frage im Array um eins erhöhen
@@ -212,7 +212,7 @@ export function fnShowQuestionNumber(questionNumber) {
 		$("#sectionVotingButtons").fadeOut(300).hide();
 		$("#sectionVotingButtons").fadeIn(300);
 
-		// Navigation (Nummer der Frage) ein-/ausblenden		
+		// Navigation (Nummer der Frage) ein-/ausblenden
 		$("#sectionNavigation").fadeOut(300).hide();
 		// Bootstrap-Progressbar
 		var percent = fnPercentage((questionNumber + 1), arQuestionsLong.length);
@@ -342,7 +342,7 @@ function fnJumpToQuestionNumber(questionNumber) {
 		questionsPerLine = maxQuestionsPerLine;
 	}
 
-	// Tabelle aufbauen	
+	// Tabelle aufbauen
 	var tableContent = "<table width='100%' class='table-bordered table-striped table-hover' aria-role='presentation'>";
 	for (var i = 1; i <= arQuestionsLong.length; i++) {
 		var modulo = i % questionsPerLine;
@@ -394,35 +394,27 @@ function fnEvaluationShort(arResults) {
 	console.log('das kriegts evaluationshort', arResults)
 
 	// Alten Inhalt des DIVs loeschen
-	// $("#heading2").empty().hide();	
+	// $("#heading2").empty().hide();
 	// $("#content").empty().hide();
 	$("#sectionShowQuestions").empty().hide();
-	// $("#explanation").empty().hide();	
+	// $("#explanation").empty().hide();
 
 	// Anzeige der Ergebnisse
 	$("#resultsHeading").append("<h1>" + TEXT_RESULTS_HEADING + "</h1>").fadeIn(500);
 
-	var numberOfQuestions = arQuestionsShort.length;
-	//Anzahl der Maximalpunkte ermitteln
-	var maxPoints = 0;
-	for (let i = 0; i < arQuestionsShort.length; i++) {
-		if (arPersonalPositions[i] < 99) {
-			maxPoints++;
-			if (arVotingDouble[i]) { maxPoints++; }
-		}
-	}
-	if (maxPoints == 0) { maxPoints = 1; }
+
+	const maxPoints = Math.max(...questionWeight.filter(x => x != null), 1);
 
 	var tableContent = ""
 	tableContent += "<div class='row' id='resultsShortTable' role='table'>"
 	tableContent += "<div class='col'>"
 	//		tableContent = "<table id='resultsShortTable' class='table table-bordered table-striped table-hover' aria-role='presentation'>"
 
-	for (let i = 0; i <= (getParties() - 1); i++) {
+	for (let i = 0; i < arPartyPositions.length; i++) {
 		var partyNum = arSortParties[i];
 		var percent = fnPercentage(arResults[partyNum], maxPoints)
 
-		// "Klammer" um den Inhalt. 
+		// "Klammer" um den Inhalt.
 		// Wenn ein Addon (z.B. addon_contacts_in_results.js) eine neue Zeile unter die Zeile #resultsShortParty einfügt,
 		// bleiben die Zebrastreifen aus der Klasse ".mow-row-striped" in der richtigen Reihenfolge.
 		tableContent += "<div class='border rounded mow-row-striped' id='resultsShortPartyClamp" + partyNum + "' role='row'>"
@@ -445,7 +437,7 @@ function fnEvaluationShort(arResults) {
 		tableContent += "</a>)";
 
 		// Beschreibung der Partei - falls in der CSV vorhanden.
-		// Nur die ersten 32 Zeichen anzeigen. 
+		// Nur die ersten 32 Zeichen anzeigen.
 		// Danach abschneiden und automatisch ein/ausblenden (Funktionsaufbau weiter unten)
 		// Wenn keine Beschreibung gewünscht, dann "0" eintragen.
 		var intPartyDescriptionPreview = 32
@@ -464,7 +456,8 @@ function fnEvaluationShort(arResults) {
 		// Partei-Logo (automatisch angepasst)
 		tableContent += "<div class='col col-2 col-md-1' role='cell'>"
 		// tableContent += "<td>"
-		tableContent += "<img src='" + arPartyLogosImg[partyNum] + "' class='rounded img-fluid' alt='Logo " + arPartyNamesLong[partyNum] + "' />"
+		tableContent += "<div>IMAGE URL KOMMT HIER HER";
+		// tableContent += "<img src='" + arPartyLogosImg[partyNum] + "' class='rounded img-fluid' alt='Logo " + arPartyNamesLong[partyNum] + "' />"
 		// tableContent += "</td>"
 		tableContent += "</div>"
 
@@ -480,7 +473,7 @@ function fnEvaluationShort(arResults) {
 		tableContent += "</div>" // end: row #resultsShortPartyX
 
 		tableContent += "</div>" // end: row .mow-row-striped + #resultsShortPartyClampX
-		// tableContent += "</tr>" 
+		// tableContent += "</tr>"
 
 	} // end for
 
@@ -493,7 +486,7 @@ function fnEvaluationShort(arResults) {
 	// Daten in Browser schreiben
 	$("#resultsShort").append(tableContent).fadeIn(750);
 
-	// Funktion zur Berechnung der "Doppelten Wertung" aufrufen 
+	// Funktion zur Berechnung der "Doppelten Wertung" aufrufen
 	// -> enthält Aufruf für farbliche Progressbar (muss hier ja nicht extra wiederholt werden)
 	fnReEvaluate()
 
@@ -509,7 +502,7 @@ function fnEvaluationShort(arResults) {
 		});
 		// Klickfunktion - bei Beschreibung
 		/*
-		$("#resultsShortPartyDescription"+i).click(function () { 
+		$("#resultsShortPartyDescription"+i).click(function () {
 				$("#resultsShortPartyDescription"+i).toggle(500);
 			});
 		*/
@@ -545,12 +538,12 @@ function fnEvaluationByThesis(arResults) {
 					tableContent += TEXT_ANSWER_USER+" &amp; "+TEXT_POSITION_PARTY
 					tableContent += "</th>";
 
-					tableContent += "<th class='align-text-top'>";	
+					tableContent += "<th class='align-text-top'>";
 					tableContent += TEXT_QUESTION+" &amp; "+TEXT_ANSWER_PARTY
 					tableContent += "</th>";
 
-				
-				tableContent += "</tr>";			
+
+				tableContent += "</tr>";
 			tableContent += "</thead>";
 	*/
 	tableContent += "<div class='row' id='resultsByThesisTable' role='table'>"
@@ -569,7 +562,7 @@ function fnEvaluationByThesis(arResults) {
 	tableContent += TEXT_QUESTION + " &amp; " + TEXT_ANSWER_PARTY
 	tableContent += "</strong>";
 	tableContent += "</div>";
-	tableContent += "</div>"; // row header						
+	tableContent += "</div>"; // row header
 
 
 	// Inhalt
@@ -638,7 +631,7 @@ function fnEvaluationByThesis(arResults) {
 			//				tableContent += "</tbody>";
 
 
-			// darunterliegende Zeile - Parteipositionen anzeigen		
+			// darunterliegende Zeile - Parteipositionen anzeigen
 			// tableContent += "<tbody id='resultsByThesisAnswersToQuestion"+i+"'>";
 
 
@@ -676,7 +669,7 @@ function fnEvaluationByThesis(arResults) {
 
 				//tableContent += "</p>";
 				tableContent += "</div>";
-				tableContent += "</div>"; // row 
+				tableContent += "</div>"; // row
 			}
 			tableContent += "</div> "; // col (Partei-Antworten)
 			tableContent += "</div> "; // row (Partei-Antworten)
@@ -709,15 +702,15 @@ function fnEvaluationByThesis(arResults) {
 	// "[In a FOR-loop] you can use the let keyword, which makes the i variable local to the loop instead of global"
 	// 	https://stackoverflow.com/questions/4091765/assign-click-handlers-in-for-loop
 	for (let i = 0; i <= (intQuestions - 1); i++) {
-		/*		
+		/*
 		// Klickfunktion - bei Überschriftenzeile
 		$("#resultsByThesisQuestion"+i).click(function () {
 				$("#resultsByThesisAnswersToQuestion"+i+"").toggle(500);
 
 				// Wechsel des PLUS und MINUS-Symbols beim Klick (siehe auch DEFAULT.CSS)
 				// *** ToDo: Button mit Inhalt füllen für ARIA, kein CSS ***
-				// $("#resultsByThesisQuestion"+i+" .resultsByThesisQuestionCollapsePlus").toggleClass("resultsByThesisQuestionCollapseMinus")				
-				
+				// $("#resultsByThesisQuestion"+i+" .resultsByThesisQuestionCollapsePlus").toggleClass("resultsByThesisQuestionCollapseMinus")
+
 			});
 		*/
 
@@ -735,7 +728,7 @@ function fnEvaluationByThesis(arResults) {
 		});
 
 		// am Anfang die Antworten ausblenden
-		//		$("#resultsByThesisAnswersToQuestion"+i).fadeOut(500);	// irgendwie verrutschen die Zeilen bei fadeOut() -> deshalb die css()-Lösung 
+		//		$("#resultsByThesisAnswersToQuestion"+i).fadeOut(500);	// irgendwie verrutschen die Zeilen bei fadeOut() -> deshalb die css()-Lösung
 		$("#resultsByThesisAnswersToQuestion" + i + "").css("display", "none")
 	}
 
@@ -770,13 +763,13 @@ function fnEvaluationByParty(arResults) {
 					tableContent += "</th>";
 
 
-					tableContent += "<th class='align-text-top'>";	
+					tableContent += "<th class='align-text-top'>";
 					tableContent += TEXT_ANSWER_PARTY;
 					tableContent += "</th>";
 
-				
-				tableContent += "</tr>";			
-			tableContent += "</thead>"; 
+
+				tableContent += "</tr>";
+			tableContent += "</thead>";
 		*/
 
 	tableContent += "<div class='row' id='resultsByPartyTable' role='table'>"
@@ -808,7 +801,7 @@ function fnEvaluationByParty(arResults) {
 	tableContent += TEXT_ANSWER_PARTY
 	tableContent += "</strong>";
 	tableContent += "</div>";
-	tableContent += "</div>"; // row header	
+	tableContent += "</div>"; // row header
 
 	for (var i = 0; i <= (getParties() - 1); i++) {
 
@@ -839,7 +832,7 @@ function fnEvaluationByParty(arResults) {
 		tableContent += "<strong>"
 		tableContent += arPartyNamesLong[partyNum];
 		tableContent += "</strong>"
-		//			tableContent += "</span>" 
+		//			tableContent += "</span>"
 
 		tableContent += " (&#8663; <a href='" + arPartyInternet[partyNum] + "' target='_blank' title='" + arPartyNamesLong[partyNum] + "'>";
 		tableContent += arPartyNamesShort[partyNum];
@@ -855,7 +848,7 @@ function fnEvaluationByParty(arResults) {
 		tableContent += " </tr>"
 		tableContent += " </tbody>"
 		*/
-		tableContent += "</div>"; // end: col-12 - Überschrift Partei 
+		tableContent += "</div>"; // end: col-12 - Überschrift Partei
 		tableContent += "</div>"; // end: row - Überschrift Partei
 		tableContent += "</span>"; // end: SPAN - Überschrift Partei
 
@@ -874,7 +867,7 @@ function fnEvaluationByParty(arResults) {
 		for (let j = jStart; j <= jEnd; j++) {
 
 			// 1./4 Zellen - Frage
-			modulo = j % intQuestions // z.B. arPartyPositions[11] % 5 Fragen = 1 -> arQuestionsShort[1] = 2. Frage		
+			modulo = j % intQuestions // z.B. arPartyPositions[11] % 5 Fragen = 1 -> arQuestionsShort[1] = 2. Frage
 			// tableContent += " <tr>"
 			// tableContent += "  <td class='align-text-top'>"
 			tableContent += " <div class='row mow-row-striped' role='row'> ";
@@ -933,18 +926,18 @@ function fnEvaluationByParty(arResults) {
 
 		} // end: for-j
 		// tableContent += "</tbody>";
-		tableContent += " </div> "; // end col 
+		tableContent += " </div> "; // end col
 		tableContent += " </div> "; // end row resultsByPartyAnswersToQuestion
 		tableContent += " </span> "; // end span resultsByPartyAnswersToQuestion
 
-		//		tableContent += " </div> "; // end col 
+		//		tableContent += " </div> "; // end col
 		//	tableContent += " </div> "; // end row resultsByPartyRow
 
 
 	} // end: for-i (getParties())
 
 	// tableContent += "</table>";
-	tableContent += " </div> "; // end col 
+	tableContent += " </div> "; // end col
 	tableContent += " </div> "; // end row resultsByPartyTable
 
 
@@ -975,7 +968,7 @@ function fnEvaluationByParty(arResults) {
 		});
 
 		// am Anfang die Antworten ausblenden
-		//		$("#resultsByPartyAnswersToQuestion"+i).fadeOut(500);	// irgendwie verrutschen die Zeilen bei fadeOut() -> deshalb die css()-Lösung 
+		//		$("#resultsByPartyAnswersToQuestion"+i).fadeOut(500);	// irgendwie verrutschen die Zeilen bei fadeOut() -> deshalb die css()-Lösung
 		$("#resultsByPartyAnswersToQuestion" + i + "").css("display", "none")
 
 	}
@@ -987,23 +980,15 @@ function fnEvaluationByParty(arResults) {
 // 02/2015 BenKob
 // Aktualisierung der Ergebnisse in der oberen Ergebnistabelle (short)
 // Aufruf heraus in:
-// (a) fnEvaluationShort() nach dem Aufbau der oberen Tabelle 
+// (a) fnEvaluationShort() nach dem Aufbau der oberen Tabelle
 // (b) in den Buttons in der detaillierten Auswertung (fnToggleSelfPosition() und fnToggleDouble())
 export function fnReEvaluate() {
 	//Ergebniss neu auswerten und Anzeige aktualisieren
-	var arResults = fnEvaluation();
+	fnEvaluation();
 
-	//Anzahl der Maximalpunkte ermitteln
-	var maxPoints = 0;
+	const maxPoints = Math.max(...questionWeight.filter(x => x != null), 1);
 
-	//	for (i=0;i<arQuestionsShort.length;i++)
-	for (let i = 0; i < intQuestions; i++) {
-		if (arPersonalPositions[i] < 99) {
-			maxPoints++;
-			if (arVotingDouble[i]) { maxPoints++; }
-		}
-	}
-	if (maxPoints == 0) { maxPoints = 1 };
+	
 	//	for (i = 0; i <= (arPartyFiles.length-1); i++)
 	for (let i = 0; i <= (getParties() - 1); i++) {
 		var percent = fnPercentage(arResults[i], maxPoints)
