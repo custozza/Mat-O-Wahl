@@ -13,41 +13,21 @@ import {
 // v.0.3 NEU
 // CSV-Daten in Array einlesen (aus fnShowQuestions() und fnReadPositions())
 export function fnTransformCsvToArray(csvData, modus, intParties) {
-
-    switch(modos) {
+    switch (modus) {
         case 1: modusOne(csvData, intParties); break;
         case 0: modusZero(csvData, intParties); break;
         default: debugger; throw Error('unkown modous');
     }
-
-    // benutzt externe jquery-csv-Bibliothek
-   
-
-} // end: function
+}
 
 
-function modusOne(csvData, intParties) {
-    const modus = 1;
-    let arZeilen = $.csv.toArrays(csvData, { separator: "" + separator + "" });
-
-    var numberOfLines = 6 + intQuestions
-    var lastLine;
-
-    lastLine = intQuestions
-    
-
-    //	for(i = 0; i <= arZeilen.length-1; i++)
-    for (let i = 0; i <= lastLine - 1; i++) {
-        // console.log("i: "+i+" m: "+modus+" val0: "+arZeilen[i][0]+" val1: "+arZeilen[i][1] )	
-        var valueOne = arZeilen[i][0];
-        var valueTwo = arZeilen[i][1];
-
-        // FRAGEN in globales Array schreiben (z.B. aus FRAGEN.CSV)
-        arQuestionsShort.push(valueOne);
-        arQuestionsLong.push(valueTwo);
-    
-        // ANTWORTEN und Meinungen in globales Array schreiben (z.B. aus PARTEIEN.CSV)
-    }  // end: for
+function modusOne(csvData) {
+    let lines = $.csv.toArrays(csvData, { separator: "" + separator + "" });
+    lines.forEach((question) => {
+        let [questionShort, questionLong] = question;
+        arQuestionsShort.push(questionShort);
+        arQuestionsLong.push(questionLong);
+    });
 }
 
 function modusZero(csvData, intParties) {
@@ -68,9 +48,9 @@ function modusZero(csvData, intParties) {
         var valueTwo = arZeilen[i][1];
 
         // ANTWORTEN und Meinungen in globales Array schreiben (z.B. aus PARTEIEN.CSV)
-        
-            // v.0.5 NEU
-            // ALLE Partei-Informationen in einer CSV-Datei
+
+        // v.0.5 NEU
+        // ALLE Partei-Informationen in einer CSV-Datei
         var modulo = i % numberOfLines;
 
         if ((modulo == 0) && (valueTwo != "undefined")) {
@@ -102,6 +82,6 @@ function modusZero(csvData, intParties) {
         else {
             // nothing to do. Just empty lines in the CSV-file
         }
-      
+
     }  // end: for
 }
