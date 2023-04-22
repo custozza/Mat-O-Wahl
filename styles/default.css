@@ -37,6 +37,18 @@ body {
     overflow: hidden;
 }
 
+
+
+/* Willkommensnachricht (erster DIV)
+   Welcome Message (first DIV) */
+
+   #sectionDescription>div:first-of-type {
+    padding: 5% 2%;
+    text-overflow: clip;
+    overflow: auto;
+}
+
+
 .footer-container {
     display: flex;
     /* background-color: blueviolet; */
@@ -251,16 +263,6 @@ a:not(.btn):hover {
 }
 
 
-/* Willkommensnachricht (erster DIV)
-   Welcome Message (first DIV) */
-
-#sectionDescription>div:first-of-type {
-    padding: 5% 2%;
-    text-overflow: clip;
-    overflow: auto;
-    margin-top: 1em;
-    max-height: 60vh;
-}
 
 
 /* BOOTSTRAP */
