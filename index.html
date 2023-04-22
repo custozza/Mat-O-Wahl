@@ -306,7 +306,7 @@
 				<div class="collapsible rounded">
 					<h1>Ergebnisse</h1>
 				</div>
-				<div class="content" style="visibility: visible; max-height: fit-content;">
+				<div class="content">
 					<div class="row" id="results">
 						<div class="col">
 
@@ -331,7 +331,7 @@
 				<div class="collapsible rounded">
 					<h1>Begründungen</h1>
 				</div>
-				<div class="content" style="visibility: hidden; max-height: 0;">
+				<div class="content">
 					<div class="scroll-container">
 						<div id="resultsByThesis">
 							Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table
@@ -344,7 +344,7 @@
 				<div class="collapsible rounded">
 					<h1>Standpunkte</h1>
 				</div>
-				<div class="content" style="visibility: hidden; max-height: 0;">
+				<div class="content" >
 					<div id="resultsByParty">
 						Detaillierte Ergebnisse / Resultate mit eigener Meinung in tabellarischer Form <br /> Table with
 						results (long / detailed)
@@ -356,11 +356,8 @@
 					for (let i = 0; i < coll.length; i++) {
 						coll[i].addEventListener("click", function () {
 							this.classList.toggle("active");
-							var content = this.nextElementSibling;
-							var visibility = content.style.visibility;
-							console.log(visibility);
-							content.style.visibility = visibility == "visible" ? "hidden" : "visible";
-							content.style.maxHeight = visibility == "visible" ? "0" : "inherit";
+							var target = this.nextElementSibling;
+							$(target).toggleClass('section-expanded');
 						});
 					}
 				</script>

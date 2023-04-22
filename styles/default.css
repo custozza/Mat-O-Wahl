@@ -153,6 +153,8 @@ main {
     font-size: 1.5rem;
 }
 
+
+
 .active,
 .collapsible:hover {
     border: solid black 1px;
@@ -174,6 +176,13 @@ main {
     overflow: hidden;
     /* border: solid green; */
     display: flex;
+    visibility: hidden;
+    max-height: 0;
+}
+
+.content.section-expanded {
+    visibility: visible;
+    max-height: fit-content;
 }
 
 #sectionResults {
