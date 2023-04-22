@@ -865,7 +865,7 @@ function fnEvaluationByParty(arResults) {
 		for (let j = jStart; j <= jEnd; j++) {
 
 			// 1./4 Zellen - Frage
-			modulo = j % arQuestionsShort.length // z.B. arPartyPositions[11] % 5 Fragen = 1 -> arQuestionsShort[1] = 2. Frage
+			var modulo = j % arQuestionsShort.length // z.B. arPartyPositions[11] % 5 Fragen = 1 -> arQuestionsShort[1] = 2. Frage
 			// tableContent += " <tr>"
 			// tableContent += "  <td class='align-text-top'>"
 			tableContent += " <div class='row mow-row-striped' role='row'> ";
