@@ -525,6 +525,33 @@ function fnEvaluationShort(arResults) {
 // Anzeige der Ergebnisse - detailliert, Fragen und Antworten der Parteien
 // Array arResults kommt von fnEvaluation
 
+function buildChevron(weight) {
+	var chevron = `<div class="triangle-container">`
+	chevron += weight > 0 ? `<span class="triangle" style="margin-top: 0;">&#8963;</span>` : "";
+	chevron += weight > 1 ? `<span class="triangle" sylte="margin-top: -39px; margin-bottom: -17px;">&#8963;</span>` : "";
+	chevron += weight > 2 ? `<span class="triangle">&#8963;</span>` : "";
+	chevron += `</div>`;
+	return chevron;
+}
+
+function buildAnswers() {
+
+	var tableContent = '';
+
+	for (let i = 0; i < arQuestionsLong.length; i++) {
+		const temp = createQuestionGroupCard(i);
+		$("#resultsByThesis").append(temp);
+		const content = document.createElement('div');
+		content.setAttribute('class', 'collapsible-question');
+		content.innerHTML = createPartyAnswers(i);
+		$("#resultsByThesis").append(content);
+
+	}
+	// $("#resultsByThesis").append(tableContent);
+
+	createCollabsible();
+}
+
 function createQuestionGroupCard(i) {
 
 	var positionButton = fnTransformPositionToButton(arPersonalPositions[i]);
@@ -536,7 +563,7 @@ function createQuestionGroupCard(i) {
 
 
 	return `
-	<div class="questionGroup">
+	<div id="btn-question-group-${i}" class="question-group-header">
 		${button} 
 		<div><strong>${arQuestionsShort[i]}</strong></div>
 	</div>`
@@ -560,42 +587,38 @@ function createPartyAnswers(questionId) {
 		var chevronUp = buildChevron(weight);
 
 		result += `
-		<div class="party-answer-group">
+		<div class="party-answer-group ">
 			${button} 
 			${chevronUp}
 		</div>
 		 <div><strong>${party.partyShort}</strong>: ${party.answers[questionId].opinions}</div>`
 	}
-	return `<div class="parties-group questionGroup">${result}</div>`
+	return `<div class="parties-group questionGroup collapsible-container">${result}</div>`
 }
 
-function buildChevron(weight) {
-	var chevron = `<div class="triangle-container">`
-	chevron += weight > 0 ?   `<span class="triangle" style="margin-top: 0;">&#8963;</span>` : "";
-	chevron += weight > 1 ?`<span class="triangle" sylte="margin-top: -39px; margin-bottom: -17px;">&#8963;</span>` : "";
-	chevron += weight > 2 ?`<span class="triangle">&#8963;</span>` : "";
-	chevron += `</div>`;
-	return chevron;
+function createCollabsible() {
+	var coll = document.getElementsByClassName("question-group-header");
+	for (let i = 0; i < coll.length; i++) {
+		coll[i].addEventListener("click", function () {
+			this.classList.toggle("active");
+			var content = this.nextElementSibling;
+			if (content.style.maxHeight) {
+				content.style.maxHeight = null;
+				content.style.height = "unset";
+				content.visibility = "unset";
+			} else {
+				content.style.maxHeight = "fit-content";
+				content.style.height = "0";
+				content.visibility = "collapsed";
+				content.visibility = "collapse";
+			}
+		});
+	}
 }
 
 function fnEvaluationByThesis(arResults) {
-	// $("#resultsByThesis").hide();
 
-	// Aufbau ist
-	// HEADER
-	// GROUP BY QUESTION COLLAPSABLE eigene Antwort im header mit + to expand und button to increase
-	var tableContent = '';
-	tableContent += `
-	<div class="questionGroup">
-		<div>${TEXT_ANSWER_USER} <br> ${TEXT_POSITION_PARTY} </div>
-		<div> </div>
-	</div>`;
-	for (let i = 0; i < arQuestionsLong.length; i++) {
-		tableContent += createQuestionGroupCard(i);
-		tableContent += createPartyAnswers(i);
-
-	}
-	$("#resultsByThesis").append(tableContent);
+	buildAnswers();
 
 	return;
 

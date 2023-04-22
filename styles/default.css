@@ -162,19 +162,27 @@ main {
     background-color: #f1f1f1;
   }
 
+  #sectionResults {
+    overflow: hidden;
+  }
+
   #resultsByThesis{
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.5rem;
   }
 
-  .questionGroup {
+  .question-group-header {
     border: solid black 1px;
     border: solid black 1px;
     display: grid;
     grid-template-columns: 5rem 1fr;
     justify-content: center;
     align-items: center;
+  }
+
+  .collapsible-question {
+    overflow: hidden;
   }
 
   .party-answer-group {
