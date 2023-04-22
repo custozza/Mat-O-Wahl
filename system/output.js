@@ -457,8 +457,8 @@ function fnEvaluationShort(arResults) {
 		// Partei-Logo (automatisch angepasst)
 		tableContent += "<div class='col col-2 col-md-1' role='cell'>"
 		// tableContent += "<td>"
-		tableContent += "<div>IMAGE URL KOMMT HIER HER";
-		// tableContent += "<img src='" + arPartyLogosImg[partyNum] + "' class='rounded img-fluid' alt='Logo " + arPartyNamesLong[partyNum] + "' />"
+		// tableContent += "<div>IMAGE URL KOMMT HIER HER";
+		tableContent += "<img src='" + arPartyLogosImg[partyNum] + "' class='rounded img-fluid' alt='Logo " + arPartyNamesLong[partyNum] + "' />"
 		// tableContent += "</td>"
 		tableContent += "</div>"
 
