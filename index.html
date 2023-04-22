@@ -45,9 +45,9 @@
 	<script type="module" src="system/jquery.csv-0.8.9.min.js"></script>
 	<script type="module" src="system/general.js"></script>
 	<script type="module" defer>
-		import { fnHideWelcomeMessage, fnChangeVotingDouble } from './system/output.js';
+		import { startQuestionaire, fnChangeVotingDouble } from './system/output.js';
 
-		document.getElementById('descriptionButtonStart').addEventListener('click', fnHideWelcomeMessage);
+		document.getElementById('descriptionButtonStart').addEventListener('click', startQuestionaire);
 
 		for (let i = 1; i <= 9; i++) {
 			const button = document.getElementById('votingImportant' + i)

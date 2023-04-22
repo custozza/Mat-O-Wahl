@@ -165,8 +165,9 @@ export function fnStart() {
 // und direkt in die Fragen gehen
 // neu ab v.0.6
 // Aufruf aus fnStart() wenn "descriptionShowOnStart = 0" ODER beim Klick auf Start-Button
-export function fnHideWelcomeMessage() {
+export function startQuestionaire() {
 	$('#sectionDescription').hide().empty();
+	$('#sectionFooter').css('display', 'none');
 	fnShowQuestionNumber(-1);
 }
 

@@ -16,7 +16,7 @@ body {
 
 .main-layout {
     display: grid;
-    grid-template-rows: 5rem 1fr 4rem;
+    grid-template-rows: 5rem 1fr;
     /* background-color: rgb(154, 154, 226);  */
     height: 100%;
     width: 100%;
@@ -39,6 +39,13 @@ body {
 
 main {
     overflow: hidden;
+    display: grid;
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    /* flex-flow: nowrap; */
+    justify-content: space-between;
+
 }
 
 /* Willkommensnachricht (erster DIV)
@@ -51,7 +58,7 @@ main {
 }
 
 #sectionShowQuestions {
-    max-height: 51vh;
+    /* max-height: 51vh; */
     overflow: hidden;
     display: grid;
     grid-template-rows: 1fr;
