@@ -90,7 +90,7 @@
 
 		<!-- 1.  BESCHREIBUNG / DESCRIPTION -->
 
-		<div id="header" class="">
+		<div id="header" class="header">
 			<img id="rescale-image" class="title-img" src="https://www.sektionacht.at/wp-content/uploads/logo-1.png"
 				alt="Sektion 8">
 		</div>
@@ -372,27 +372,27 @@
 
 		<!-- FUSSZEILE: IMPRESSUM, NEUSTART, SOCIAL MEDIA / FOOTER: IMPRINT, RESTART, SOCIAL MEDIA -->
 
-		<footer id="sectionFooter">
+		<footer id="sectionFooter" class="footer-container ">
 
-			<div class="row">
-				<div class="col">
-					<a class="btn btn-outline-dark btn-block btn-sm" role="button" href="system/imprint.html"
-						target="_blank" id="imprint">Button Impressum / Legal</a>
+			<div class="footer">
+				<div class="footer-cell">
+					<a id="imprint" class="btn-outline-dark btn btn-sm"  role="button" href="system/imprint.html"
+						target="_blank" >Button Impressum / Legal</a>
 				</div>
 
-				<div class="col">
-					<a class='btn btn-outline-dark btn-block btn-sm' role='button' href='index.html' id="restart">Button
+				<div class="footer-cell">
+					<a class='btn btn-outline-dark  btn-sm' role='button' href='index.html' id="restart">Button
 						Neustart / Restart</a>
 				</div>
 
-				<div class="col">
-					<a class="btn btn-block btn-sm social-facebook" role='button' style='color:#fff'
+				<div class="footer-cell">
+					<a class="btn btn-sm social-facebook" role='button' style='color:#fff'
 						onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href) + '&title='+encodeURIComponent(document.title), '_blank', 'location=yes,height=480,width=640,scrollbars=yes,status=yes'); return false;"
 						title="Share on Facebook">
 						facebook</a>
 				</div>
 
-				<div class="col">
+				<div class="footer-cell">
 					<a class="btn btn-block btn-sm social-twitter" role='button'
 						onclick="window.open('https://twitter.com/share?url=' + encodeURIComponent(location.href) + '&title='+encodeURIComponent(document.title), '_blank', 'location=yes,height=480,width=640,scrollbars=yes,status=yes'); return false;"
 						title="Share on Twitter">

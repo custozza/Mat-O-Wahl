@@ -10,14 +10,62 @@ body {
     font-family: "Source Sans Pro" ;
     /* background-image: linear-gradient(#EFC04F, #FFE08F); */
     /* background-attachment: fixed; */
+    /* background-color: black; */
 }
+
 
 .main-layout {
     display: grid;
-    grid-template-rows: 5rem 1fr 5rem;
-    background-attachment: blue; /* debugging */
+    grid-template-rows: 5rem 1fr 4rem;
+    /* background-color: rgb(154, 154, 226);  */
     height: 100%;
+    width: 100%;
+    /* background-color: rgb(86, 75, 236);  */
     overflow: hidden;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    position: absolute;
+    margin: 0;
+    gap: 0.1rem;
+    /* margin: 0.5rem; */
+}
+
+.header {
+	background-color: white;
+    height: 100%;
+	transform-origin: top left;
+    overflow: hidden;
+}
+
+.footer-container {
+    display: flex;
+    /* background-color: blueviolet; */
+    overflow: hidden;
+    width: 100%;
+}
+
+.footer {
+    display: grid;
+    width: 100%;
+    overflow: hidden;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-columns: 1fr;
+    gap: 0.5rem
+}
+
+.footer-cell {
+    overflow: hidden;
+    width: 100%;
+}
+
+
+.footer-cell > a {
+	font-size: 0.8rem;
+	height: 100%;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 
@@ -46,12 +94,6 @@ a:not(.btn):active {
 a:not(.btn):hover {
     color: #ff0000;
     text-decoration: none;
-}
-
-.header {
-	background-color: white;
-    height: 100%;
-	transform-origin: top left;
 }
 
 .title-img {
