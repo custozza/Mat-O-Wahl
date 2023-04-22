@@ -12,6 +12,14 @@ body {
     /* background-attachment: fixed; */
 }
 
+.main-layout {
+    display: grid;
+    grid-template-rows: 5rem 1fr 5rem;
+    background-attachment: blue; /* debugging */
+    height: 100%;
+    overflow: hidden;
+}
+
 
 /* LINK-Farbe - AUSSER bei der Bootstrap-Klasse "btn" für Buttons. Dort wird der Bootstrap-Standard benutzt. */
 
@@ -42,16 +50,12 @@ a:not(.btn):hover {
 
 .header {
 	background-color: white;
-    position: sticky;
-    position: -webkit-sticky;
-    z-index: 100; /* too high of a value breaks the modal */
-	width: 100%;
+    height: 100%;
 	transform-origin: top left;
 }
 
 .title-img {
-    width: 100%;
-    max-width: 600px;
+    height: 100%;
 	transform-origin: top left;
 }
 

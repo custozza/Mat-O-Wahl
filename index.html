@@ -81,30 +81,20 @@
 
 <body>
 
-	<div id="header" class="sticky-top header">
-		<img id="rescale-image" class="title-img" src="https://www.sektionacht.at/wp-content/uploads/logo-1.png"
-			alt="Sektion 8">
-	</div>
-
 	<script>
-		const header = document.getElementById("header");
-		const img = document.getElementById("rescale-image");
 
-		window.addEventListener("scroll", () => {
-			const scrollY = window.scrollY;
-			console.log(scrollY)
-			const maxScale = 0.01; // maximum scale factor
-			const scale = 1 + scrollY / window.innerHeight * (maxScale - 1); // calculate the scale factor based on scroll position
-			img.style.transform = `scale(${scale}, 1)`;
-			header.style.transform = `scale(1, ${scale})`;
-		});
 
 	</script>
 
-	<div class="container container-fluid theme-showcase">
+	<div class="main-layout">
 
 		<!-- 1.  BESCHREIBUNG / DESCRIPTION -->
 
+		<div id="header" class="">
+			<img id="rescale-image" class="title-img" src="https://www.sektionacht.at/wp-content/uploads/logo-1.png"
+				alt="Sektion 8">
+		</div>
+	
 		<main>
 
 			<section id="sectionDescription">
