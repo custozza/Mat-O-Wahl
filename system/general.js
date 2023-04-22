@@ -5,10 +5,8 @@
 // License: GPL 3
 // Mathias Steudtner http://www.medienvilla.com
 
-import { fnReadCsv } from './readCsv.js';
 import {
 	arPersonalPositions,
-	getParties,
 	questionWeight,
 	arPartyPositions,
 	arResults,
@@ -19,7 +17,6 @@ import { fnReEvaluate } from './output.js'
 import {
 	fnTransformPositionToButton,
 	fnTransformPositionToIcon,
-	fnTransformPositionToColor,
 	fnTransformPositionToText,
 } from './fnTransform.js'
 

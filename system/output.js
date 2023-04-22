@@ -27,7 +27,6 @@ import {
 	getActiveQuestion,
 	setActiveQuestion,
 	questionWeight,
-	getParties,
 	arQuestionsShort,
 	arPersonalPositions,
 	arSortParties,
@@ -323,7 +322,7 @@ function fnJumpToQuestionNumber(questionNumber) {
 	var maxQuestionsPerLine = 12;  // z.B. 16
 
 	// Wenn mehr als XY Fragen vorhanden, dann erstelle eine zweite/dritte/... Zeile
-	if (intQuestions >= maxQuestionsPerLine) {
+	if (arQuestionsShort.length >= maxQuestionsPerLine) {
 
 		var tableRows = arQuestionsLong.length / maxQuestionsPerLine;		/* z.B. nicht mehr als 16 Fragen pro Zeile */
 		tableRows = Math.ceil(tableRows);				/* 17 Fragen / 16 = 1,06 ### 31 Fragen / 16 = 1,9 -> 2 Zeilen */
@@ -496,7 +495,7 @@ function fnEvaluationShort(arResults) {
 	// Click-Funktion auf PARTEINAME-Zeile legen zum Anzeigen des BESCHREIBUNG-SPAN (direkt darunter)
 	// "[In a FOR-loop] you can use the let keyword, which makes the i variable local to the loop instead of global"
 	// 	https://stackoverflow.com/questions/4091765/assign-click-handlers-in-for-loop
-	for (let i = 0; i <= (getParties() - 1); i++) {
+	for (let i = 0; i < arPartyDescription.length; i++) {
 		// Klickfunktion - bei Überschrift
 		$("#resultsShortParty" + i).click(function () {
 			$("#resultsShortPartyDescription" + i).toggle(500);
@@ -566,10 +565,7 @@ function fnEvaluationByThesis(arResults) {
 	tableContent += "</div>";
 	tableContent += "</div>"; // row header
 
-
-	// Inhalt
-	// var cellId = -1;	// cellId ist für das Ausblenden der Spalten wichtig.
-	for (let i = 0; i <= (intQuestions - 1); i++) {
+	for (let i = 0; i < arQuestionsLong.length; i++) {
 		var positionButton = fnTransformPositionToButton(arPersonalPositions[i]);
 		var positionIcon = fnTransformPositionToIcon(arPersonalPositions[i]);
 		var positionText = fnTransformPositionToText(arPersonalPositions[i]);
@@ -643,9 +639,9 @@ function fnEvaluationByThesis(arResults) {
 			//					tableContent += " <div class='col-10'>";
 
 			// darunterliegende Zeile - Parteipositionen anzeigen
-			for (let j = 0; j <= (getParties() - 1); j++) {
+			for (let j = 0; j <= arPartyDescription.length; j++) {
 				var partyNum = arSortParties[j];
-				var partyPositionsRow = partyNum * intQuestions + i;
+				var partyPositionsRow = partyNum * arQuestionsShort.length + i;
 				var positionButton = fnTransformPositionToButton(arPartyPositions[partyPositionsRow]);
 				var positionIcon = fnTransformPositionToIcon(arPartyPositions[partyPositionsRow]);
 				var positionText = fnTransformPositionToText(arPartyPositions[partyPositionsRow]);
@@ -703,7 +699,7 @@ function fnEvaluationByThesis(arResults) {
 	// Click-Funktion auf FRAGE-(und ANTWORT)-Zeile legen zum Anzeigen der ANTWORT-Zeile (direkt darunter)
 	// "[In a FOR-loop] you can use the let keyword, which makes the i variable local to the loop instead of global"
 	// 	https://stackoverflow.com/questions/4091765/assign-click-handlers-in-for-loop
-	for (let i = 0; i <= (intQuestions - 1); i++) {
+	for (let i = 0; i < arQuestionsShort.length; i++) {
 		/*
 		// Klickfunktion - bei Überschriftenzeile
 		$("#resultsByThesisQuestion"+i).click(function () {
@@ -805,7 +801,7 @@ function fnEvaluationByParty(arResults) {
 	tableContent += "</div>";
 	tableContent += "</div>"; // row header
 
-	for (var i = 0; i <= (getParties() - 1); i++) {
+	for (var i = 0; i < arPartyDescription.length; i++) {
 
 		var partyNum = arSortParties[i];	// partyNum = sortierte Position im Endergebnis, z.B. "Neutrale Partei = 4. Partei in CSV" aber erste im Ergebnis = Nullter Wert im Array[0] = 4
 		/*
@@ -856,8 +852,8 @@ function fnEvaluationByParty(arResults) {
 
 
 
-		var jStart = partyNum * intQuestions // z.B. Citronen Partei = 3. Partei im Array[2] = 2 * 5 Fragen = 10
-		var jEnd = jStart + intQuestions - 1	// 10 + 5 Fragen -1 = 14
+		var jStart = partyNum * arQuestionsShort.length // z.B. Citronen Partei = 3. Partei im Array[2] = 2 * 5 Fragen = 10
+		var jEnd = jStart + arQuestionsShort.length - 1	// 10 + 5 Fragen -1 = 14
 
 		//		tableContent += "<tbody id='resultsByPartyAnswersToQuestion"+i+"'>";
 		tableContent += "<span id='resultsByPartyAnswersToQuestion" + i + "'> ";	// Hilfs-SPAN für Textfilter
@@ -869,7 +865,7 @@ function fnEvaluationByParty(arResults) {
 		for (let j = jStart; j <= jEnd; j++) {
 
 			// 1./4 Zellen - Frage
-			modulo = j % intQuestions // z.B. arPartyPositions[11] % 5 Fragen = 1 -> arQuestionsShort[1] = 2. Frage
+			modulo = j % arQuestionsShort.length // z.B. arPartyPositions[11] % 5 Fragen = 1 -> arQuestionsShort[1] = 2. Frage
 			// tableContent += " <tr>"
 			// tableContent += "  <td class='align-text-top'>"
 			tableContent += " <div class='row mow-row-striped' role='row'> ";
@@ -936,7 +932,7 @@ function fnEvaluationByParty(arResults) {
 		//	tableContent += " </div> "; // end row resultsByPartyRow
 
 
-	} // end: for-i (getParties())
+	} 
 
 	// tableContent += "</table>";
 	tableContent += " </div> "; // end col
@@ -954,7 +950,7 @@ function fnEvaluationByParty(arResults) {
 		$("#doubleIcon" + i).click(function () { fnToggleDouble(i) })
 	}
 
-	for (let i = 0; i <= (getParties() - 1); i++) {
+	for (let i = 0; i < arPartyDescription.length; i++) {
 
 		$("#resultsByPartyHeading" + i + " .nonexpanded").click(function () {
 			var $this = $(this);
@@ -992,7 +988,7 @@ export function fnReEvaluate() {
 
 
 	//	for (i = 0; i <= (arPartyFiles.length-1); i++)
-	for (let i = 0; i <= (getParties() - 1); i++) {
+	for (let i = 0; i < arPartyDescription.length; i++) {
 		var percent = fnPercentage(arResults[i], maxPoints)
 
 		// bis v.0.3 mit PNG-Bildern, danach mit farblicher Bootstrap-Progressbar

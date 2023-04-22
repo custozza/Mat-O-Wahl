@@ -30,12 +30,3 @@ export function setActiveQuestion(value) {
 export function getActiveQuestion() {
   return activeQuestion;
 }
-
-var intParties = 0;
-export function getParties() {
-  return intParties;
-}
-
-export function setParties(value) {
-  intParties = value;
-}

@@ -12,10 +12,10 @@ import {
 
 // v.0.3 NEU
 // CSV-Daten in Array einlesen (aus fnShowQuestions() und fnReadPositions())
-export function fnTransformCsvToArray(csvData, modus, intParties) {
+export function fnTransformCsvToArray(csvData, modus) {
     switch (modus) {
         case 1: readQuestionsCSV(csvData); break;
-        case 0: readPartiesCSV(csvData, intParties); break;
+        case 0: readPartiesCSV(csvData); break;
         default: debugger; throw Error('unkown modous');
     }
 }
