@@ -263,16 +263,9 @@ function runEvaluation() {
 
 	hideMain();
 
-	// arResults = fnEvaluation(); using a global state
+
 	fnEvaluation();
 
-	//Parteien sortieren
-	// arSortParties = new Array(); // TODO CHECK IF THIS WORKS
-	//		for (i = 0; i < arPartyFiles.length; i++)
-	for (let i = 0; i < getActiveQuestion; i++) {
-		arSortParties[i] = i;
-	}
-	// Sortieren der Parteien nach Uebereinstimmung
 	arSortParties.sort(function (a, b) { return arResults[b] - arResults[a]; });
 
 	// Übergabe an Tabellen zur Darstellung/Ausgabe
@@ -391,7 +384,9 @@ function fnJumpToQuestionNumber(questionNumber) {
 // Array arResults kommt von fnEvaluation
 function fnEvaluationShort(arResults) {
 
-	console.log('das kriegts evaluationshort', arResults)
+	if(arSortParties.length != arPartyDescription.length) {
+		throw Error("no sort information on parties")
+	}
 
 	// Alten Inhalt des DIVs loeschen
 	// $("#heading2").empty().hide();
@@ -410,8 +405,15 @@ function fnEvaluationShort(arResults) {
 	tableContent += "<div class='col'>"
 	//		tableContent = "<table id='resultsShortTable' class='table table-bordered table-striped table-hover' aria-role='presentation'>"
 
-	for (let i = 0; i < arPartyPositions.length; i++) {
+
+
+	for (let i = 0; i < arPartyDescription.length; i++) {
 		var partyNum = arSortParties[i];
+
+		if(partyNum == null) {
+			throw Error('partyNum must not be null or undefined')
+		}
+
 		var percent = fnPercentage(arResults[partyNum], maxPoints)
 
 		// "Klammer" um den Inhalt.
@@ -988,7 +990,7 @@ export function fnReEvaluate() {
 
 	const maxPoints = Math.max(...questionWeight.filter(x => x != null), 1);
 
-	
+
 	//	for (i = 0; i <= (arPartyFiles.length-1); i++)
 	for (let i = 0; i <= (getParties() - 1); i++) {
 		var percent = fnPercentage(arResults[i], maxPoints)
