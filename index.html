@@ -237,29 +237,7 @@
 							<div aria-hidden="true" class="weight-container__description-right">wichtig</div>
 						</div>
 						<div id="votingWeightContainer" class="weight-container__weight-bar">
-							<script>
-								// let chatgpt do the work
-								// Get a reference to the parent element where you want to append the new elements
-								const container = document.querySelector('#votingWeightContainer');
-
-								// Loop 9 times to create and append the elements
-								// TODO replace the magic number 9 with a global constant
-								for (let i = 1; i <= 9; i++) {
-									// Create the <div> element with class "w2"
-									// const divElement = document.createElement('div');
-									// divElement.classList.add('w${i}');
-
-									// Create the <button> element with the specified attributes and text content
-									const buttonElement = document.createElement('button');
-									buttonElement.setAttribute('type', 'button');
-									buttonElement.setAttribute('id', `votingImportant${i}`);
-									buttonElement.setAttribute('class', 'btn btn-sm btn-outline-dark btn-block');
-									buttonElement.textContent = i;
-
-									// Append the <div> element to the parent element
-									container.appendChild(buttonElement);
-								}
-							</script>
+							<script src="./system/addWeightButtons.js"></script>
 						</div>
 					</div>
 
