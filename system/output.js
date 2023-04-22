@@ -261,6 +261,8 @@ export function fnShowQuestionNumber(questionNumber) {
 }
 function runEvaluation() {
 
+	hideMain();
+
 	// arResults = fnEvaluation(); using a global state
 
 	//Parteien sortieren
@@ -291,13 +293,11 @@ function runEvaluation() {
 			fnSendResults(questionWeight, arPersonalPositions)
 			$('#statisticsModal').modal('toggle')
 		});
-
-
-
-
-
 	}
+}
 
+function hideMain() {
+	$('main').css('display', 'none');
 }
 
 
