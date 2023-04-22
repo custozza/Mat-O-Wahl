@@ -553,7 +553,7 @@ function createPartyAnswers(questionId) {
 		var positionIcon = fnTransformPositionToIcon(position);
 		var positionText = fnTransformPositionToText(position);
 	
-		let weight = Math.abs(weightedPosition) + evaluationShiftFactor
+		let weight = Math.abs(weightedPosition)
 
 		var button = `<button type='button' id='' class='btn ${positionButton} btn-sm alt='${positionText}' title='${positionText}'> ${positionIcon} </button>`;
 
@@ -561,12 +561,10 @@ function createPartyAnswers(questionId) {
 
 
 		result += `
-		${button}
-		${weight}
-		<div> ${party.answers[questionId].position} ${positionButton} </div>
+		<div>${button} ${weight}</div>
 		 <div><strong>${party.partyShort}</strong></div>`
 	}
-	return `<div class="questionGroup">${result}</div>`
+	return `<div class="party-question-group questionGroup">${result}</div>`
 }
 
 function fnEvaluationByThesis(arResults) {
