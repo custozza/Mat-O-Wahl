@@ -71,7 +71,7 @@ function createQuestionRow(questionNumber, party) {
     const answer = party.answers[questionNumber];
 
     const partyOpinion = document.createElement('div');
-    partyOpinion.classList.add('party-answer-cell', `question-${questionNumber}`, 'rounded');
+    partyOpinion.classList.add('party-answer-cell', `question-${questionNumber}`, 'party-answer-opinion', 'clamped');
     const opinion = answer.opinions;
     partyOpinion.innerHTML = `${opinion}`;
     questionContainer.append(partyOpinion);
