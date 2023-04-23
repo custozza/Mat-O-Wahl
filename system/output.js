@@ -402,8 +402,10 @@ function fnEvaluationShort() {
 
 
 	for (let i = 0; i < arParties.length; i++) {
-
-		const party = arParties[arSortParties[i]];
+		
+		
+		const partyId = arSortParties[i];
+		const party = arParties[partyId];
 
 		// # Container
 		const partyContainer = document.createElement('div');
@@ -426,12 +428,20 @@ function fnEvaluationShort() {
 		// # Percent
 		const partyMatchInPercent = document.createElement('div');
 		graphicInfoContainer.append(partyMatchInPercent);
-		partyMatchInPercent.classList.add('party-percent', 'progress-bar');
-		partyMatchInPercent.setAttribute('role', 'progressbar')
+		partyMatchInPercent.classList.add('party-percent');
+		// partyMatchInPercent.setAttribute('role', 'progressbar')
 		//var percent = fnPercentage(arResults[partyNum], maxPoints)
 
+
+		
 		var percent = 100;
-		partyMatchInPercent.innerHTML = percent;
+		const progress = `
+		<div class='progress'>
+			<div class='progress-bar' role='progressbar' id='partyBar${partyId}' style='width:${percent}%;' aria-valuenow='${percent}' aria-valuemin='0' aria-valuemax='100'>
+				JUST_A_PLACEHOLDER_TEXT - SEE FUNCTION fnReEvaluate()
+			</div>
+		</div>`
+		partyMatchInPercent.innerHTML = progress;
 
 
 		// # Description
