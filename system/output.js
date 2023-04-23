@@ -11,7 +11,6 @@ import {
 	fnEvaluation,
 	fnPercentage,
 	fnToggleDouble,
-	fnBarImage,
 } from './general.js';
 
 import {
@@ -38,6 +37,7 @@ import {
 	arPartyPositions,
 	arPartyOpinions,
 	arResults,
+	DEBUGGING,
 } from './globals.js';
 import { fnEvaluationByThesis } from './fnEvaluationByThesis.js';
 import { fnEvaluationShort } from './fnEvaluationShort.js';
@@ -170,8 +170,10 @@ export function fnStart() {
 // Aufruf aus fnStart() wenn "descriptionShowOnStart = 0" ODER beim Klick auf Start-Button
 export function startQuestionaire() {
 
-	// runEvaluation(); // temp for development
-	// return
+	if (false) {
+		runEvaluation(); // temp for development
+		return
+	}
 	$('#sectionDescription').hide().empty();
 	$('#sectionFooter').css('display', 'none');
 	fnShowQuestionNumber(-1);
@@ -290,10 +292,10 @@ function showModalShareStatisticalData() {
 		return;
 	}
 	$('#statisticsModal').modal('show');
-	$("#statisticsModalButtonYes"+i).click( () => {
+	$("#statisticsModalButtonYes" + i).click(() => {
 		fnSendResults(questionWeight, arPersonalPositions);
 		$('#statisticsModal').modal('toggle');
-	} );
+	});
 }
 
 // 02/2015 BenKob

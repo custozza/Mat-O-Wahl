@@ -11,7 +11,6 @@
     --s8-progressbar-text-color: white;
     --s8-progressbar-background: gray;
     --s8-font-family: "Source Sans Pro";
-
     --s8-general-background-color: rgb(221, 221, 221);
 }
 
@@ -79,7 +78,7 @@ main {
 
 .card-body {
     /* padding-bottom: 3rem; */
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 
 .question-cell {
@@ -160,13 +159,11 @@ main {
 
 .scroll-container {
     width: 100%;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 
 .content {
-    /* padding: 0 0.5rem; */
-    /* max-height: 0; */
-    transition: max-height 0.2s ease-out;
+    /* transition: max-height 0.2s ease-out; */
     background-color: #f1f1f1;
     display: grid;
     overflow: hidden;
@@ -174,6 +171,7 @@ main {
     display: flex;
     visibility: hidden;
     max-height: 0;
+    overflow-y: scroll;
 }
 
 .content.section-expanded {
@@ -185,11 +183,6 @@ main {
     overflow: hidden;
     display: grid;
 }
-
-#results {
-    overflow-y: scroll;
-}
-
 
 #resultsShort {
     display: flex;
@@ -261,6 +254,7 @@ main {
     padding-right: 0.2rem;
     padding-left: 0.2rem;
     flex-wrap: nowrap;
+    height: fit-content;
 }
 
 .parties-group.questionGroup.collapsible-container {
@@ -290,6 +284,7 @@ main {
     gap: 0.5rem;
     justify-content: flex-start;
     align-items: center;
+    background-color: white;
 }
 
 .btn-question-title {
@@ -306,6 +301,7 @@ main {
     /* overflow: hidden; */
     visibility: collapse;
     max-height: 0;
+    display: flex;
 }
 
 .collapsible-question.section-expanded {

@@ -3,6 +3,7 @@ import {
 	arQuestionsShort,
 	arPersonalPositions,
 	arParties,
+    DEBUGGING,
 } from './globals.js'
 
 import {
@@ -17,7 +18,6 @@ export function fnEvaluationByThesis() {
 }
 
 function buildAnswers() {
-
     for (let i = 0; i < arQuestionsLong.length; i++) {
         const temp = createQuestionGroupCard(i);
         $("#resultsByThesis").append(temp);
@@ -32,21 +32,15 @@ function buildAnswers() {
 }
 
 function createCollabsible() {
-    var coll = document.getElementsByClassName("question-group-header");
-    for (let i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var target = this.nextElementSibling;
-            const isOpen = $(target).hasClass('section-expanded');
-            $('.collapsible-question').removeClass('section-expanded');
-            setTimeout(() => {
-                $('#resultsByThesis').css('maxHeight', "100%");
-                console.log('sometime latter');
-            }, 0);
-            if (isOpen) {
-                return
-            }
-            $(target).toggleClass('section-expanded');
+    const headers = document.getElementsByClassName("question-group-header");
+
+    for(let i = 0; i < headers.length; i++) {
+        const header = headers[i];
+        header.addEventListener("click", () => {
+            console.log(header);
+            const sibling = header.nextElementSibling;
+            $(sibling).toggleClass('section-expanded'); // rename to question
+            if(DEBUGGING) console.log(sibling);
         });
     }
 }
@@ -79,7 +73,7 @@ function createQuestionGroupCard(i) {
       </button>`;
 
     return `
-	<div id="btn-question-group-${i}" class="question-group-header rounded mow-row-striped">
+	<div id="btn-question-group-${i}" class="question-group-header rounded">
 		${iconButton} 
 		${weightButton} 
 		<div class="btn-question-title">${arQuestionsShort[i]}</div>
