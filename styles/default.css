@@ -1,8 +1,3 @@
-/* BODY: Hintergrundfarbe, Schriftart, -groesse und -farbe */
-
-
-/* BODY: background color, font, size and color */
-
 :root {
     --s8-background-color: #cc6361;
     --s8-font-color: #f6eaec;
@@ -16,12 +11,12 @@
 
     --s8-result-spacing: 0.2rem;
 
-    --s8-button-color-sehr-wichtig: #007bff ;
-    --s8-button-color-unwichtig: #6c757d ;
-    --s8-button-color-pro: #126412 ;
-    --s8-button-color-contra: #dc3545 ;
-    --s8-button-color-skip: #ffc107 ;
-    --s8-button-color-wichtig: #17a2b8 ;
+    --s8-button-color-sehr-wichtig: #007bff;
+    --s8-button-color-unwichtig: #6c757d;
+    --s8-button-color-pro: #126412;
+    --s8-button-color-contra: #dc3545;
+    --s8-button-color-skip: #ffc107;
+    --s8-button-color-wichtig: #17a2b8;
 }
 
 /* Buttstrap overwrites */
@@ -397,7 +392,6 @@ main {
 
 
 #resultsByThesis {
-    /* display: grid; */
     grid-template-columns: 1fr;
     gap: 0.2rem;
     display: flex;
@@ -454,7 +448,6 @@ main {
 }
 
 .collapsible-question {
-    /* overflow: hidden; */
     visibility: collapse;
     max-height: 0;
     display: flex;
@@ -584,7 +577,6 @@ a:not(.btn):hover {
 
 .btn {
     margin: 0 !important;
-    /* overwrite system/scss/mixins/_buttons */
     font-size: 1.5rem;
 }
 
@@ -657,7 +649,6 @@ a:not(.btn):hover {
     grid-auto-columns: 1fr;
     grid-auto-rows: 1fr;
     grid-gap: 1rem;
-    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
 }
 
 #sectionVotingButtons .row .btn {
@@ -677,28 +668,9 @@ a:not(.btn):hover {
     font-size: 90%;
 }
 
-
-
-
-/* BOOTSTRAP */
-
 .row {
     padding: 0.2em;
 }
-
-
-/* Gestreifte Spalten in den Ergebnis-Listen
-	Striped rows in results */
-
-.mow-row-striped:nth-child(odd) {
-    background-color: var(--s8-general-background-color);
-}
-
-
-/* Social Media DIV und zugehoerige Buttons */
-
-
-/* Social media DIV and corresponding buttons */
 
 .social-facebook {
     background: #4560a3;
