@@ -61,7 +61,6 @@ function createQuestionRow(questionNumber, party) {
     question.innerHTML = `${questionText}`;
     questionContainer.append(question);
 
-
     const personalAnswer = generatePersonalPositionIconCell(party, questionNumber);
     questionContainer.append(personalAnswer);
 
@@ -87,7 +86,6 @@ function generatePersonalPositionIconCell(party, questionNumber) {
 	alt=' ${TEXT_ANSWER_USER} : ${positionText}' title='${TEXT_ANSWER_USER}  : ${positionText}'>
      ${positionIcon} 
      </button>`;
-
 
     const weightedAnswer = questionWeight[questionNumber] || 0;
     const answerWeight = Math.abs(weightedAnswer);
