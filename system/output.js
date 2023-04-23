@@ -169,8 +169,8 @@ export function fnStart() {
 // Aufruf aus fnStart() wenn "descriptionShowOnStart = 0" ODER beim Klick auf Start-Button
 export function startQuestionaire() {
 
-	runEvaluation(); // temp for development
-	return
+	// runEvaluation(); // temp for development
+	// return
 	$('#sectionDescription').hide().empty();
 	$('#sectionFooter').css('display', 'none');
 	fnShowQuestionNumber(-1);
