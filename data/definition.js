@@ -143,7 +143,7 @@ const descriptionHeading1 = "Vorsitzwahlkabine";
 
 // 	1.6.3. Zweite Ueberschrift / 1.6.2. Second Headline
 
-const descriptionHeading2 = "Du wirst gefragt, wer den Parteivorsitz der SPÖ übernehmen und als Kanzlerkandidat ins Rennen geschickt wird.";
+const descriptionHeading2 = "zur Mitgliederbefragung";
 
 
 // 	1.6.4. Kurzer Text um was es bei der Wahl geht / 1.6.3. Short (descriptive) text on what's the election about
