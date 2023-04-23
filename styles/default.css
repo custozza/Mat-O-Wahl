@@ -194,18 +194,22 @@ main {
 #resultsShort {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }
 
 .party-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
     overflow: hidden;
-    padding: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .party-container:nth-of-type(even) {
     background-color: rgb(0, 0, 0, 0.05);
 }
+
+
 
 
 .party-description {
@@ -217,10 +221,16 @@ main {
 
 }
 
+.graphic-info-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .party-image {
 
 }
 .party-percent {
+    width: 100%;
     
 }
 

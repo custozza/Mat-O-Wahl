@@ -172,9 +172,9 @@ export function fnStart() {
 // neu ab v.0.6
 // Aufruf aus fnStart() wenn "descriptionShowOnStart = 0" ODER beim Klick auf Start-Button
 export function startQuestionaire() {
-	
+
 	runEvaluation(); // temp for development
-	return 
+	return
 	$('#sectionDescription').hide().empty();
 	$('#sectionFooter').css('display', 'none');
 	fnShowQuestionNumber(-1);
@@ -395,7 +395,7 @@ function fnEvaluationShort() {
 		throw Error("no sort information on parties")
 	}
 
-	
+
 	const arr = [...questionWeight.filter(x => x != null)];
 	const maxPoints = arr.reduce((a, b) => a + b, 0) * 3;
 
@@ -405,24 +405,39 @@ function fnEvaluationShort() {
 
 		const party = arParties[arSortParties[i]];
 
-
 		// # Container
 		const partyContainer = document.createElement('div');
 		partyContainer.classList.add('party-container');
 		$("#resultsShort").append(partyContainer);
 
-			// # Image
-			const partyImage = document.createElement('div');
-			partyContainer.append(partyImage);
-			partyImage.classList.add('party-image');
-			const logo = party.partyImage;
-			const logoText = party.partyLong;
-			partyImage.innerHTML = `<img src='${logo}' class='rounded img-fluid' alt='Logo ${logoText}' />`
+		const graphicInfoContainer = document.createElement('div');
+		partyContainer.append(graphicInfoContainer);
+		graphicInfoContainer.classList.add('graphic-info-container');
+
+
+		// # Image
+		const partyImage = document.createElement('div');
+		partyImage.classList.add('party-image');
+		const logo = party.partyImage;
+		const logoText = party.partyLong;
+		partyImage.innerHTML = `<img src='${logo}' class='rounded img-fluid' alt='Logo ${logoText}' />`
+		graphicInfoContainer.append(partyImage);
+
+		// # Percent
+		const partyMatchInPercent = document.createElement('div');
+		graphicInfoContainer.append(partyMatchInPercent);
+		partyMatchInPercent.classList.add('party-percent', 'progress-bar');
+		partyMatchInPercent.setAttribute('role', 'progressbar')
+		//var percent = fnPercentage(arResults[partyNum], maxPoints)
+
+		var percent = 100;
+		partyMatchInPercent.innerHTML = percent;
+
 
 		// # Description
 		const partyDescription = document.createElement('span');
 		partyDescription.classList.add('party-description', 'clamped', 'rounded');
-		
+
 		const name = party.partyLong;
 		const nicName = party.partyShort;
 		const url = party.partyURL;
@@ -432,11 +447,6 @@ function fnEvaluationShort() {
 		(&#8663;<a href='${url}' target='_blank' alt='Link: ${name}' title='Link: ${name}'> ${nicName}</a>)
 		${description}`;
 		partyContainer.append(partyDescription);
-
-		// # Percent
-		const partyMatchInPercent = document.createElement('div');
-		partyContainer.append(partyMatchInPercent);
-		partyMatchInPercent.classList.add('party-percent');
 
 
 
