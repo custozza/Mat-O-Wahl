@@ -187,6 +187,7 @@ main {
     display: grid;
     grid-template-rows: 1fr;
     flex-grow: 1;
+    gap: 1rem
     /* border: solid green; */
 }
 
