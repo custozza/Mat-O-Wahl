@@ -44,9 +44,6 @@
     background-color: var(--s8-button-color-wichtig) !important;
 }
 
-
-
-
 /* RESULTS PER PARTY  */
 #resultsByParty {
     display: flex;
@@ -312,7 +309,7 @@ main {
     visibility: hidden;
     max-height: 0;
     overflow-y: scroll;
-    padding-right: 0.5rem;
+    padding: 0.2rem;
 }
 
 .content.section-expanded {
@@ -660,6 +657,9 @@ a:not(.btn):hover {
 
 /* Statistik */
 
+.modal-footer {
+    gap: 0.5rem
+}
 
 /* Statistics */
 

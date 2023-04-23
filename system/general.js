@@ -28,13 +28,11 @@ import { evaluate } from '../test.js'
 var version = "0.6.0.9.20230407"
 
 
-
 // Auswertung (Berechnung)
 // Gibt ein Array "arResults" zurück für fnEvaluationShort(), fnEvaluationByThesis(), fnEvaluationByParty() und fnReEvaluate();
 // Aufruf am Ende aller Fragen in fnShowQuestionNumber() und beim Prüfen auf die "doppelte Wertung" in fnReEvaluate()
 
 
-// TODO discuss the valuation 
 export function fnEvaluation() {
 
 	// Abstimmungsknöpfe u.a. entfernen 
@@ -58,8 +56,6 @@ export function fnEvaluation() {
 	arMaxScore.slice(0); // TODO I think this clears the array
 	arMaxScore.push(maxPoints);
 	arSortParties.sort(function(a,b){return arResults[b]-arResults[a];});
-
-
 }
 
 
@@ -113,10 +109,7 @@ export function fnBarImage(percent) {
 
 // 02/2015 BenKob (doppelte Wertung)
 export function fnToggleSelfPosition(questionNumber) {
-	console.error("fnToggleSelfPosition ist noch nicht angepasst")
-	// alert("fnToggleSelfPosition ist noch nicht angepasst")
-	// arPersonalPosition uses -1, 0, +1
-
+	console.error("fnToggleSelfPosition ist noch nicht angepasst");
 
 	var temporaryShift = 1;
 	var numberOfStatesForPersonalPosition = 3;
@@ -125,19 +118,10 @@ export function fnToggleSelfPosition(questionNumber) {
 	rotatedShiftedPosition = (tempShiftedPosition + toggleStepSize) % numberOfStatesForPersonalPosition;
 	console.log("old", arPersonalPositions[questionNumber])
 	arPersonalPositions[questionNumber] = rotatedShiftedPosition - temporaryShift;
-	//arPersonalPositions[i]--; // was soll das sein?
-	/*if (arPersonalPositions[i]==-2) 
-		{arPersonalPositions[i]=99}
-	if (arPersonalPositions[i]==98) 
-		{arPersonalPositions[i]=1}
-		*/
-	//	var positionImage = fnTransformPositionToImage(arPersonalPositions[i]);
 	var positionButton = fnTransformPositionToButton(arPersonalPositions[questionNumber]);
 	var positionIcon = fnTransformPositionToIcon(arPersonalPositions[questionNumber]);
-	// var positionColor = fnTransformPositionToColor(arPersonalPositions[i]);
 	var positionText = fnTransformPositionToText(arPersonalPositions[questionNumber]);
 
-	// $("#selfPosition"+i).attr("src", "img/"+positionImage);
 	$(".selfPosition" + questionNumber).removeClass("btn-danger btn-warning btn-success btn-default").addClass(positionButton);
 	$(".selfPosition" + questionNumber).html(positionIcon);
 	$(".selfPosition" + questionNumber).attr("alt", positionText);
@@ -152,8 +136,6 @@ export function fnToggleDouble(questionNumber) {
 	$('#doubleIcon' + questionNumber)[0].innerText = questionWeight[questionNumber]
 	fnReEvaluate();
 }
-
-
 
 // vanilla JavaScript FadeIn / FadeOut
 // Modus = display: "none / block" ändern (0 = nein, 1 = ja)
