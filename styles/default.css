@@ -77,16 +77,13 @@
 }
 
 .party-question-container {
-    display: grid;
-    grid-template-columns: 12rem 4rem 1fr;
-    grid-template-rows: 4rem;
+    display: flex;
+    padding: 0.2rem;
     gap: 1rem;
     overflow: hidden;
-    padding: 0.5rem;
-    display: flex;
 }
 .party-answer-cell:nth-child(3n-2) { /*QUESTION */
-    flex: 0 0 10rem;
+    flex: 0 0 11rem;
     /* background-color: yellow; */
 }
 .party-answer-cell:nth-child(3n-1) { /* ICONS */

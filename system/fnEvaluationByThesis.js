@@ -12,7 +12,7 @@ import {
     fnTransformPositionToText,
 } from './fnTransform.js';
 import { questionWeight } from './globals.js';
-import { buildChevron } from './util.js';
+import { buildChevron, createFoldableText } from './util.js';
 
 export function fnEvaluationByThesis() {
 
@@ -41,13 +41,6 @@ function createCollabsible() {
             if (DEBUGGING) console.log(sibling);
         });
     }
-}
-
-export function createFoldableText(querySelector) {
-    $(querySelector).click((e) => {
-        console.log(e.target);
-        $(e.target).toggleClass('clamped');
-    });
 }
 
 function createQuestionGroupCard(i) {

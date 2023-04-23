@@ -1,5 +1,6 @@
 import { fnTransformPositionToButton, fnTransformPositionToIcon, fnTransformPositionToText } from "./fnTransform.js";
 import { DEBUGGING, arParties, arPersonalPositions, arQuestionsShort, arSortParties, questionWeight} from "./globals.js";
+import { createFoldableText } from "./util.js";
 
 export function fnEvaluationByParty() {
 
@@ -36,6 +37,7 @@ export function fnEvaluationByParty() {
     }
 
     createCollabsible();
+    createFoldableText('.party-answer-opinion');
 
     return;
 

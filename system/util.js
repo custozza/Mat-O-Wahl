@@ -6,3 +6,10 @@ export function buildChevron(weight) {
     chevron += `</div>`;
     return chevron;
 }
+
+export function createFoldableText(querySelector) {
+    $(querySelector).click((e) => {
+        console.log(e.target);
+        $(e.target).toggleClass('clamped');
+    });
+}

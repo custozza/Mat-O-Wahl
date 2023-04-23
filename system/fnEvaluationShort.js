@@ -1,5 +1,5 @@
 import { DEBUGGING, arParties, arSortParties, questionWeight } from "./globals.js";
-import { createFoldableText } from "./fnEvaluationByThesis.js";
+import { createFoldableText } from "./util.js";
 
 // Anzeige der Ergebnisse - zusammengefasst (Prozentwerte) - nur Parteien
 // Array arResults kommt von fnEvaluation
