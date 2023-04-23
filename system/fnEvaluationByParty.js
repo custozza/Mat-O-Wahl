@@ -29,29 +29,38 @@ export function fnEvaluationByParty() {
     
         for(let questionNumber = 0; questionNumber < arQuestionsShort.length; questionNumber++){
 
+
+            const questionContainer = document.createElement('div');
+            questionContainer.classList.add('party-question-container',`question-${questionNumber}`, 'rounded');
+            partyContainer.append(questionContainer);
+
+
             const questionText = arQuestionsShort[questionNumber];
 
             const question = document.createElement('div');
+            question.classList.add('party-answer-cell',`question-${questionNumber}`, 'rounded');
             question.innerHTML = `${questionText}`;
-            partyContainer.append(question);
+            questionContainer.append(question);
             
             const personalAnswer = document.createElement('div');
+            personalAnswer.classList.add('party-answer-cell',`question-${questionNumber}`, 'rounded');
             const personalPosition = arPersonalPositions[questionNumber];
             personalAnswer.innerHTML = `${personalPosition}`;
-            partyContainer.append(personalAnswer);
+            questionContainer.append(personalAnswer);
 
             const answer = party.answers[questionNumber];
             
             const partyAnswer = document.createElement('div');
+            partyAnswer.classList.add('party-answer-cell',`question-${questionNumber}`, 'rounded');
             const position = answer.positions;
             partyAnswer.innerHTML = `${position}`;
-            partyContainer.append(partyAnswer);
+            questionContainer.append(partyAnswer);
             
             const partyOpinion = document.createElement('div');
-            partyOpinion.classList.add('clamped','party-opinion');
+            partyOpinion.classList.add('party-answer-cell',`question-${questionNumber}`, 'rounded');
             const opinion = answer.opinions;
             partyOpinion.innerHTML = `${opinion}`;
-            partyContainer.append(partyOpinion);
+            questionContainer.append(partyOpinion);
 
         }
 
