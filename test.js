@@ -26,7 +26,19 @@ export function evaluate(answers, aParties, weights, wParties)
         }
     }
 
-    return [scoresPerParty, answerScoresPerParty];
+    var maxScore = 0;
+    for (let aId = 0; aId < numQuestions; aId++)
+    {
+        maxScore += Math.abs(answers[aId]) * weights[aId] * 3;
+    }
+
+    // transform -max...+max -> 0...2*max
+    scoresPerParty = scoresPerParty.map((s) => s+maxScore);
+    maxScore *= 2;
+
+	const scoresPercentPerParty = scoresPerParty.map((score) => (100 * score / maxScore) || 0);
+
+    return [scoresPerParty, answerScoresPerParty, maxScore, scoresPercentPerParty];
 }
 
 export function _unit_test_evaluate()
