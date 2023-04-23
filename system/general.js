@@ -10,8 +10,10 @@ import {
 	questionWeight,
 	arPartyPositions,
 	arResults,
+	arMaxScore,
 	evaluationShiftFactor,
-	arSortParties
+	arSortParties,
+	arParties
 } from './globals.js';
 
 import { fnReEvaluate } from './fnReEvaluate.js';
@@ -43,15 +45,18 @@ export function fnEvaluation() {
 	$("#keepStats").hide();
 
 	const { answers, aParties, weights, wParties } = transformGlobalStatesIntoParemtersForEvaluationFunction();
-	const [scoresPerParty, answerScoresPerParty] = evaluate(answers, aParties, weights, wParties);
+	const [scoresPerParty, answerScoresPerParty, maxPoints, scoresPercentPerParty] = evaluate(answers, aParties, weights, wParties);
 
+	for (let pId = 0; pId < scoresPerParty.length; pId++)
+    {
+		arParties[pId].scorePercent = scoresPercentPerParty[pId];
+    }
 
-
+	console.log("scores", scoresPerParty, maxPoints, scoresPercentPerParty);
 	arResults.slice(0); // TODO I think this clears the array
 	arResults.push(...scoresPerParty);
-
-	// Sortieren der Parteien nach Uebereinstimmung
-	arSortParties.sort(function (a, b) { return arResults[b] - arResults[a]; });
+	arMaxScore.slice(0); // TODO I think this clears the array
+	arMaxScore.push(maxPoints);
 }
 
 

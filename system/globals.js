@@ -19,6 +19,7 @@ export const arParties = new Array();
 export const arSortParties = new Array();		// Nummern der Listen, nach Punkten sortiert
 
 export const arResults = new Array();
+export const arMaxScore = new Array();
 
 export const evaluationShiftFactor = 0; // PartyPositions are store as -1/0/1 we need them for the evalutation 1/2/3
 

@@ -1,5 +1,5 @@
 import { fnBarImage, fnEvaluation, fnPercentage } from "./general.js";
-import { DEBUGGING, arParties, arResults, questionWeight } from "./globals.js";
+import { DEBUGGING, arParties, arResults, arMaxScore, questionWeight } from "./globals.js";
 
 // 02/2015 BenKob
 // Aktualisierung der Ergebnisse in der oberen Ergebnistabelle (short)
@@ -9,21 +9,8 @@ import { DEBUGGING, arParties, arResults, questionWeight } from "./globals.js";
 export function fnReEvaluate() {
 	//Ergebniss neu auswerten und Anzeige aktualisieren
 	fnEvaluation();
-
-	const filteredWeights = [...questionWeight.filter(x => x != null)];
-	const maxPositivePoints = filteredWeights.reduce((a, b) => a + b, 0) * 3;
-    const maxNegativePoints = maxPositivePoints * -1;
-    const maxPoints = maxPositivePoints - maxNegativePoints;
-
-    console.log(maxPoints)
-    console.log(arResults)
-
 	for (let i = 0; i < arParties.length; i++) {
-        const normalizedPoints = arResults[i]-maxNegativePoints;
-        const points = normalizedPoints;
-		var percent = fnPercentage(points, maxPoints) || 0;
-        if(DEBUGGING) console.log(percent, points, maxPoints)
-
+		var percent = Math.round(arParties[i].scorePercent);
 		var barImage = fnBarImage(percent);
 
 		$("#partyBar" + i).width(percent + "%")
@@ -32,9 +19,7 @@ export function fnReEvaluate() {
 		$("#partyBar" + i).removeClass("bg-success bg-warning bg-danger").addClass(barImage);
 
 		//$("#partyPoints" + i).text(points + "/" + maxPoints);
-		$("#partyPoints" + i).text(`${percent}% (${points} / ${maxPoints})`);
-		
-
+		$("#partyPoints" + i).text(`${arResults[i]} von max ${arMaxScore[0]}`);
 	}
 
 }
