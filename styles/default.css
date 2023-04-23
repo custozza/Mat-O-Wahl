@@ -56,7 +56,18 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.party-answers-container {
+    width: 100%;
+    display: grid;
+    border: solid black;
+    max-height: 0;
+    visibility: collapse;
+}
 
+.party-answers-container.expanded {
+    visibility: visible;
+    max-height: fit-content;
+}
 
 
 /* END RESULTS PER PARTY */

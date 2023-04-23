@@ -44,6 +44,7 @@ function createCollabsible() {
         });
     }
 }
+
 export function createFoldableText(querySelector) {
     $(querySelector).click((e) => {
         console.log(e.target);

@@ -25,12 +25,30 @@ export function fnEvaluationByParty() {
         $("#resultsByParty").append(partyContainerHeader);
 
         const partyContainer = document.createElement('div');
-        partyContainer.classList.add('rounded','party-answers-container','collapsed');
+        partyContainer.classList.add('rounded','party-answers-container');
         $("#resultsByParty").append(partyContainer);
 
     }
 
+    createCollabsible();
+
     return;
+
+    function createCollabsible() {
+        const headers = document.getElementsByClassName("group-header");
+    
+        for(let i = 0; i < headers.length; i++) {
+            const header = headers[i];
+            header.addEventListener("click", () => {
+                console.log(header);
+                const sibling = header.nextElementSibling;
+                $(sibling).toggleClass('expanded'); // rename to question
+                if(DEBUGGING) console.log(sibling);
+            });
+        }
+    }
+
+
 
 
     var tableContent = "";
