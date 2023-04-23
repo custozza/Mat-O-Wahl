@@ -448,9 +448,6 @@ function fnEvaluationShort() {
 		${description}`;
 		partyContainer.append(partyDescription);
 
-
-
-
 	}
 
 	createFoldableText('.party-description')

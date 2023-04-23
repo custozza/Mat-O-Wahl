@@ -190,6 +190,10 @@ main {
     display: grid;
 }
 
+#results {
+    overflow-y: scroll;
+}
+
 
 #resultsShort {
     display: flex;
