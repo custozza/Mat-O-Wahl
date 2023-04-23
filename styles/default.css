@@ -293,6 +293,7 @@ main {
     align-items: center;
     background-color: white;
     box-shadow: 0.11rem 0.1rem rgba(0, 0, 0, .175);
+    padding: 0.2rem;
 }
 
 .btn-question-title {

@@ -11,9 +11,6 @@ export function fnEvaluationShort() {
 
 	if(DEBUGGING) console.log("sorted", arSortParties);
 
-	const filtredOwnWeights = [...questionWeight.filter(x => x != null)];
-	const maxPoints = filtredOwnWeights.reduce((a, b) => a + b, 0) * 3;
-
 	for (let i = 0; i < arParties.length; i++) {
 		const partyId = arSortParties[i];
 		const party = arParties[partyId];
