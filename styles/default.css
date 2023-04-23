@@ -12,6 +12,7 @@
     --s8-progressbar-background: gray;
     --s8-font-family: "Source Sans Pro";
     --s8-general-background-color: rgb(221, 221, 221);
+    --s8-card-background-color: white;
 
     --s8-result-spacing: 0.2rem;
 
@@ -69,7 +70,7 @@
 }
 
 .group-header {
-    border: solid 1px darkgray;
+    border: solid 1px var(--s8-general-background-color);
     overflow: hidden;
     width: 100%;
     display: flex;
@@ -173,9 +174,6 @@
     height: 4rem;
 }
 
-/* END RESULTS PER PARTY */
-
-
 body {
     font-family: var(--s8-font-family);
 }
@@ -184,17 +182,14 @@ body {
 .main-layout {
     display: grid;
     grid-template-rows: 5rem 1fr;
-    /* background-color: rgb(154, 154, 226);  */
     height: 100%;
     width: 100%;
-    /* background-color: rgb(86, 75, 236);  */
     overflow: hidden;
     padding: 0.5rem;
     box-sizing: border-box;
     position: absolute;
     margin: 0;
     gap: 0.1rem;
-    /* margin: 0.5rem; */
 }
 
 .header {
@@ -214,7 +209,6 @@ main {
     gap: 0.5rem;
     display: flex;
     flex-direction: column;
-    /* flex-flow: nowrap; */
     justify-content: space-between;
 
 }
@@ -235,13 +229,11 @@ main {
 }
 
 #sectionShowQuestions {
-    /* max-height: 51vh; */
     overflow: hidden;
     display: grid;
     grid-template-rows: 1fr;
     flex-grow: 1;
-    gap: 1rem
-        /* border: solid green; */
+    gap: 1rem;
 }
 
 .card {
@@ -252,25 +244,16 @@ main {
     box-shadow: 0.11rem 0.1rem 1px 1px rgba(0, 0, 0, .175);
 }
 
-.result-header:active {
-    /* box-shadow: inset 0 0 0 0.2rem rgba(0, 0, 0, 0.5); */
-}
-
-
 .question-cell {
     overflow: hidden;
 }
 
 #sectionNavigation {
-    /* bottom: -16px; */
-    /* left: 0; */
-    background-color: gray;
-    /* position: absolute; */
+    background-color: var(--s8-general-background-color);
 }
 
 .footer-container {
     display: flex;
-    /* background-color: blueviolet; */
     overflow: hidden;
     width: 100%;
 }
@@ -306,11 +289,9 @@ main {
     overflow: hidden;
 }
 
-
-/* RESULTS AREA REDESIGN*/
 .collapsible {
     background-color: var(--s8-background-color);
-    color: white;
+    color: var(--s8-card-background-color);
     cursor: pointer;
     padding: 0.2rem;
     width: 100%;
@@ -326,15 +307,12 @@ main {
 
 .scroll-container {
     width: 100%;
-    /* overflow-y: scroll; */
 }
 
 .content {
-    /* transition: max-height 0.2s ease-out; */
     background-color: #f1f1f1;
     display: grid;
     overflow: hidden;
-    /* border: solid green; */
     display: flex;
     visibility: hidden;
     max-height: 0;
@@ -400,15 +378,10 @@ main {
     flex-direction: column;
 }
 
-.party-image {}
-
 .party-percent {
     width: 100%;
 }
 
-/* .party-percent > .progress > .progress-bar {
-    overflow: visible;
-} */
 .party-percent>.progress {
     background-color: var(--s8-progressbar-background);
     position: relative;
@@ -416,9 +389,10 @@ main {
 
 .party-points-text {
     position: absolute;
-    left: 0.5rem;
     color: var(--s8-progressbar-text-color);
     font-weight: bolder;
+    text-align: center;
+    width: 100%;
 }
 
 
