@@ -16,6 +16,52 @@
     --s8-result-spacing: 0.2rem;
 }
 
+
+/* RESULTS PER PARTY  */
+#resultsByParty {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+    flex-direction: column;
+    overflow-x: hidden;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
+    flex-wrap: nowrap;
+    height: fit-content;
+    width: 100%;
+}
+
+.group-header {
+    border: solid 1px darkgray;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0.11rem 0.1rem rgba(0, 0, 0, .175);
+    padding: 0.2rem;
+}
+
+.btn-title {
+    padding: 0.2rem;
+    padding-left: 0.5rem;
+    font-size: x-large;
+    font-weight: bolder;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+
+/* END RESULTS PER PARTY */
+
+
 body {
     font-family: var(--s8-font-family);
 }

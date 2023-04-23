@@ -291,13 +291,14 @@
 		</div>
 
 		<!-- under construction modal-->
-		<div class="modal fade" id="underconstructionModal" tabindex="-1" role="dialog" aria-labelledby="underconstructionModalLabel" aria-hidden="true">
+		<div class="modal fade" id="underconstructionModal" tabindex="-1" role="dialog"
+			aria-labelledby="underconstructionModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-body" id="underConstructionModalBody">
 						<h1>Die Wahlkabine ist noch in Entstehung.</h1>
 						<br>Inhalte sind mit Vorsicht zu genießen.
-						<br>Bugs bitte einmelden 
+						<br>Bugs bitte einmelden
 					</div>
 
 					<div class="modal-footer">
@@ -310,14 +311,15 @@
 		</div>
 
 		<script type="module" defer>
-			import { UNDER_CONSTRUCTION, DEBUGGING} from "./system/globals.js";
-			if(!UNDER_CONSTRUCTION || DEBUGGING) {
-				exit()
+			import { UNDER_CONSTRUCTION, DEBUGGING } from "./system/globals.js";
+			if (!UNDER_CONSTRUCTION || DEBUGGING) {
+				console.log('skipping construction info')
+			} else {
+				$('#underconstructionModal').modal('show');
+				$('#underConstructionYes').click(() => {
+					$('#statisticsModal').modal('toggle');
+				});
 			}
-			$('#underconstructionModal').modal('show');
-			$('#underConstructionYes').click( () => {
-				$('#statisticsModal').modal('toggle');
-			});
 		</script>
 
 

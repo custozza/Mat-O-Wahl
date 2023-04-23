@@ -27,21 +27,12 @@ import {
 	setActiveQuestion,
 	questionWeight,
 	arQuestionsShort,
-	arPersonalPositions,
-	arSortParties,
-	arPartyNamesLong,
-	arPartyInternet,
-	arPartyNamesShort,
-	arPartyDescription,
-	arPartyLogosImg,
-	arPartyPositions,
-	arPartyOpinions,
-	arResults,
-	DEBUGGING,
+	arPersonalPositions
 } from './globals.js';
 import { fnEvaluationByThesis } from './fnEvaluationByThesis.js';
 import { fnEvaluationShort } from './fnEvaluationShort.js';
 import { fnReEvaluate } from './fnReEvaluate.js';
+import { fnEvaluationByParty } from './fnEvaluationByParty.js';
 
 
 
@@ -279,7 +270,7 @@ function runEvaluation() {
 	// Übergabe an Tabellen zur Darstellung/Ausgabe
 	fnEvaluationShort();	// Kurzüberblick mit Progress-bar
 	fnEvaluationByThesis();	// Thesen + Partei-Antworten
-	fnEvaluationByParty(); 	// Liste der Parteien mit ihren Antworten (ab v.0.6)
+	fnEvaluationByParty();
 	showModalShareStatisticalData();
 	// for the progressbar
 	fnReEvaluate();
