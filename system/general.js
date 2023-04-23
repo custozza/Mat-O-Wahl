@@ -57,6 +57,9 @@ export function fnEvaluation() {
 	arResults.push(...scoresPerParty);
 	arMaxScore.slice(0); // TODO I think this clears the array
 	arMaxScore.push(maxPoints);
+	arSortParties.sort(function(a,b){return arResults[b]-arResults[a];});
+
+
 }
 
 

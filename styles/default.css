@@ -67,6 +67,10 @@
     display: none;
 }
 
+.party-answers-container:nth-child(3n+0) {
+    background-color: var(--s8-general-background-color);
+}
+
 .party-answers-container.expanded {
     visibility: visible;
     max-height: fit-content;
