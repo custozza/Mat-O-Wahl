@@ -10,7 +10,8 @@ import {
 	questionWeight,
 	arPartyPositions,
 	arResults,
-	evaluationShiftFactor
+	evaluationShiftFactor,
+	arSortParties
 } from './globals.js';
 
 import { fnReEvaluate } from './fnReEvaluate.js';
@@ -44,8 +45,13 @@ export function fnEvaluation() {
 	const { answers, aParties, weights, wParties } = transformGlobalStatesIntoParemtersForEvaluationFunction();
 	const [scoresPerParty, answerScoresPerParty] = evaluate(answers, aParties, weights, wParties);
 
+
+
 	arResults.slice(0); // TODO I think this clears the array
 	arResults.push(...scoresPerParty);
+
+	// Sortieren der Parteien nach Uebereinstimmung
+	arSortParties.sort(function (a, b) { return arResults[b] - arResults[a]; });
 }
 
 
