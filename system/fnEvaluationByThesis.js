@@ -1,23 +1,20 @@
 import {
-	arQuestionsLong,
-	arQuestionsShort,
-	arPersonalPositions,
-	arParties,
+    arQuestionsLong,
+    arQuestionsShort,
+    arPersonalPositions,
+    arParties,
     DEBUGGING,
 } from './globals.js'
 
 import {
-	fnTransformPositionToButton,
-	fnTransformPositionToIcon,
-	fnTransformPositionToText,
+    fnTransformPositionToButton,
+    fnTransformPositionToIcon,
+    fnTransformPositionToText,
 } from './fnTransform.js';
 import { questionWeight } from './globals.js';
 
 export function fnEvaluationByThesis() {
-    buildAnswers();
-}
 
-function buildAnswers() {
     for (let i = 0; i < arQuestionsLong.length; i++) {
         const temp = createQuestionGroupCard(i);
         $("#resultsByThesis").append(temp);
@@ -34,13 +31,13 @@ function buildAnswers() {
 function createCollabsible() {
     const headers = document.getElementsByClassName("question-group-header");
 
-    for(let i = 0; i < headers.length; i++) {
+    for (let i = 0; i < headers.length; i++) {
         const header = headers[i];
         header.addEventListener("click", () => {
             console.log(header);
             const sibling = header.nextElementSibling;
             $(sibling).toggleClass('section-expanded'); // rename to question
-            if(DEBUGGING) console.log(sibling);
+            if (DEBUGGING) console.log(sibling);
         });
     }
 }
@@ -67,7 +64,7 @@ function createQuestionGroupCard(i) {
      ${positionIcon} 
      </button>`;
 
-     const weightButton = `
+    const weightButton = `
      <button type='button' id='' class='btn btn-primary btn-sm selfPosition${i}' 
      alt=' ${TEXT_ANSWER_USER} : ${answerWeight}' title='${TEXT_ANSWER_USER}  : ${answerWeight}'>
       ${answerWeight} 

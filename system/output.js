@@ -335,7 +335,7 @@ function fnJumpToQuestionNumber(questionNumber) {
 		var modulo = i % questionsPerLine;
 		// neue Zeile
 		if (modulo == 1) { tableContent += "<tr>"; }
-		tableContent += "<td align='center' id='jumpToQuestionNr" + i + "' title='" + arQuestionsShort[(i - 1)] + " - " + arQuestionsLong[(i - 1)] + "'>";
+		tableContent += `<td align='center' id='jumpToQuestionNr${i}' title='${arQuestionsShort[(i - 1)]}'>`;
 		// tableContent += "<a id=question" +i+ " href='javascript:fnShowQuestionNumber(" + (i - 2) + ")' style='display:block;'>" + i + " </a>";
 		tableContent += "<a id=question" + i + " style='display:block;'>" + i + " </a>";
 		tableContent += "</td>";
