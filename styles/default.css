@@ -11,6 +11,8 @@
     --s8-progressbar-text-color: white;
     --s8-progressbar-background: gray;
     --s8-font-family: "Source Sans Pro";
+
+    --s8-general-background-color: rgb(221, 221, 221);
 }
 
 
@@ -210,7 +212,7 @@ main {
 
 
 .party-container:nth-of-type(even) {
-    background-color: rgb(0, 0, 0, 0.05);
+    background-color: var(--s8-general-background-color);
 }
 
 .party-description {
@@ -256,13 +258,11 @@ main {
     overflow-x: hidden;
 }
 
-
 .parties-group.questionGroup.collapsible-container {
     display: grid;
     grid-template-columns: 3rem 1fr;
-    /* visibility: hidden; */
-    /* max-height: 0; */
     display: flex;
+    gap: 0.5rem;
 }
 
 .parties-group.questionGroup.collapsible-container.section-expanded {
@@ -286,7 +286,9 @@ main {
 }
 
 .btn-question-title {
-    padding: 0.5rem;
+    padding: 0.2rem;
+    padding-left: 0.5rem;
+
 }
 
 .collapsible-question {
@@ -296,11 +298,13 @@ main {
 }
 
 .collapsible-question.section-expanded {
-    /* overflow: hidden; */
     visibility: visible;
     max-height: fit-content;
-
 }
+
+.party-answer:nth-child(2) {
+    background-color: var(--s8-general-background-color);
+  }
 
 .party-answer-group {
     display: flex;
@@ -527,7 +531,7 @@ a:not(.btn):hover {
 	Striped rows in results */
 
 .mow-row-striped:nth-child(odd) {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--s8-general-background-color);
 }
 
 
