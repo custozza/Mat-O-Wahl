@@ -365,7 +365,8 @@ const language = "de";
 */
 
 const statsRecord = 1;
-const statsServer = "http://132.226.199.141/extras/statistics/vote_txt.php";
+//const statsServer = "http://132.226.199.141/extras/statistics/vote_txt.php";
+const statsServer = "https://wahlomattest.lima-city.at/extras/statistics/vote_txt.php";
 
 
 /*
