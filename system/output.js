@@ -41,7 +41,10 @@ import {
 	arParties,
 	evaluationShiftFactor,
 } from './globals.js';
-import {fnEvaluationByThesis} from './fnEvaluationByThesis.js';
+import {
+	fnEvaluationByThesis,
+	createFoldableText,
+} from './fnEvaluationByThesis.js';
 
 
 
@@ -162,7 +165,6 @@ export function fnStart() {
 		window.setTimeout(fnHideWelcomeMessage, FADE_TIME);
 	}
 
-
 }
 
 // Ausblenden der Willkommensmeldung (#sectionDescription)
@@ -170,6 +172,9 @@ export function fnStart() {
 // neu ab v.0.6
 // Aufruf aus fnStart() wenn "descriptionShowOnStart = 0" ODER beim Klick auf Start-Button
 export function startQuestionaire() {
+	
+	runEvaluation(); // temp for development
+	return 
 	$('#sectionDescription').hide().empty();
 	$('#sectionFooter').css('display', 'none');
 	fnShowQuestionNumber(-1);
@@ -265,8 +270,11 @@ export function fnShowQuestionNumber(questionNumber) {
 }
 function runEvaluation() {
 
-	hideMain();
+	// but hiding fading here for the moment
+
+	$('main').css('display', 'none');
 	$('#sectionFooter').css('display', 'flex');
+	$("#sectionResults").fadeIn(FADE_TIME);
 
 
 	fnEvaluation();
@@ -280,7 +288,7 @@ function runEvaluation() {
 
 
 	// Buttons einblenden für detaillierte Ergebnisse
-	$("#resultsButtons").fadeIn(FADE_TIME);
+	//$("#resultsButtons").fadeIn(FADE_TIME);
 
 
 	// Abfrage zur Statistik einblenden (v.0.6.)
@@ -294,12 +302,6 @@ function runEvaluation() {
 		});
 	}
 }
-
-function hideMain() {
-	$('main').css('display', 'none');
-}
-
-
 
 // 02/2015 BenKob
 export function fnChangeVotingDouble(weight) {
@@ -387,24 +389,71 @@ function fnJumpToQuestionNumber(questionNumber) {
 
 // Anzeige der Ergebnisse - zusammengefasst (Prozentwerte) - nur Parteien
 // Array arResults kommt von fnEvaluation
-function fnEvaluationShort(arResults) {
+function fnEvaluationShort() {
 
 	if (arSortParties.length != arPartyDescription.length) {
 		throw Error("no sort information on parties")
 	}
 
-	// Alten Inhalt des DIVs loeschen
-	// $("#heading2").empty().hide();
-	// $("#content").empty().hide();
-	$("#sectionShowQuestions").empty().hide();
-	// $("#explanation").empty().hide();
+	
+	const arr = [...questionWeight.filter(x => x != null)];
+	const maxPoints = arr.reduce((a, b) => a + b, 0) * 3;
 
-	// Anzeige der Ergebnisse
+
+
+	for (let i = 0; i < arParties.length; i++) {
+
+		const party = arParties[arSortParties[i]];
+
+
+		// # Container
+		const partyContainer = document.createElement('div');
+		partyContainer.classList.add('party-container');
+		$("#resultsShort").append(partyContainer);
+
+			// # Image
+			const partyImage = document.createElement('div');
+			partyContainer.append(partyImage);
+			partyImage.classList.add('party-image');
+			const logo = party.partyImage;
+			const logoText = party.partyLong;
+			partyImage.innerHTML = `<img src='${logo}' class='rounded img-fluid' alt='Logo ${logoText}' />`
+
+		// # Description
+		const partyDescription = document.createElement('span');
+		partyDescription.classList.add('party-description', 'clamped', 'rounded');
+		
+		const name = party.partyLong;
+		const nicName = party.partyShort;
+		const url = party.partyURL;
+		const description = party.partyDescription;
+		partyDescription.innerHTML = `
+		<strong>${name}</strong>
+		(&#8663;<a href='${url}' target='_blank' alt='Link: ${name}' title='Link: ${name}'> ${nicName}</a>)
+		${description}`;
+		partyContainer.append(partyDescription);
+
+		// # Percent
+		const partyMatchInPercent = document.createElement('div');
+		partyContainer.append(partyMatchInPercent);
+		partyMatchInPercent.classList.add('party-percent');
+
+
+
+
+	}
+
+	createFoldableText('.party-description')
+
+
+
+	$("#sectionShowQuestions").empty().hide();
 	$("#resultsHeading").append("<h1>" + TEXT_RESULTS_HEADING + "</h1>").fadeIn(FADE_TIME);
 
 
-	const arr = [...questionWeight.filter(x => x != null)];
-	const maxPoints = arr.reduce((a, b) => a + b, 0) * 3
+
+
+
 
 	var tableContent = ""
 	tableContent += "<div class='row' id='resultsShortTable' role='table'>"
@@ -502,18 +551,18 @@ function fnEvaluationShort(arResults) {
 	// Click-Funktion auf PARTEINAME-Zeile legen zum Anzeigen des BESCHREIBUNG-SPAN (direkt darunter)
 	// "[In a FOR-loop] you can use the let keyword, which makes the i variable local to the loop instead of global"
 	// 	https://stackoverflow.com/questions/4091765/assign-click-handlers-in-for-loop
-	for (let i = 0; i < arPartyDescription.length; i++) {
-		// Klickfunktion - bei Überschrift
-		$("#resultsShortParty" + i).click(function () {
-			$("#resultsShortPartyDescription" + i).toggle(FADE_TIME);
-			$("#resultsShortPartyDescriptionDots" + i).toggle(FADE_TIME);
-		});
-		$("#resultsShortPartyDescription" + i).fadeOut(FADE_TIME);
-		$("#resultsShortPartyDescriptionDots" + i).fadeIn(FADE_TIME);
-	}
+	// for (let i = 0; i < arPartyDescription.length; i++) {
+	// 	// Klickfunktion - bei Überschrift
+	// 	$("#resultsShortParty" + i).click(function () {
+	// 		$("#resultsShortPartyDescription" + i).toggle(FADE_TIME);
+	// 		$("#resultsShortPartyDescriptionDots" + i).toggle(FADE_TIME);
+	// 	});
+	// 	$("#resultsShortPartyDescription" + i).fadeOut(FADE_TIME);
+	// 	$("#resultsShortPartyDescriptionDots" + i).fadeIn(FADE_TIME);
+	// }
 
 	// $("#results").fadeIn(FADE_TIME);
-	$("#sectionResults").fadeIn(FADE_TIME);
+
 
 }
 

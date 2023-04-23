@@ -27,7 +27,7 @@ function buildAnswers() {
 
     }
     createCollabsible();
-    createFoldableText();
+    createFoldableText('.opinion');
 }
 
 function createCollabsible() {
@@ -49,8 +49,8 @@ function createCollabsible() {
         });
     }
 }
-function createFoldableText() {
-    $('.opinion').click((e) => {
+export function createFoldableText(querySelector) {
+    $(querySelector).click((e) => {
         console.log(e.target);
         $(e.target).toggleClass('clamped');
     });
