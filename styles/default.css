@@ -5,19 +5,17 @@
 
 :root {
     --s8-background-color: #cc6361;
-    --s8-font-color: #f6eaec;
-
+    --s8-font-color: #f6eaec;   
+    --s8-candiate-image-size-sm: 3rem;
+    --s8-candiate-image-size-lg: 7rem;
+    --s8-progressbar-text-color: white;
+    --s8-progressbar-background: gray;
+    --s8-font-family: "Source Sans Pro";
 }
 
 
 body {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    /*	font-size:10pt; */
-    font-family: "Raleway", sans-serif;
-    font-family: "Source Sans Pro";
-    /* background-image: linear-gradient(#EFC04F, #FFE08F); */
-    /* background-attachment: fixed; */
-    /* background-color: black; */
+    font-family: var(--s8-font-family);
 }
 
 
@@ -92,10 +90,6 @@ main {
     background-color: gray;
     /* position: absolute; */
 }
-
-
-
-
 
 .footer-container {
     display: flex;
@@ -203,26 +197,27 @@ main {
 
 .party-container {
     display: grid;
-    grid-template-columns: 5rem 1fr;
+    grid-template-columns: var(--s8-candiate-image-size-lg) 1fr;
     width: 100%;
     overflow: hidden;
     flex-wrap: wrap;
 }
 
+@media only screen and (max-width: 300px) {
+.party-container {
+        grid-template-columns: var(--s8-candiate-image-size-sm) 1fr;
+}}
+
+
 .party-container:nth-of-type(even) {
     background-color: rgb(0, 0, 0, 0.05);
 }
-
-
-
 
 .party-description {
     display: flex;
     display: inline;
     width: 100%;
     padding-left: 0.5rem;
-    /* border: solid 1px; */
-
 }
 
 .graphic-info-container {
@@ -237,11 +232,18 @@ main {
     width: 100%;
 }
 
-.party-percent > .progress > .progress-bar {
+/* .party-percent > .progress > .progress-bar {
     overflow: visible;
-}
+} */
 .party-percent > .progress {
-    background-color: darkgray;
+    background-color: var(--s8-progressbar-background);
+    position: relative;
+}
+.party-points-text {
+    position: absolute;
+    left: 1rem;
+    color: var(--s8-progressbar-text-color);
+    font-weight: bolder;
 }
 
 

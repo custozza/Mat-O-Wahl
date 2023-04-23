@@ -71,6 +71,13 @@ function createResultCardForParty(party, partyId) {
 		const partyMatchInPercent = document.createElement('div');
 		graphicInfoContainer.append(partyMatchInPercent);
 		partyMatchInPercent.classList.add('party-percent');
+
+		// # Percent Text
+
+		// const percentText = document.createElement('div');
+		// percentText.setAttribute('id', `partyPoints`);
+		// percentText.html = ('%% PUNKTE / MAX ');
+		// partyMatchInPercent.append(percent);
 		// partyMatchInPercent.setAttribute('role', 'progressbar')
 		//var percent = fnPercentage(arResults[partyNum], maxPoints)
 		var percent = 100;
@@ -80,6 +87,9 @@ function createResultCardForParty(party, partyId) {
 		<div class='progress'>
 			<div class='progress-bar' role='progressbar' id='partyBar${partyId}' style='width:${percent}%;' aria-valuenow='${percent}' aria-valuemin='0' aria-valuemax='100'>
 				JUST_A_PLACEHOLDER_TEXT - SEE FUNCTION fnReEvaluate()
+			</div>
+			<div id="partyPoints${partyId}" class="party-points-text">
+				'%% PUNKTE / MAX '
 			</div>
 		</div>`;
 		partyMatchInPercent.innerHTML = progress;

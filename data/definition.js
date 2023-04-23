@@ -138,7 +138,7 @@ const descriptionShowOnStart = 1;
 
 // 	1.6.2. Hauptueberschrift / 1.6.1. Main headline
 
-const descriptionHeading1 = "Vorsitzwahl";
+const descriptionHeading1 = "Vorsitzwahlkabine";
 
 
 // 	1.6.3. Zweite Ueberschrift / 1.6.2. Second Headline
