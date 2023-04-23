@@ -12,6 +12,8 @@
     --s8-progressbar-background: gray;
     --s8-font-family: "Source Sans Pro";
     --s8-general-background-color: rgb(221, 221, 221);
+
+    --s8-result-spacing: 0.2rem;
 }
 
 
@@ -41,6 +43,10 @@ body {
     height: 100%;
     transform-origin: top left;
     overflow: hidden;
+}
+
+.card-body {
+    overflow-y: scroll;
 }
 
 main {
@@ -77,7 +83,7 @@ main {
 }
 
 .result-header {
-    /* box-shadow: 0.11rem 0.1rem rgba(0,0,0,.175); */
+    box-shadow: 0.11rem 0.1rem 1px 1px rgba(0, 0, 0, .175);
 }
 
 .result-header:active {
@@ -130,7 +136,7 @@ main {
 .collapsible-container {
     display: flex;
     flex-direction: column;
-    gap: 0.1rem;
+    gap: var(--s8-result-spacing);
     overflow: hidden;
 }
 
@@ -167,6 +173,7 @@ main {
     visibility: hidden;
     max-height: 0;
     overflow-y: scroll;
+    padding-right: 0.5rem;
 }
 
 .content.section-expanded {
@@ -212,6 +219,7 @@ main {
     display: inline;
     width: 100%;
     padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 .graphic-info-container {
