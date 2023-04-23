@@ -449,27 +449,25 @@ main {
 }
 
 .party-answer-group {
-    display: flex;
-    justify-content: flex-start;
+    flex: 0 0 3rem;
+    display: grid;
+    grid-template-rows: 2rem 2rem;
+    grid-template-columns: 2rem;
+    overflow: hidden;
+    justify-content: center;
     align-items: center;
-    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .clamped {
-    max-height: 12rem;
+    max-height: 6rem;
     overflow: hidden;
 }
 
-.triangle-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.triangle {
-    font-size: 2rem;
-    margin-top: -2.5rem;
+.party-answer-group > .btn-sm.btn {
+    font-size: medium;
+    overflow: hidden;
+    height: 2rem;
 }
 
 .opinion {
