@@ -287,12 +287,13 @@ function runEvaluation() {
 }
 
 function showModalShareStatisticalData() {
-	const debugging = true;
-	if (debugging || (imprintPrivacyUrl.length <= 0) || (statsRecord)) {
+	const debugging = false;
+	if (debugging || (imprintPrivacyUrl.length <= 0) || (statsRecord != 1)) {
+		console.log('showmodal', debugging, imprintPrivacyUrl.length, statsRecord)
 		return;
 	}
 	$('#statisticsModal').modal('show');
-	$("#statisticsModalButtonYes" + i).click(() => {
+	$("#statisticsModalButtonYes").click(() => {
 		fnSendResults(questionWeight, arPersonalPositions);
 		$('#statisticsModal').modal('toggle');
 	});

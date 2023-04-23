@@ -103,7 +103,7 @@
 			<div class="row border border-dark rounded" style="height: 60vh; text-overflow: clip; overflow: auto; margin-top: 1.0em;">
 			-->
 				<div class="question-card border border-dark rounded">
-					<div class="col align-self-center">
+					<div class="align-self-center">
 
 						<div id="descriptionAddonTop">
 							<!-- Platzhalter / Placeholder -->
@@ -268,20 +268,14 @@
 		</div>
 	-->
 
+
+
 		<!-- Bootstrap-Modal STATISTIK j/n / STATISTICS y/n -->
 
 		<div class="modal fade" id="statisticsModal" tabindex="-1" role="dialog" aria-labelledby="statisticsModalLabel"
 			aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
-
-					<!-- <div class="modal-header">
-						<h5 class="modal-title" id="statisticsModalLabel"> Modal TITLE </h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div> -->
-
 					<div class="modal-body" id="statisticsModalBody">
 						Modal BODY
 					</div>
@@ -296,6 +290,36 @@
 			</div>
 		</div>
 
+		<!-- under construction modal-->
+		<div class="modal fade" id="underconstructionModal" tabindex="-1" role="dialog" aria-labelledby="underconstructionModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body" id="underConstructionModalBody">
+						<h1>Die Wahlkabine ist noch in Entstehung.</h1>
+						<br>Inhalte sind mit Vorsicht zu genießen.
+						<br>Bugs bitte einmelden 
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" id="btnNo" data-dismiss="modal" class="btn btn-outline-dark btn-warning">
+							Zur Kenntnisgenommen
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="module" defer>
+			import { UNDER_CONSTRUCTION, DEBUGGING} from "./system/globals.js";
+			if(!UNDER_CONSTRUCTION || DEBUGGING) {
+				exit()
+			}
+			$('#underconstructionModal').modal('show');
+			$('#underConstructionYes').click( () => {
+				$('#statisticsModal').modal('toggle');
+			});
+		</script>
+
 
 		<!-- 2. ERGEBNISSE / RESULTS -->
 
@@ -308,11 +332,11 @@
 				</div>
 				<div class="content section-expanded">
 					<div class="" id="results">
-							<div id="resultsShort">
-								Ergebnisse / Resultate der Parteien in tabellarischer Form <br /> Table with results
-								(short) -
-								DOM / id = "resultsShortTable"
-							</div>
+						<div id="resultsShort">
+							Ergebnisse / Resultate der Parteien in tabellarischer Form <br /> Table with results
+							(short) -
+							DOM / id = "resultsShortTable"
+						</div>
 					</div>
 				</div>
 				<div class="result-header collapsible rounded">

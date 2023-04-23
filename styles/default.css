@@ -16,7 +16,6 @@
     --s8-result-spacing: 0.2rem;
 }
 
-
 body {
     font-family: var(--s8-font-family);
 }
@@ -67,6 +66,12 @@ main {
     padding: 5% 2%;
     text-overflow: clip;
     overflow: auto;
+}
+
+#sectionDescription {
+    display: grid;
+    overflow: hidden;
+    gap: 0.2rem;
 }
 
 #sectionShowQuestions {
