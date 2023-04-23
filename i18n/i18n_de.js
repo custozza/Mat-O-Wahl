@@ -27,7 +27,7 @@ var TEXT_RESTART = "[&#x21BB;] Fragebogen neu starten"
 var TEXT_RESULTS_HEADING = "Ergebnis"
 
 var TEXT_RESULTS_INFO_THESES = "Sie können Ihre eigene Meinung in der zweiten Spalte noch einmal anpassen und das neue Ergebnis überprüfen. <br /> Die <strong>Antworten der Parteien</strong> erhalten Sie <strong>beim Klick auf das Plus-Zeichen</strong>."
-var TEXT_RESULTS_INFO_PARTIES = "Dies ist eine Übersicht aller Parteien und ihrer Antworten."
+var TEXT_RESULTS_INFO_PARTIES = "This area is under construction"
 
 var TEXT_RESULTS_BUTTON_THESES = "Begründungen - Fragen und Antworten anzeigen"
 var TEXT_RESULTS_BUTTON_PARTIES= "Standpunkte - Parteien und Antworten anzeigen"
