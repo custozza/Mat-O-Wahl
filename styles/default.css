@@ -95,11 +95,6 @@
     display: none;
 }
 
-.party-answers-container:nth-child(3n+0) {
-    background-color: var(--s8-general-background-color);
-
-}
-
 .party-question-container:nth-child(2n) {
     background-color: var(--s8-general-background-color);
 }
