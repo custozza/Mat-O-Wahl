@@ -3,23 +3,10 @@
 // License: GPL 3
 // Mathias Steudtner http://www.medienvilla.com
 
-import { fnReadCsv } from './readCsv.js';
-import { fnShowQuestions } from './fnShowQuestions.js';
-import { fnReadPositions } from './fnReadPositions.js';
-import { fnSendResults } from './fnSendResults.js';
 import {
 	fnEvaluation,
 	fnPercentage,
-	fnToggleDouble,
 } from './general.js';
-
-import {
-	fnTransformPositionToButton,
-	fnTransformPositionToIcon,
-	fnTransformPositionToText,
-	fnTransformPositionToColor,
-} from './fnTransform.js';
-
 import {
 	arQuestionsLong,
 	arVotingDouble,
@@ -33,8 +20,11 @@ import { fnEvaluationByThesis } from './fnEvaluationByThesis.js';
 import { fnEvaluationShort } from './fnEvaluationShort.js';
 import { fnReEvaluate } from './fnReEvaluate.js';
 import { fnEvaluationByParty } from './fnEvaluationByParty.js';
-
-
+import { fnTransformPositionToColor } from './fnTransform.js';
+import { fnReadCsv } from './readCsv.js';
+import { fnShowQuestions } from './fnShowQuestions.js';
+import { fnReadPositions } from './fnReadPositions.js';
+import { fnSendResults } from './fnSendResults.js';
 
 export function fnStart() {
 	// alte Inhalte loeschen bzw. ausblenden
