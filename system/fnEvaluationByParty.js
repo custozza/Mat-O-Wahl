@@ -1,5 +1,6 @@
 import { fnTransformPositionToButton, fnTransformPositionToIcon, fnTransformPositionToText } from "./fnTransform.js";
 import { DEBUGGING, arParties, arPersonalPositions, arQuestionsShort, arSortParties, questionWeight} from "./globals.js";
+import { buildChevron } from "./util.js";
 
 
 
@@ -29,11 +30,8 @@ export function fnEvaluationByParty() {
         partyContainer.classList.add('rounded','party-answers-container');
     
         for(let questionNumber = 0; questionNumber < arQuestionsShort.length; questionNumber++){
-
-
-            const questionContainer = createQuestionRow(questionNumber, partyContainer, party);
+            const questionContainer = createQuestionRow(questionNumber, party);
             partyContainer.append(questionContainer);
-
         }
 
         $("#resultsByParty").append(partyContainer);
@@ -58,7 +56,7 @@ export function fnEvaluationByParty() {
     }
 } 
 
-function createQuestionRow(questionNumber, partyContainer, party) {
+function createQuestionRow(questionNumber, party) {
     const questionContainer = document.createElement('div');
     questionContainer.classList.add('party-question-container', `question-${questionNumber}`, 'rounded');
 
@@ -70,7 +68,20 @@ function createQuestionRow(questionNumber, partyContainer, party) {
     questionContainer.append(question);
 
 
-    // PERSONAL POSITION
+    const personalAnswer = generatePersonalPositionIconCell(party, questionNumber);
+    questionContainer.append(personalAnswer);
+
+    const answer = party.answers[questionNumber];
+
+    const partyOpinion = document.createElement('div');
+    partyOpinion.classList.add('party-answer-cell', `question-${questionNumber}`, 'rounded');
+    const opinion = answer.opinions;
+    partyOpinion.innerHTML = `${opinion}`;
+    questionContainer.append(partyOpinion);
+
+    return questionContainer;
+}
+function generatePersonalPositionIconCell(party, questionNumber) {
     const personalPosition = arPersonalPositions[questionNumber];
     const positionButton = fnTransformPositionToButton(personalPosition);
     const positionIcon = fnTransformPositionToIcon(personalPosition);
@@ -92,30 +103,33 @@ function createQuestionRow(questionNumber, partyContainer, party) {
       ${answerWeight} 
       </button>`;
 
+    const [partyPosition, partyWeight] = partyPositionElementsAsText(party.answers[questionNumber].position);
+
+
     const personalAnswer = document.createElement('div');
     personalAnswer.classList.add('party-answer-cell', `question-${questionNumber}`, 'rounded');
-    personalAnswer.innerHTML =  `
+    personalAnswer.innerHTML = `
 	<div id="btn-question-group-${questionNumber}" class="question-group-small">
 		${iconButton} 
+        ${partyPosition}
 		${weightButton}
+        ${partyWeight}
 	</div>`;
-    questionContainer.append(personalAnswer);
-
-    // END PERSONAL POSITION
-
-    const answer = party.answers[questionNumber];
-
-    const partyAnswer = document.createElement('div');
-    partyAnswer.classList.add('party-answer-cell', `question-${questionNumber}`, 'rounded');
-    const position = answer.positions;
-    partyAnswer.innerHTML = `${position}`;
-    questionContainer.append(partyAnswer);
-
-    const partyOpinion = document.createElement('div');
-    partyOpinion.classList.add('party-answer-cell', `question-${questionNumber}`, 'rounded');
-    const opinion = answer.opinions;
-    partyOpinion.innerHTML = `${opinion}`;
-    questionContainer.append(partyOpinion);
-
-    return questionContainer;
+    return personalAnswer;
 }
+
+function partyPositionElementsAsText(weightedPosition) {
+    let position = Math.sign(weightedPosition);
+    var positionButton = fnTransformPositionToButton(position);
+    var positionIcon = fnTransformPositionToIcon(position);
+    var positionText = fnTransformPositionToText(position);
+
+    let weight = Math.abs(weightedPosition);
+
+    var button = `<button type='button' id='' class='btn ${positionButton} btn-sm alt='${positionText}' title='${positionText}'> ${positionIcon} </button>`;
+
+    var chevronUp = buildChevron(weight);
+
+    return [button, chevronUp];
+}
+
