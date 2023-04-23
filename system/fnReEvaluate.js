@@ -19,16 +19,15 @@ export function fnReEvaluate() {
     console.log(arResults)
 
 	for (let i = 0; i < arParties.length; i++) {
-		var percent = fnPercentage(arResults[i], maxPoints, maxNegativePoints);
+        const normalizedPoints = arResults[i]-maxNegativePoints;
+        const points = normalizedPoints;
+		var percent = fnPercentage(points, maxPoints);
+        if(DEBUGGING) console.log(percent, points, maxPoints)
 
 		var barImage = fnBarImage(percent);
 
-        const points = arResults[i] - maxNegativePoints;
-
-        
-
 		$("#partyBar" + i).width(percent + "%")
-		$("#partyBar" + i).text(`${percent}% (${points} / ${maxPoints})"`);
+		$("#partyBar" + i).text(`${percent}% (${points} / ${maxPoints})`);
 		$("#partyBar" + i).removeClass("bg-success bg-warning bg-danger").addClass(barImage);
 
 		$("#partyPoints" + i).html(points + "/" + maxPoints);

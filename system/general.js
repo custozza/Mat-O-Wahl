@@ -70,8 +70,8 @@ function splitArrayIntoSubLists(list, size) {
 }
 
 // Berechnet Prozentwerte
-export function fnPercentage(value, max, maxNegative) {
-	var percent = (value - maxNegative) * 100 / (max-maxNegative);
+export function fnPercentage(value, max) {
+	var percent = (value) * 100 / (max);
 	percent = Math.round(percent);
 	return percent;
 }

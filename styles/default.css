@@ -235,7 +235,13 @@ main {
 }
 .party-percent {
     width: 100%;
-    
+}
+
+.party-percent > .progress > .progress-bar {
+    overflow: visible;
+}
+.party-percent > .progress {
+    background-color: darkgray;
 }
 
 
