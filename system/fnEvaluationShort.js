@@ -1,4 +1,4 @@
-import { arParties, arSortParties, questionWeight } from "./globals.js";
+import { DEBUGGING, arParties, arSortParties, questionWeight } from "./globals.js";
 import { createFoldableText } from "./fnEvaluationByThesis.js";
 
 // Anzeige der Ergebnisse - zusammengefasst (Prozentwerte) - nur Parteien
@@ -74,6 +74,8 @@ function createResultCardForParty(party, partyId) {
 		// partyMatchInPercent.setAttribute('role', 'progressbar')
 		//var percent = fnPercentage(arResults[partyNum], maxPoints)
 		var percent = 100;
+
+		if(DEBUGGING) console.log('progressbar', partyId);
 		const progress = `
 		<div class='progress'>
 			<div class='progress-bar' role='progressbar' id='partyBar${partyId}' style='width:${percent}%;' aria-valuenow='${percent}' aria-valuemin='0' aria-valuemax='100'>

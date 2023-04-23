@@ -13,7 +13,7 @@ import {
 	evaluationShiftFactor
 } from './globals.js';
 
-import { fnReEvaluate } from './output.js'
+import { fnReEvaluate } from './fnReEvaluate.js';
 import {
 	fnTransformPositionToButton,
 	fnTransformPositionToIcon,
@@ -70,8 +70,8 @@ function splitArrayIntoSubLists(list, size) {
 }
 
 // Berechnet Prozentwerte
-export function fnPercentage(value, max) {
-	var percent = value * 100 / max;
+export function fnPercentage(value, max, maxNegative) {
+	var percent = (value - maxNegative) * 100 / (max-maxNegative);
 	percent = Math.round(percent);
 	return percent;
 }

@@ -41,6 +41,7 @@ import {
 } from './globals.js';
 import { fnEvaluationByThesis } from './fnEvaluationByThesis.js';
 import { fnEvaluationShort } from './fnEvaluationShort.js';
+import { fnReEvaluate } from './fnReEvaluate.js';
 
 
 
@@ -266,37 +267,33 @@ export function fnShowQuestionNumber(questionNumber) {
 }
 function runEvaluation() {
 
-	// but hiding fading here for the moment
-
+	// put hiding fading here for the moment
 	$('main').css('display', 'none');
 	$('#sectionFooter').css('display', 'flex');
 	$("#sectionResults").fadeIn(FADE_TIME);
 
-
 	fnEvaluation();
 
-	arSortParties.sort(function (a, b) { return arResults[b] - arResults[a]; });
-
 	// Übergabe an Tabellen zur Darstellung/Ausgabe
-	fnEvaluationShort(arResults);	// Kurzüberblick mit Progress-bar
-	fnEvaluationByThesis(arResults);	// Thesen + Partei-Antworten
+	fnEvaluationShort();	// Kurzüberblick mit Progress-bar
+	fnEvaluationByThesis();	// Thesen + Partei-Antworten
 	fnEvaluationByParty(arResults) 	// Liste der Parteien mit ihren Antworten (ab v.0.6)
+	showModalShareStatisticalData();
+	// for the progressbar
+	fnReEvaluate();
 
+}
 
-	// Buttons einblenden für detaillierte Ergebnisse
-	//$("#resultsButtons").fadeIn(FADE_TIME);
-
-
-	// Abfrage zur Statistik einblenden (v.0.6.)
-	if ((imprintPrivacyUrl.length > 0) && (statsRecord)) {
-		$('#statisticsModal').modal('show')
-
-		// Klick-Funktion mit den Ergebnissen zum Senden auf "Ja" legen
-		document.getElementById("statisticsModalButtonYes").addEventListener("click", function () {
-			fnSendResults(questionWeight, arPersonalPositions)
-			$('#statisticsModal').modal('toggle')
-		});
+function showModalShareStatisticalData() {
+	const debugging = true;
+	if (debugging || (imprintPrivacyUrl.length <= 0) || (statsRecord)) {
+		return;
 	}
+	$('#statisticsModal').modal('show');
+	$("#statisticsModalButtonYes"+i).click( () => {
+		fnSendResults(questionWeight, arPersonalPositions);
+		$('#statisticsModal').modal('toggle');
+	} );
 }
 
 // 02/2015 BenKob
@@ -581,36 +578,3 @@ function fnEvaluationByParty(arResults) {
 	}
 
 } // end function
-
-
-
-// 02/2015 BenKob
-// Aktualisierung der Ergebnisse in der oberen Ergebnistabelle (short)
-// Aufruf heraus in:
-// (a) fnEvaluationShort() nach dem Aufbau der oberen Tabelle
-// (b) in den Buttons in der detaillierten Auswertung (fnToggleSelfPosition() und fnToggleDouble())
-export function fnReEvaluate() {
-	//Ergebniss neu auswerten und Anzeige aktualisieren
-	fnEvaluation();
-
-	const arr = [...questionWeight.filter(x => x != null)];
-	const maxPoints = arr.reduce((a, b) => a + b, 0) * 3;
-
-	//	for (i = 0; i <= (arPartyFiles.length-1); i++)
-	for (let i = 0; i < arPartyDescription.length; i++) {
-		var percent = fnPercentage(arResults[i], maxPoints)
-
-		// bis v.0.3 mit PNG-Bildern, danach mit farblicher Bootstrap-Progressbar
-		var barImage = fnBarImage(percent);
-
-		// neu ab v.0.3 - Bootstrap-Progressbar
-		$("#partyBar" + i).width(percent + "%")
-		$("#partyBar" + i).text(percent + "% (" + arResults[i] + " / " + maxPoints + ")");
-		$("#partyBar" + i).removeClass("bg-success bg-warning bg-danger").addClass(barImage);
-
-		$("#partyPoints" + i).html(arResults[i] + "/" + maxPoints);
-
-	}
-
-}
-

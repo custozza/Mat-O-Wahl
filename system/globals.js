@@ -24,6 +24,8 @@ export const evaluationShiftFactor = 0; // PartyPositions are store as -1/0/1 we
 
 var activeQuestion = 0;
 
+export const DEBUGGING = true;
+
 export function setActiveQuestion(value) {
   activeQuestion = value;
 }
