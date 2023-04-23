@@ -10,6 +10,7 @@ import {
 	fnTransformPositionToIcon,
 	fnTransformPositionToText,
 } from './fnTransform.js';
+import { questionWeight } from './globals.js';
 
 export function fnEvaluationByThesis() {
     buildAnswers();
@@ -58,18 +59,30 @@ export function createFoldableText(querySelector) {
 
 function createQuestionGroupCard(i) {
 
-    var positionButton = fnTransformPositionToButton(arPersonalPositions[i]);
-    var positionIcon = fnTransformPositionToIcon(arPersonalPositions[i]);
-    var positionText = fnTransformPositionToText(arPersonalPositions[i]);
+    const weightedAnswer = questionWeight[i] || 0;
+    const answerWeight = Math.abs(weightedAnswer);
+    const personalPosition = arPersonalPositions[i];
+    var positionButton = fnTransformPositionToButton(personalPosition);
+    var positionIcon = fnTransformPositionToIcon(personalPosition);
+    var positionText = fnTransformPositionToText(personalPosition);
 
-    var button = `<button type='button' id='' class='btn ${positionButton} btn-sm selfPosition${i}' 
-	alt=' ${TEXT_ANSWER_USER} : ${positionText}' title='${TEXT_ANSWER_USER}  : ${positionText}'> ${positionIcon} </button>`;
+    const iconButton = `
+    <button type='button' id='' class='btn ${positionButton} btn-sm selfPosition${i}' 
+	alt=' ${TEXT_ANSWER_USER} : ${positionText}' title='${TEXT_ANSWER_USER}  : ${positionText}'>
+     ${positionIcon} 
+     </button>`;
 
+     const weightButton = `
+     <button type='button' id='' class='btn btn-primary btn-sm selfPosition${i}' 
+     alt=' ${TEXT_ANSWER_USER} : ${answerWeight}' title='${TEXT_ANSWER_USER}  : ${answerWeight}'>
+      ${answerWeight} 
+      </button>`;
 
     return `
-	<div id="btn-question-group-${i}" class="question-group-header border rounded mow-row-striped">
-		${button} 
-		<div class="btn-question-title"><h2><strong>${arQuestionsShort[i]}</strong><h2></div>
+	<div id="btn-question-group-${i}" class="question-group-header rounded mow-row-striped">
+		${iconButton} 
+		${weightButton} 
+		<div class="btn-question-title">${arQuestionsShort[i]}</div>
 	</div>`
 }
 

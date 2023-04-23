@@ -256,6 +256,11 @@ main {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
+    flex-wrap: nowrap;
 }
 
 .parties-group.questionGroup.collapsible-container {
@@ -277,18 +282,24 @@ main {
 }
 
 .question-group-header {
-    border: solid black 1px;
-    border: solid black 1px;
+    border: solid 1px darkgray;
+    overflow: hidden;
+    width: 100%;
     display: grid;
-    grid-template-columns: auto 1fr;
-    justify-content: center;
+    grid-template-columns: 3rem 3rem 1fr;
+    gap: 0.5rem;
+    justify-content: flex-start;
     align-items: center;
 }
 
 .btn-question-title {
     padding: 0.2rem;
     padding-left: 0.5rem;
-
+    font-size: x-large;
+    font-weight: bolder;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .collapsible-question {
