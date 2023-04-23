@@ -198,12 +198,12 @@ main {
 #resultsShort {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
 .party-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 5rem 1fr;
     width: 100%;
     overflow: hidden;
     flex-wrap: wrap;
