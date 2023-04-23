@@ -95,7 +95,7 @@ function createQuestionRow(questionNumber, partyContainer, party) {
     const personalAnswer = document.createElement('div');
     personalAnswer.classList.add('party-answer-cell', `question-${questionNumber}`, 'rounded');
     personalAnswer.innerHTML =  `
-	<div id="btn-question-group-${questionNumber}" class="question-group-header rounded">
+	<div id="btn-question-group-${questionNumber}" class="question-group-small">
 		${iconButton} 
 		${weightButton}
 	</div>`;
