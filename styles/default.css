@@ -328,11 +328,13 @@ main {
 }
 
 .party-description {
-    display: flex;
     display: inline;
     width: 100%;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+    max-height: fit-content;
+    overflow: hidden;
+    
 }
 
 .graphic-info-container {
@@ -356,7 +358,7 @@ main {
 
 .party-points-text {
     position: absolute;
-    left: 1rem;
+    left: 0.5rem;
     color: var(--s8-progressbar-text-color);
     font-weight: bolder;
 }
@@ -444,7 +446,8 @@ main {
 }
 
 .clamped {
-    max-height: 6rem;
+    max-height: 12rem;
+    overflow: hidden;
 }
 
 .triangle-container {
