@@ -1,4 +1,4 @@
-import { DEBUGGING, arParties, arSortParties} from "./globals.js";
+import { DEBUGGING, arParties, arPersonalPositions, arQuestionsShort, arSortParties} from "./globals.js";
 
 
 
@@ -26,6 +26,37 @@ export function fnEvaluationByParty() {
 
         const partyContainer = document.createElement('div');
         partyContainer.classList.add('rounded','party-answers-container');
+    
+        for(let questionNumber = 0; questionNumber < arQuestionsShort.length; questionNumber++){
+
+            const questionText = arQuestionsShort[questionNumber];
+
+            const question = document.createElement('div');
+            question.innerHTML = `${questionText}`;
+            partyContainer.append(question);
+            
+            const personalAnswer = document.createElement('div');
+            const personalPosition = arPersonalPositions[questionNumber];
+            personalAnswer.innerHTML = `${personalPosition}`;
+            partyContainer.append(personalAnswer);
+
+            const answer = party.answers[questionNumber];
+            
+            const partyAnswer = document.createElement('div');
+            const position = answer.positions;
+            partyAnswer.innerHTML = `${position}`;
+            partyContainer.append(partyAnswer);
+            
+            const partyOpinion = document.createElement('div');
+            partyOpinion.classList.add('clamped','party-opinion');
+            const opinion = answer.opinions;
+            partyOpinion.innerHTML = `${opinion}`;
+            partyContainer.append(partyOpinion);
+
+        }
+
+        
+
         $("#resultsByParty").append(partyContainer);
 
     }

@@ -59,16 +59,23 @@
 .party-answers-container {
     width: 100%;
     display: grid;
-    border: solid black;
+    grid-template-columns: auto auto auto 1fr;
+    grid-template-rows: 5rem;
+    gap: 0.5rem;
     max-height: 0;
     visibility: collapse;
+    display: none;
 }
 
 .party-answers-container.expanded {
     visibility: visible;
     max-height: fit-content;
+    display: grid;
 }
 
+.party-opinion {
+    overflow: hidden;
+}
 
 /* END RESULTS PER PARTY */
 
