@@ -3,57 +3,52 @@ import { DEBUGGING, arParties, arPersonalPositions, arQuestionsShort, arSortPart
 import { createFoldableText } from "./util.js";
 
 export function fnEvaluationByParty() {
-
-
     if (arSortParties.length != arParties.length) {
         throw Error("no sort information on parties")
     }
 
-    if (DEBUGGING) console.log("sorted", arSortParties);
-
     for (let i = 0; i < arParties.length; i++) {
         const partyId = arSortParties[i];
         const party = arParties[partyId];
-
-
-        const partyContainerHeader = document.createElement('div');
-        partyContainerHeader.classList.add('party-answers-header','group-header', 'rounded');
-        partyContainerHeader.setAttribute('id', `party-header${partyId}`);
-
-        partyContainerHeader.innerHTML = `<div class="btn-title">${party.partyLong}</div>`
-
-        $("#resultsByParty").append(partyContainerHeader);
-
-        const partyContainer = document.createElement('div');
-        partyContainer.classList.add('rounded','party-answers-container');
-    
-        for(let questionNumber = 0; questionNumber < arQuestionsShort.length; questionNumber++){
-            const questionContainer = createQuestionRow(questionNumber, party);
-            partyContainer.append(questionContainer);
-        }
-
+        const partyContainer = createPartyContainer(partyId, party);
         $("#resultsByParty").append(partyContainer);
-
     }
 
     createCollabsible();
     createFoldableText('.party-answer-opinion');
-
-    return;
-
-    function createCollabsible() {
-        const headers = document.getElementsByClassName("group-header");
-    
-        for(let i = 0; i < headers.length; i++) {
-            const header = headers[i];
-            header.addEventListener("click", () => {
-                const sibling = header.nextElementSibling;
-                $(sibling).toggleClass('expanded'); // rename to question
-                if(DEBUGGING) console.log(sibling);
-            });
-        }
-    }
 } 
+
+function createPartyContainer(partyId, party) {
+    const partyContainerHeader = document.createElement('div');
+    partyContainerHeader.classList.add('party-answers-header', 'group-header', 'rounded');
+    partyContainerHeader.setAttribute('id', `party-header${partyId}`);
+
+    partyContainerHeader.innerHTML = `<div class="btn-title">${party.partyLong}</div>`;
+
+    $("#resultsByParty").append(partyContainerHeader);
+
+    const partyContainer = document.createElement('div');
+    partyContainer.classList.add('rounded', 'party-answers-container');
+
+    for (let questionNumber = 0; questionNumber < arQuestionsShort.length; questionNumber++) {
+        const questionContainer = createQuestionRow(questionNumber, party);
+        partyContainer.append(questionContainer);
+    }
+    return partyContainer;
+}
+
+function createCollabsible() {
+    const headers = document.getElementsByClassName("group-header");
+
+    for(let i = 0; i < headers.length; i++) {
+        const header = headers[i];
+        header.addEventListener("click", () => {
+            const sibling = header.nextElementSibling;
+            $(sibling).toggleClass('expanded'); // rename to question
+            if(DEBUGGING) console.log(sibling);
+        });
+    }
+}
 
 function createQuestionRow(questionNumber, party) {
     const questionContainer = document.createElement('div');
@@ -80,6 +75,7 @@ function createQuestionRow(questionNumber, party) {
 
     return questionContainer;
 }
+
 function generatePersonalPositionIconCell(party, questionNumber) {
     const personalPosition = arPersonalPositions[questionNumber];
     const positionButton = fnTransformPositionToButton(personalPosition);
