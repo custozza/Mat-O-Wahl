@@ -5,6 +5,7 @@
 
 // Include Database Settings
 	include "db_settings.php";
+	include "db_password.php";
 
 
 // Establish Connection
@@ -46,7 +47,6 @@
 
 // Prepare and execute SQL Statement 
 	$sql = "INSERT INTO `$tablename` (ip, timestamp, personal, parties) VALUES ('$ip', '$timestamp', '$mowPersonalValues', '$mowPartiesValues')";
-
 
 // Send data
 	if ($conn->query($sql) === TRUE) {
