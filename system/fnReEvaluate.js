@@ -19,7 +19,8 @@ export function fnReEvaluate() {
 		$("#partyBar" + i).removeClass("bg-success bg-warning bg-danger").addClass(barImage);
 
 		//$("#partyPoints" + i).text(points + "/" + maxPoints);
-		$("#partyPoints" + i).text(`${arResults[i]} von max ${arMaxScore[0]}`);
+		//$("#partyPoints" + i).text(`${arResults[i]} von max ${arMaxScore[0]}`);
+		$("#partyPoints" + i).text(`${arResults[i]}%`);
 	}
 
 }
