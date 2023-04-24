@@ -138,17 +138,17 @@ const descriptionShowOnStart = 1;
 
 // 	1.6.2. Hauptueberschrift / 1.6.1. Main headline
 
-const descriptionHeading1 = "Vorsitzwahlkabine";
+const descriptionHeading1 = "SP&Ouml;-Wahlkabine der Sektion Acht";
 
 
 // 	1.6.3. Zweite Ueberschrift / 1.6.2. Second Headline
 
-const descriptionHeading2 = "zur Mitgliederbefragung";
+const descriptionHeading2 = "";
 
 
 // 	1.6.4. Kurzer Text um was es bei der Wahl geht / 1.6.3. Short (descriptive) text on what's the election about
 
-const descriptionExplanation = "Die Befragung wird zwischen 24. April und 10. Mai stattfinden. Teilnahmeberechtigt sind rund 148.000 SPÖ-Mitglieder. Das Ergebnis liegt frühestens am 22. Mai vor."; 
+const descriptionExplanation = "In f&uuml;nf kurzen Fragen hast du hier die M&ouml;glichkeit, die Positionen der Kandidat:innen mit jenen der Sektion Acht zu vergleichen.<br />Du kannst so auch jene:n Kandidat:in finden, die/der mit deinen eigenen Antworten am Besten übereinstimmt."; 
 
 
 // 	--------------------------------------------------------------------
@@ -171,7 +171,7 @@ const descriptionExplanation = "Die Befragung wird zwischen 24. April und 10. Ma
 
 */
 
-	const imprintLink = "system/imprint.html"
+	const imprintLink = "https://www.sektionacht.at/impressum/"
 
 
 // 	--------------------------------------------------------------------

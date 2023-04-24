@@ -11,7 +11,7 @@
 
     --s8-result-spacing: 0.2rem;
 
-    --s8-button-color-sehr-wichtig: #007bff;
+    --s8-button-color-sehr-wichtig: #B21D07;
     --s8-button-color-unwichtig: #6c757d;
     --s8-button-color-pro: #126412;
     --s8-button-color-contra: #dc3545;
@@ -22,6 +22,7 @@
 /* Buttstrap overwrites */
 .btn-primary {
     background-color: var(--s8-button-color-sehr-wichtig) !important;
+    border-color: var(--s8-button-color-sehr-wichtig);
 }
 
 .btn-secondary {
