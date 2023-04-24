@@ -45,8 +45,7 @@ function createPartyDescription(party) {
 	const url = party.partyURL;
 	const description = party.partyDescription;
 	partyDescription.innerHTML = `
-		<strong>${name}</strong>
-		(&#8663;<a href='${url}' target='_blank' alt='Link: ${name}' title='Link: ${name}'> ${nicName}</a>)
+		<strong><a href='${url}' target='_blank' alt='Link: ${name}' title='Link: ${name}'>${name}</a></strong>
 		${description}`;
 	return partyDescription;
 }

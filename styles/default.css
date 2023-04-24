@@ -352,6 +352,7 @@ main {
     padding-right: 0.5rem;
     max-height: fit-content;
     overflow: hidden;
+    font-size: larger;
 }
 
 .party-description.clamped {
@@ -371,12 +372,14 @@ main {
 .party-percent>.progress {
     background-color: var(--s8-progressbar-background);
     position: relative;
+    height: 2rem;
 }
 
 .party-points-text {
     position: absolute;
     color: var(--s8-progressbar-text-color);
     font-weight: bolder;
+    font-size: 1.5rem;
     text-align: center;
     width: 100%;
 }
