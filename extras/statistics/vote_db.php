@@ -7,10 +7,6 @@
 	include "db_settings.php";
 	include "db_password.php";
 
-
-echo "<br>Mat-o-Wahl: Read password from file ".$password;
-
-
 // Establish Connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
 
