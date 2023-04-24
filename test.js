@@ -9,7 +9,11 @@ export function evaluate(answers, aParties, weights, wParties)
     var numParties = aParties.length;
 
     function calcAnswerScore(aId, a, aP, g, gP) {
-        return g[aId] * gP[aId] * a[aId] * aP[aId];
+        //return g[aId] * gP[aId] * a[aId] * aP[aId];       //old and bad
+        //const returnValue = 1+(Math.min(Math.abs(a[aId]-aP[aId]),-Math.abs(a[aId]-aP[aId])*(g[aId]/9)*(gP[aId]/3)))/2;    //original DR
+        const returnValue = 1+(Math.min(Math.abs(a[aId]-aP[aId]),-Math.abs(a[aId]-aP[aId])*(g[aId]/9)))/2;  //besser
+        console.log("calcAnswerScore",returnValue)
+        return returnValue;
     }
 
     var scoresPerParty = [];
@@ -33,10 +37,12 @@ export function evaluate(answers, aParties, weights, wParties)
     }
 
     // transform -max...+max -> 0...2*max
-    scoresPerParty = scoresPerParty.map((s) => s+maxScore);
-    maxScore *= 2;
+    //scoresPerParty = scoresPerParty.map((s) => s+maxScore);   //old and bad
+    scoresPerParty = scoresPerParty.map((s) => Math.round((s/numQuestions)*100));
+    maxScore = 100;
 
-	const scoresPercentPerParty = scoresPerParty.map((score) => (100 * score / maxScore) || 0);
+	//const scoresPercentPerParty = scoresPerParty.map((score) => (100 * score / maxScore) || 0);
+    const scoresPercentPerParty=scoresPerParty;
 
     return [scoresPerParty, answerScoresPerParty, maxScore, scoresPercentPerParty];
 }
