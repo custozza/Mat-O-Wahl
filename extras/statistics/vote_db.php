@@ -37,8 +37,8 @@
 
 
 // $timestamp = time(); // Unix-Zeitstempel
-// $timestamp = date("Y-m-d H:i:s"); ausführliches Datumsformat -> nicht empfohlen, da rückverfolgbar über ACCESS.LOG
-	$timestamp = date("Y-m-d");
+ $timestamp = date("Y-m-d H:i:s");
+//	$timestamp = date("Y-m-d");
 
 	$votes = implode(',', $_GET["votes"]);
 	$weights = implode(',', $_GET["weights"]);
