@@ -11,7 +11,7 @@ export function evaluate(answers, aParties, weights, wParties)
     function calcAnswerScore(aId, a, aP, g, gP) {
         //return g[aId] * gP[aId] * a[aId] * aP[aId];       //old and bad
         //const returnValue = 1+(Math.min(Math.abs(a[aId]-aP[aId]),-Math.abs(a[aId]-aP[aId])*((g[aId]/9)*(gP[aId]/3)^1.5)))/2;
-        const returnValue = 1+(Math.min(Math.abs(a[aId]-aP[aId]),-Math.abs(a[aId]-aP[aId])*((g[aId]/9)^1.5)))/2;  //old DR
+        const returnValue = 1+(Math.min(Math.abs(a[aId]-aP[aId]),-Math.abs(a[aId]-aP[aId])*((g[aId]/9))))/2;  //old DR
         console.log("calcAnswerScore",returnValue)
         return returnValue;
     }
