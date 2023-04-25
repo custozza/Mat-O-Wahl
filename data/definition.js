@@ -260,7 +260,7 @@ const imprintPictures = `<p> Bilder mit freundlicher Genehmigung von / Pictures 
 //	(optional) Link zu einer Datenschutzerklaerung beginnend mit http(s):- erlaubt die anonyme Statistik
 //	(optional) Link to a privacy policy starting with http(s):- allows the anonymous statistics
 
-const imprintPrivacyUrl = "https://www.hans-wurst-webdesign-obsthausen.com/datenschutz.html";
+const imprintPrivacyUrl = "https://www.sektionacht.at/uber-uns/datenschutzerklaerung/";
 
 
 //	--------------------------------------------------------------------
