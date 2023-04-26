@@ -365,7 +365,7 @@ const language = "de";
 */
 
 const statsRecord = 1;
-const statsServer = "http://vorsitzwahl.at/2023/mat-o-wahl/wahlkabine/extras/statistics/vote_db.php";
+const statsServer = "https://vorsitzwahl.at/2023/mat-o-wahl/wahlkabine/extras/statistics/vote_db.php";
 
 
 /*
